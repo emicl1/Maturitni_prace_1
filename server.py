@@ -1,7 +1,6 @@
 """
 Tento script je psán v micropythnu a slouží k ovládání serveru
 """
-
 # ESP-32 Server side
 import socket
 import network
@@ -47,6 +46,8 @@ if __name__ == '__main__':
             print(data)
             if data == None:
                 conn.close()
+                soc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                break
             if data == "send":
                 x = adx.xValue
                 y = adx.yValue
@@ -56,10 +57,21 @@ if __name__ == '__main__':
             elif data == "close":
                 print("close")
                 conn.close()
-
-                # soc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                soc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                break
 
     # do_connect("Gottvaldova ", "ivana1234")
+
+
+
+
+
+
+
+
+
+
+
 
 
 

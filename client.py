@@ -39,6 +39,7 @@ def client(queue):
             s.sendall(msg.encode("utf-8"))
             data = s.recv(1024)
             queue.put(data)
+            print(data)
 
 
 
