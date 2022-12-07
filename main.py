@@ -5,18 +5,16 @@ Hra Loď se vyhýbá meteoritům, loď se ovládá pomocí raspberry pico w
 """
 
 
-
 import pygame
 from sys import exit
 from random import randint, uniform
 from time import sleep
 from multiprocessing import Process, Queue
-from client import client, queue
+from client import client
 
+queue = Queue()
 
-
-
-def App():
+def App(queue):
     H = 800
     W = 1000
 
@@ -43,11 +41,11 @@ def App():
     #coordinates
     ship_x = 450
     ship_y = 700
-    meteorit_x = randint(0, 800)
+    meteorit_x = randint(0, 1000)
     meteorit_y = 0
-    meteorit_x_2 = randint(0, 800)
+    meteorit_x_2 = randint(0, 1000)
     meteorit_y_2 = 0
-    coin_x = randint(0, 800)
+    coin_x = randint(0, 1000)
     coin_y = 0
 
     #rectangles
@@ -60,6 +58,7 @@ def App():
     text_surface = font.render("Press Space to Start", True, (255, 255, 255))
 
     #speed
+    ship_speed = 0
     meteorit_speed = 5
     meteorit_speed_2 = 5
     coin_speed = 5
@@ -70,7 +69,8 @@ def App():
 
     #rocket movement
 
-
+    old_position = 0
+    ship_state = "center"
 
     while True:
         for event in pygame.event.get():
@@ -86,33 +86,43 @@ def App():
         screen.blit(meteorit_2, meteorit_rect_2)
         screen.blit(coin, coin_rect)
 
-        #print(queue.empty())
+
         if queue.empty() == False:
-            data = queue.get().decode("utf-8")
-            print(data)
-            if ship_x > W:
-                ship_x = W
-            elif ship_x < 0:
-                ship_x = 0
-            elif data[0] >= ship_x:
-                ship_x += 10
-            elif data[0] <= ship_x:
-                ship_x -= 10
+            print("not empty")
+            data = queue.get()
+            if ship_rect.right > W :
+                ship_speed -= 5
+                old_position = data[2]
+            elif ship_rect.left < 0:
+                ship_speed += 5
+                old_position = data[2]
+            elif data[2] >= old_position:
+                ship_speed += 5
+                old_position = data[2]
+            elif data[2] <= old_position:
+                ship_speed -= 5
+                old_position = data[2]
+
+
+        ship_rect.left += ship_speed
+
+
+
 
 
         #moving objects, random sleep, random spawn, random speed
         if sky_surface_rect.colliderect(meteorit_rect) is False:
-            meteorit_speed_y = uniform(-1*(800/meteorit_rect.left), 800/(800-meteorit_rect.left))
+            meteorit_speed_y = uniform(-1*(1000/meteorit_rect.left), 1000/(1000-meteorit_rect.left))
             meteorit_speed = randint(3, 10)
             meteorit_rect.top = 0
 
         if sky_surface_rect.colliderect(meteorit_rect_2) is False:
-            meteorit_speed_y_2 = uniform(-1*(800/meteorit_rect_2.left), 800/(800-meteorit_rect_2.left ))
+            meteorit_speed_y_2 = uniform(-1*(1000/meteorit_rect_2.left), 1000/(1000-meteorit_rect_2.left ))
             meteorit_speed_2 = randint(3, 10)
             meteorit_rect_2.top = 0
 
         if sky_surface_rect.colliderect(coin_rect) is False:
-            coin_speed_y = uniform(-1*(800/coin_rect.left), 800/(800-coin_rect.left))
+            coin_speed_y = uniform(-1*(1000/coin_rect.left), 1000/(1000-coin_rect.left))
             coin_speed = randint(3, 10)
             coin_rect.top = 0
 
@@ -129,16 +139,29 @@ def App():
         if meteorit_rect.colliderect(ship_rect):
             print("Collision")
 
+        if meteorit_rect_2.colliderect(ship_rect):
+            print("Collision")
+
+        if coin_rect.colliderect(ship_rect):
+            print("Collision")
+
         pygame.display.update()
         clock.tick(60)
+
+def print_queue():
+    while True:
+        print(queue.get())
 
 
 
 if __name__ == "__main__":
-    proc_2 = Process(target=App)
-    proc_2.start()
+    queue = Queue()
+    proc_2 = Process(target=App, args=(queue,))
     proc = Process(target=client, args=(queue,))
     proc.start()
+    proc_2.start()
+
+
 
 
 

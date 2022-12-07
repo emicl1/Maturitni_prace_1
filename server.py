@@ -30,7 +30,7 @@ def do_connect(ssid, password):
 
 
 if __name__ == '__main__':
-    do_connect("Gottvaldova", "ivana1234")
+    do_connect("SSID", "password")
     i2c = SoftI2C(scl=Pin(17), sda=Pin(16), freq=10000)
     adx = ADXL345.ADXL345(i2c)
     soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
