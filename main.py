@@ -1,9 +1,7 @@
 """
 author = Alex Olivier Michaud
 Hra Loď se vyhýbá meteoritům, loď se ovládá pomocí raspberry pico w
-
 """
-
 
 import pygame
 from sys import exit
@@ -23,7 +21,6 @@ def App(queue):
     pygame.display.set_caption("Space Invaders")
     clock = pygame.time.Clock()
     font = pygame.font.SysFont("Arial", 30)
-
 
     #import images
     sky_surface = pygame.image.load("l.png")
@@ -67,10 +64,7 @@ def App(queue):
     meteorit_speed_y_2 = 0
     coin_speed_y = 0
 
-    #rocket movement
-
     old_position = 0
-    ship_state = "center"
 
     while True:
         for event in pygame.event.get():
@@ -86,7 +80,6 @@ def App(queue):
         screen.blit(meteorit_2, meteorit_rect_2)
         screen.blit(coin, coin_rect)
 
-
         if queue.empty() == False:
             print("not empty")
             data = queue.get()
@@ -97,18 +90,14 @@ def App(queue):
                 ship_speed += 5
                 old_position = data[2]
             elif data[2] >= old_position:
-                ship_speed += 5
+                ship_speed += 3
                 old_position = data[2]
             elif data[2] <= old_position:
-                ship_speed -= 5
+                ship_speed -= 3
                 old_position = data[2]
 
 
         ship_rect.left += ship_speed
-
-
-
-
 
         #moving objects, random sleep, random spawn, random speed
         if sky_surface_rect.colliderect(meteorit_rect) is False:

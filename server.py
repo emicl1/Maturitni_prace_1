@@ -60,7 +60,6 @@ if __name__ == '__main__':
                 soc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
                 break
 
-    # do_connect("Gottvaldova ", "ivana1234")
 
 
 
