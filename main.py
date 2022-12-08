@@ -81,37 +81,42 @@ def App(queue):
         screen.blit(coin, coin_rect)
 
         if queue.empty() == False:
-            print("not empty")
             data = queue.get()
-            if ship_rect.right > W :
-                ship_speed -= 5
-                old_position = data[2]
+            print(data)
+            if ship_rect.left > W:
+                ship_speed -= 2
             elif ship_rect.left < 0:
-                ship_speed += 5
-                old_position = data[2]
-            elif data[2] >= old_position:
-                ship_speed += 3
-                old_position = data[2]
-            elif data[2] <= old_position:
-                ship_speed -= 3
-                old_position = data[2]
+                ship_speed += 2
+            elif data[2] > 0:
+                ship_speed += 0.02*data[2] #předpis lineární funkce pro výpočet rychlosti, tak ať pro větší x je rychlost větší pro x =100 je rychlost 2
+            elif data[2] <= 0:
+                ship_speed += 0.02*data[2]
 
-
-        ship_rect.left += ship_speed
+        if ship_rect.left + ship_speed >= 0 and ship_rect.left + ship_speed <= W:
+            ship_rect.left += ship_speed
 
         #moving objects, random sleep, random spawn, random speed
         if sky_surface_rect.colliderect(meteorit_rect) is False:
-            meteorit_speed_y = uniform(-1*(1000/meteorit_rect.left), 1000/(1000-meteorit_rect.left))
+            try:
+                meteorit_speed_y = uniform(-1*(1000/meteorit_rect.left), 1000/(1000-meteorit_rect.left))
+            except:
+                meteorit_speed_y = uniform(-1*(1000/meteorit_rect.left), 1000/(1000-meteorit_rect.left))
             meteorit_speed = randint(3, 10)
             meteorit_rect.top = 0
 
         if sky_surface_rect.colliderect(meteorit_rect_2) is False:
-            meteorit_speed_y_2 = uniform(-1*(1000/meteorit_rect_2.left), 1000/(1000-meteorit_rect_2.left ))
+            try:
+                meteorit_speed_y = uniform(-1 * (1000 / meteorit_rect.left), 1000 / (1000 - meteorit_rect.left))
+            except:
+                meteorit_speed_y = uniform(-1 * (1000 / meteorit_rect.left), 1000 / (1000 - meteorit_rect.left))
             meteorit_speed_2 = randint(3, 10)
             meteorit_rect_2.top = 0
 
         if sky_surface_rect.colliderect(coin_rect) is False:
-            coin_speed_y = uniform(-1*(1000/coin_rect.left), 1000/(1000-coin_rect.left))
+            try:
+                meteorit_speed_y = uniform(-1 * (1000 / meteorit_rect.left), 1000 / (1000 - meteorit_rect.left))
+            except:
+                meteorit_speed_y = uniform(-1 * (1000 / meteorit_rect.left), 1000 / (1000 - meteorit_rect.left))
             coin_speed = randint(3, 10)
             coin_rect.top = 0
 
