@@ -124,7 +124,7 @@ def App(queue):
         meteorit_rect.top += meteorit_speed
         meteorit_rect_2.top += meteorit_speed_2
         coin_rect.top += coin_speed
-        #moving objects in y
+        #moving objects in y. m
         meteorit_rect.left += meteorit_speed_y
         meteorit_rect_2.left += meteorit_speed_y_2
         coin_rect.left += coin_speed_y
@@ -141,11 +141,6 @@ def App(queue):
 
         pygame.display.update()
         clock.tick(60)
-
-def print_queue():
-    while True:
-        print(queue.get())
-
 
 
 if __name__ == "__main__":
