@@ -1,9 +1,14 @@
+"""
+autor: Alex Olivier Michaud
+Client na straně domácího počítače, který přijímá data z raspberry pico, ve formě jsonu, jako list (x,y,z)
+a přidává je do fronty, která je použita pro pohyb lodě v hře
+"""
 import socket
 from json import loads
 
 PORT = 8880
 HOST = "0.0.0.0"
-IP = "192.168.0.177"
+IP = "192.168.0.177"   #Default raspberry pi ip address
 
 def client(queue):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
