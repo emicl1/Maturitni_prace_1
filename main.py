@@ -38,7 +38,7 @@ def score(queue):
     conn = sqlite3.connect('score.db')
     c = conn.cursor()
     c.execute("CREATE TABLE IF NOT EXISTS score (score integer)")
-    c.execute("SELECT MAX(score) FROM score")
+    c.execute("""SELECT MAX(score) FROM score""")
     data = c.fetchone()
     print(data)
     conn.close()
@@ -225,6 +225,7 @@ def App(queue):
             # updating the number of score in the database
             conn = sqlite3.connect("score.db")
             cursor = conn.cursor()
+            cursor.execute("CREATE TABLE IF NOT EXISTS score (score integer)")
             cursor.execute("INSERT INTO score VALUES (?)", (coins,))
             conn.commit()
             conn.close()
