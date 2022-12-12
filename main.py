@@ -46,7 +46,7 @@ def score(queue):
         data = 0
     run = True
     while run:
-        screen.blit(pygame.image.load("menu.png"), (-10, -90))
+        screen.blit(pygame.image.load("img/menu.png"), (-10, -90))
         #create text
         text_1 = myFont.render("Best Score", True, (0, 0, 0))
         text_2 = myFont.render("Return", True, (0, 0, 0))
@@ -62,6 +62,7 @@ def score(queue):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+                queue.put("exit")
                 exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if text_2_rect.collidepoint(event.pos):
@@ -90,7 +91,7 @@ def main_menu(queue):
         queue.get()
         queue.put([0, 0, 0])
         #create background
-        screen.blit(pygame.image.load("menu.png"), (-10, -90))
+        screen.blit(pygame.image.load("img/menu.png"), (-10, -90))
         #create text
         text_1 = myFont.render("Avoid Asteroids", True, (0, 0, 0))
         text_2 = myFont.render("Press tab to start", True, (0, 0, 0))
@@ -106,6 +107,7 @@ def main_menu(queue):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+                queue.put("exit")
                 exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
@@ -134,13 +136,13 @@ def App(queue):
     font = pygame.font.SysFont("Arial", 30)
 
     #import images
-    sky_surface = pygame.image.load("l.png")
-    ship = pygame.image.load("ship.png").convert_alpha()
-    meteorit = pygame.image.load("meteorit.png").convert_alpha()
-    meteorit_2 = pygame.image.load("meteorit_2.png").convert_alpha()
-    coin = pygame.image.load("coin.png").convert_alpha()
-    heart = pygame.image.load("heart_for_game.png").convert_alpha()
-    dead_heart = pygame.image.load("die_heart_game.png").convert_alpha()
+    sky_surface = pygame.image.load("img/l.png")
+    ship = pygame.image.load("img/ship.png").convert_alpha()
+    meteorit = pygame.image.load("img/meteorit.png").convert_alpha()
+    meteorit_2 = pygame.image.load("img/meteorit_2.png").convert_alpha()
+    coin = pygame.image.load("img/coin.png").convert_alpha()
+    heart = pygame.image.load("img/heart_for_game.png").convert_alpha()
+    dead_heart = pygame.image.load("img/die_heart_game.png").convert_alpha()
 
     #scale images
     ship = pygame.transform.scale(ship, (90, 90))
@@ -198,6 +200,7 @@ def App(queue):
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                queue.put("exit")
                 pygame.quit()
                 exit()
 
