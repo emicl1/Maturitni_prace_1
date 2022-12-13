@@ -69,7 +69,8 @@ def score(queue):
 
 def main_menu(queue):
     """
-    This function is used to show the main menu of the game, which is used to start the game, show the score and exit the game
+    This function is used to show the main menu of the game, which is used to start the game,
+    show the score and exit the game
     :param queue: the main queue of the game to share resources
     :return: None
     """
@@ -81,8 +82,9 @@ def main_menu(queue):
     pygame.display.update()
     run = True
     while run:
-        # the queue is used here, because the client is always running, so if you restart the game, the spaceship would otherwise
-        # move in a random direction, so if you empty the queue, the spaceship will not move, until you move it, and the [0,0,0] is
+        # the queue is used here, because the client is always running, so if you restart the game,
+        # the spaceship would otherwise move in a random direction, so if you empty the queue,
+        # the spaceship will not move, until you move it, and the [0,0,0] is
         # here, so you will start the game with the spaceship in the middle of the screen
         queue.get()
         queue.put([0, 0, 0])
@@ -135,16 +137,16 @@ def App(queue):
     # import images
     sky_surface = pygame.image.load("img/l.png")
     ship = pygame.image.load("img/ship.png").convert_alpha()
-    meteorit = pygame.image.load("img/meteorit.png").convert_alpha()
-    meteorit_2 = pygame.image.load("img/meteorit_2.png").convert_alpha()
+    meteorite = pygame.image.load("img/meteorite.png").convert_alpha()
+    meteorite_2 = pygame.image.load("img/meteorite_2.png").convert_alpha()
     coin = pygame.image.load("img/coin.png").convert_alpha()
     heart = pygame.image.load("img/heart_for_game.png").convert_alpha()
     dead_heart = pygame.image.load("img/die_heart_game.png").convert_alpha()
 
     # scale images
     ship = pygame.transform.scale(ship, (90, 90))
-    meteorit = pygame.transform.scale(meteorit, (90, 90))
-    meteorit_2 = pygame.transform.scale(meteorit_2, (90, 90))
+    meteorite = pygame.transform.scale(meteorite, (90, 90))
+    meteorite_2 = pygame.transform.scale(meteorite_2, (90, 90))
     coin = pygame.transform.scale(coin, (90, 90))
     heart = pygame.transform.scale(heart, (50, 50))
     dead_heart = pygame.transform.scale(dead_heart, (50, 50))
@@ -152,17 +154,17 @@ def App(queue):
     # coordinates
     ship_x = 450
     ship_y = 700
-    meteorit_x = randint(0, 1000)
-    meteorit_y = 0
-    meteorit_x_2 = randint(0, 1000)
-    meteorit_y_2 = 0
+    meteorite_x = randint(0, 1000)
+    meteorite_y = 0
+    meteorite_x_2 = randint(0, 1000)
+    meteorite_y_2 = 0
     coin_x = randint(0, 1000)
     coin_y = 0
 
     # rectangles
     ship_rect = ship.get_rect(midbottom=(ship_x, 800))
-    meteorit_rect = meteorit.get_rect(midbottom=(meteorit_x, meteorit_y))
-    meteorit_rect_2 = meteorit_2.get_rect(midbottom=(meteorit_x_2, meteorit_y_2))
+    meteorite_rect = meteorite.get_rect(midbottom=(meteorite_x, meteorite_y))
+    meteorite_rect_2 = meteorite_2.get_rect(midbottom=(meteorite_x_2, meteorite_y_2))
     coin_rect = coin.get_rect(midbottom=(coin_x, coin_y))
     sky_surface_rect = sky_surface.get_rect(topleft=(0, 0))
     heart_rect = heart.get_rect(topright=(W, 0))
@@ -174,12 +176,12 @@ def App(queue):
 
     # speed
     ship_speed = 0
-    meteorit_speed = 5
-    meteorit_speed_2 = 5
+    meteorite_speed = 5
+    meteorite_speed_2 = 5
     coin_speed = 5
     # speed in y
-    meteorit_speed_y = 0
-    meteorit_speed_y_2 = 0
+    meteorite_speed_y = 0
+    meteorite_speed_y_2 = 0
     coin_speed_y = 0
 
     # number of coins
@@ -204,15 +206,15 @@ def App(queue):
         # spawning objects
         screen.blit(sky_surface, (0, 0))
         screen.blit(ship, ship_rect)
-        screen.blit(meteorit, meteorit_rect)
-        screen.blit(meteorit_2, meteorit_rect_2)
+        screen.blit(meteorite, meteorite_rect)
+        screen.blit(meteorite_2, meteorite_rect_2)
         screen.blit(coin, coin_rect)
         screen.blit(coins_text, (10, 10))
         screen.blit(heart, heart_rect)
         screen.blit(heart, heart_rect_2)
         screen.blit(heart, heart_rect_3)
 
-        # checking the number of lives and spawing dead hearts if needed
+        # checking the number of lives and spawning dead hearts if needed
         if lives == 2:
             screen.blit(dead_heart, dead_heart_rect)
         if lives == 1:
@@ -233,7 +235,7 @@ def App(queue):
             ###game over###
             main_menu(queue)
 
-        if queue.empty() == False:
+        if queue.empty() is False:
             data = queue.get()
             print(data)
             if ship_rect.left > W:  # if the ship is out of the screen
@@ -246,11 +248,11 @@ def App(queue):
                 ship_speed += 0.01 * data[2]
 
         # TODO:make the ship movement more smooth
-        if ship_rect.left + ship_speed >= 0 and ship_rect.left + ship_speed <= W - 90:  # if the ship is in the screen
+        if 0 <= ship_rect.left + ship_speed <= W - 90:  # if the ship is in the screen
             ship_rect.left += ship_speed
-            if old_position < 0 and ship_speed > 0:  # better movement, if the ship is moving to the right it resetes the speed, thus making the movement smoother
+            if old_position < 0 < ship_speed:  # better movement, if the ship is moving to the right it resetes the speed, thus making the movement smoother
                 ship_speed -= ship_speed
-            elif old_position > 0 and ship_speed < 0:  # same as above but for the left
+            elif old_position > 0 > ship_speed:  # same as above but for the left
                 ship_speed += ship_speed
             if ship_speed > 200:  # if the speed is too high, it resets it
                 ship_speed -= 100
@@ -258,48 +260,48 @@ def App(queue):
             ship_speed = 0
 
         # moving objects, random sleep, random spawn, random speed
-        if sky_surface_rect.colliderect(meteorit_rect) is False:
-            if meteorit_rect.left == 0:  # if its 0 I would get a division by 0 error
-                meteorit_rect.left = 1
-            meteorit_speed_y = uniform(-1 * (1000 / meteorit_rect.left), 1000 / (
-                        1000 - meteorit_rect.left))  # linear function to represent the direction of the meteorit
-            meteorit_speed = randint(3, 10)  # random speed in x
-            meteorit_rect.top = 0  # repsawn the meteorit at the top of the screen
+        if sky_surface_rect.colliderect(meteorite_rect) is False:
+            if meteorite_rect.left == 0:  # if its 0 I would get a division by 0 error
+                meteorite_rect.left = 1
+            meteorite_speed_y = uniform(-1 * (1000 / meteorite_rect.left), 1000 / (
+                        1000 - meteorite_rect.left))  # linear function to represent the direction of the meteorite
+            meteorite_speed = randint(3, 10)  # random speed in x
+            meteorite_rect.top = 0  # repsawn the meteorite at the top of the screen
 
-        if sky_surface_rect.colliderect(meteorit_rect_2) is False:
-            if meteorit_rect_2.left == 0:  # if its 0 I would get a division by 0 error
-                meteorit_rect_2.left = 1
-            meteorit_speed_y_2 = uniform(-1 * (1000 / meteorit_rect_2.left), 1000 / (
-                        1000 - meteorit_rect_2.left))  # linear function to represent the direction of the meteorit
-            meteorit_speed_2 = randint(3, 10)  # random speed in x
-            meteorit_rect_2.top = 0  # repsawn the meteorit at the top of the screen
+        if sky_surface_rect.colliderect(meteorite_rect_2) is False:
+            if meteorite_rect_2.left == 0:  # if its 0 I would get a division by 0 error
+                meteorite_rect_2.left = 1
+            meteorite_speed_y_2 = uniform(-1 * (1000 / meteorite_rect_2.left), 1000 / (
+                        1000 - meteorite_rect_2.left))  # linear function to represent the direction of the meteorite
+            meteorite_speed_2 = randint(3, 10)  # random speed in x
+            meteorite_rect_2.top = 0  # repsawn the meteorite at the top of the screen
 
         if sky_surface_rect.colliderect(coin_rect) is False:
             if coin_rect.left == 0:  # if its 0 I would get a division by 0 error
                 coin_rect.left = 1
             coin_speed_y = uniform(-1 * (1000 / coin_rect.left), 1000 / (
-                        1000 - coin_rect.left))  # linear function to represent the direction of the meteorit
+                        1000 - coin_rect.left))  # linear function to represent the direction of the meteorite
             coin_speed = randint(3, 10)  # random speed in x
-            coin_rect.top = 0  # repsawn the meteorit at the top of the screen
+            coin_rect.top = 0  # repsawn the meteorite at the top of the screen
 
         # moving objects
-        meteorit_rect.top += meteorit_speed
-        meteorit_rect_2.top += meteorit_speed_2
+        meteorite_rect.top += meteorite_speed
+        meteorite_rect_2.top += meteorite_speed_2
         coin_rect.top += coin_speed
         # moving objects in y. m,
-        meteorit_rect.left += meteorit_speed_y
-        meteorit_rect_2.left += meteorit_speed_y_2
+        meteorite_rect.left += meteorite_speed_y
+        meteorite_rect_2.left += meteorite_speed_y_2
         coin_rect.left += coin_speed_y
 
-        # collisions with the ship, if the ship collides with the meteorit, it loses a life
+        # collisions with the ship, if the ship collides with the meteorite, it loses a life
         # if the ship collides with the coin, it gets a coin and updates the score
-        if meteorit_rect.colliderect(ship_rect):
+        if meteorite_rect.colliderect(ship_rect):
             lives -= 1
-            meteorit_rect.top = 0
+            meteorite_rect.top = 0
 
-        if meteorit_rect_2.colliderect(ship_rect):
+        if meteorite_rect_2.colliderect(ship_rect):
             lives -= 1
-            meteorit_rect_2.top = 0
+            meteorite_rect_2.top = 0
 
         if coin_rect.colliderect(ship_rect):
             coins += 1
