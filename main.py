@@ -153,7 +153,6 @@ def App(queue):
 
     # coordinates
     ship_x = 450
-    ship_y = 700
     meteorite_x = randint(0, 1000)
     meteorite_y = 0
     meteorite_x_2 = randint(0, 1000)
@@ -250,7 +249,8 @@ def App(queue):
         # TODO:make the ship movement more smooth
         if 0 <= ship_rect.left + ship_speed <= W - 90:  # if the ship is in the screen
             ship_rect.left += ship_speed
-            if old_position < 0 < ship_speed:  # better movement, if the ship is moving to the right it resetes the speed, thus making the movement smoother
+            if old_position < 0 < ship_speed:  # better movement, if the ship is moving to the right
+                # it resets the speed, thus making the movement smoother
                 ship_speed -= ship_speed
             elif old_position > 0 > ship_speed:  # same as above but for the left
                 ship_speed += ship_speed
@@ -264,25 +264,25 @@ def App(queue):
             if meteorite_rect.left == 0:  # if its 0 I would get a division by 0 error
                 meteorite_rect.left = 1
             meteorite_speed_y = uniform(-1 * (1000 / meteorite_rect.left), 1000 / (
-                        1000 - meteorite_rect.left))  # linear function to represent the direction of the meteorite
+                    1000 - meteorite_rect.left))  # linear function to represent the direction of the meteorite
             meteorite_speed = randint(3, 10)  # random speed in x
-            meteorite_rect.top = 0  # repsawn the meteorite at the top of the screen
+            meteorite_rect.top = 0  # respawn the meteorite at the top of the screen
 
         if sky_surface_rect.colliderect(meteorite_rect_2) is False:
             if meteorite_rect_2.left == 0:  # if its 0 I would get a division by 0 error
                 meteorite_rect_2.left = 1
             meteorite_speed_y_2 = uniform(-1 * (1000 / meteorite_rect_2.left), 1000 / (
-                        1000 - meteorite_rect_2.left))  # linear function to represent the direction of the meteorite
+                    1000 - meteorite_rect_2.left))  # linear function to represent the direction of the meteorite
             meteorite_speed_2 = randint(3, 10)  # random speed in x
-            meteorite_rect_2.top = 0  # repsawn the meteorite at the top of the screen
+            meteorite_rect_2.top = 0  # respawn the meteorite at the top of the screen
 
         if sky_surface_rect.colliderect(coin_rect) is False:
             if coin_rect.left == 0:  # if its 0 I would get a division by 0 error
                 coin_rect.left = 1
             coin_speed_y = uniform(-1 * (1000 / coin_rect.left), 1000 / (
-                        1000 - coin_rect.left))  # linear function to represent the direction of the meteorite
+                    1000 - coin_rect.left))  # linear function to represent the direction of the meteorite
             coin_speed = randint(3, 10)  # random speed in x
-            coin_rect.top = 0  # repsawn the meteorite at the top of the screen
+            coin_rect.top = 0  # respawn the meteorite at the top of the screen
 
         # moving objects
         meteorite_rect.top += meteorite_speed
@@ -313,12 +313,14 @@ def App(queue):
 
 
 if __name__ == "__main__":
-    queue = Queue()  # object to communicate between the processes, the queue is used for the data from the accelerometer
-    # the format is [x, y, z]
+    queue = Queue()  # object to communicate between the processes,
+    # the queue is used for the data from the accelerometer the format is [x, y, z]
     menu_proc = Process(target=main_menu, args=(
-    queue,))  # process for the menu, it interacts with the functions App() and Score(), so these processes are not needed
+        queue,))  # process for the menu, it interacts with the functions App() and Score(),
+    # so these processes are not needed
     client_proc = Process(target=client, args=(
-    queue,))  # process for the accelerometer, it sends the data to the queue, it is imported from the client.py file
+        queue,))  # process for the accelerometer, it sends the data to the queue,
+    # it is imported from the client.py file
     client_proc.start()
     menu_proc.start()
     client_proc.join()
