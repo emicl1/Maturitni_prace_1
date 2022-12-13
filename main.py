@@ -1,26 +1,21 @@
 """
 author = Alex Olivier Michaud
-Hra Loď se vyhýbá meteoritům, loď se ovládá pomocí raspberry pico w
+This is the main file of the game, it is used to start the game, show the score and exit the game.
+The game is a space shooter like, where you have to avoid the asteroids
+to navigate the ship it uses an accelerometer, connected to a raspberry pi
 """
-#TODO:reunite the language of the code to english
+# TODO:reunite the language of the code to english
 import pygame
 from sys import exit
 from random import randint, uniform
-from time import sleep
 from multiprocessing import Process, Queue
 from client import client
 import sqlite3
 
-queue = Queue()
-
+# Global variables for window size
 H = 800
 W = 1000
 
-def draw_text(text, font, text_col,screen,  x, y):
-    img = font.render(text, True, text_col)
-    textrect = img.get_rect()
-    textrect.topleft = (x, y)
-    screen.blit(img, (x, y))
 
 def score(queue):
     """
@@ -34,7 +29,7 @@ def score(queue):
     # pygame.image.load("menu.png")
     myFont = pygame.font.Font("8-BIT WONDER.ttf", 30)
     pygame.display.update()
-    #########database of score
+    # database of score
     conn = sqlite3.connect('score.db')
     c = conn.cursor()
     c.execute("CREATE TABLE IF NOT EXISTS score (score integer)")
@@ -42,20 +37,20 @@ def score(queue):
     data = c.fetchone()
     print(data)
     conn.close()
-    if data[0] == None:
+    if data[0] is None:
         data = 0
     run = True
     while run:
         screen.blit(pygame.image.load("img/menu.png"), (-10, -90))
-        #create text
+        # create text
         text_1 = myFont.render("Best Score", True, (0, 0, 0))
         text_2 = myFont.render("Return", True, (0, 0, 0))
         text_score = myFont.render(str(data[0]), True, (0, 0, 0))
-        #Creating text rectangles
+        # Creating text rectangles
         text_1_rect = text_1.get_rect(midtop=(W / 2, 300))
         text_2_rect = text_2.get_rect(midtop=(W / 2, 400))
         text_score_rect = text_score.get_rect(midtop=(W / 2, 350))
-        #blit text
+        # blit text
         screen.blit(text_1, text_1_rect)
         screen.blit(text_2, text_2_rect)
         screen.blit(text_score, text_score_rect)
@@ -71,6 +66,7 @@ def score(queue):
         pygame.display.flip()
     return
 
+
 def main_menu(queue):
     """
     This function is used to show the main menu of the game, which is used to start the game, show the score and exit the game
@@ -85,22 +81,22 @@ def main_menu(queue):
     pygame.display.update()
     run = True
     while run:
-        #the queue is used here, because the client is always running, so if you restart the game, the spaceship would otherwise
-        #move in a random direction, so if you empty the queue, the spaceship will not move, until you move it, and the [0,0,0] is
-        #here, so you will start the game with the spaceship in the middle of the screen
+        # the queue is used here, because the client is always running, so if you restart the game, the spaceship would otherwise
+        # move in a random direction, so if you empty the queue, the spaceship will not move, until you move it, and the [0,0,0] is
+        # here, so you will start the game with the spaceship in the middle of the screen
         queue.get()
         queue.put([0, 0, 0])
-        #create background
+        # create background
         screen.blit(pygame.image.load("img/menu.png"), (-10, -90))
-        #create text
+        # create text
         text_1 = myFont.render("Avoid Asteroids", True, (0, 0, 0))
         text_2 = myFont.render("Press tab to start", True, (0, 0, 0))
         text_3 = myFont.render("Check the score", True, (0, 0, 0))
-        #Creating text rectangles
-        text_1_rect = text_1.get_rect(midtop=(W/2, 300))
-        text_2_rect = text_2.get_rect(midtop=(W/2, 350))
-        text_3_rect = text_3.get_rect(midtop=(W/2, 400))
-        #blit text
+        # Creating text rectangles
+        text_1_rect = text_1.get_rect(midtop=(W / 2, 300))
+        text_2_rect = text_2.get_rect(midtop=(W / 2, 350))
+        text_3_rect = text_3.get_rect(midtop=(W / 2, 400))
+        # blit text
         screen.blit(text_1, text_1_rect)
         screen.blit(text_2, text_2_rect)
         screen.blit(text_3, text_3_rect)
@@ -122,6 +118,7 @@ def main_menu(queue):
                     score(queue)
         pygame.display.flip()
 
+
 def App(queue):
     """
     This function is used to show the game, and to control the game
@@ -135,7 +132,7 @@ def App(queue):
     clock = pygame.time.Clock()
     font = pygame.font.SysFont("Arial", 30)
 
-    #import images
+    # import images
     sky_surface = pygame.image.load("img/l.png")
     ship = pygame.image.load("img/ship.png").convert_alpha()
     meteorit = pygame.image.load("img/meteorit.png").convert_alpha()
@@ -144,7 +141,7 @@ def App(queue):
     heart = pygame.image.load("img/heart_for_game.png").convert_alpha()
     dead_heart = pygame.image.load("img/die_heart_game.png").convert_alpha()
 
-    #scale images
+    # scale images
     ship = pygame.transform.scale(ship, (90, 90))
     meteorit = pygame.transform.scale(meteorit, (90, 90))
     meteorit_2 = pygame.transform.scale(meteorit_2, (90, 90))
@@ -152,7 +149,7 @@ def App(queue):
     heart = pygame.transform.scale(heart, (50, 50))
     dead_heart = pygame.transform.scale(dead_heart, (50, 50))
 
-    #coordinates
+    # coordinates
     ship_x = 450
     ship_y = 700
     meteorit_x = randint(0, 1000)
@@ -162,7 +159,7 @@ def App(queue):
     coin_x = randint(0, 1000)
     coin_y = 0
 
-    #rectangles
+    # rectangles
     ship_rect = ship.get_rect(midbottom=(ship_x, 800))
     meteorit_rect = meteorit.get_rect(midbottom=(meteorit_x, meteorit_y))
     meteorit_rect_2 = meteorit_2.get_rect(midbottom=(meteorit_x_2, meteorit_y_2))
@@ -172,28 +169,28 @@ def App(queue):
     heart_rect_2 = heart.get_rect(topright=(W - 50, 0))
     heart_rect_3 = heart.get_rect(topright=(W - 100, 0))
     dead_heart_rect = dead_heart.get_rect(topright=(W, 0))
-    dead_heart_rect_2 = dead_heart.get_rect(topright=(W -50, 0))
-    dead_heart_rect_3 = dead_heart.get_rect(topright=(W -100, 0))
+    dead_heart_rect_2 = dead_heart.get_rect(topright=(W - 50, 0))
+    dead_heart_rect_3 = dead_heart.get_rect(topright=(W - 100, 0))
 
-    #speed
+    # speed
     ship_speed = 0
     meteorit_speed = 5
     meteorit_speed_2 = 5
     coin_speed = 5
-    #speed in y
+    # speed in y
     meteorit_speed_y = 0
     meteorit_speed_y_2 = 0
     coin_speed_y = 0
 
-    #number of coins
+    # number of coins
     coins = 0
-    #number of lives
+    # number of lives
     lives = 3
 
-    #text for coins
+    # text for coins
     coins_text = font.render(f"Coins: {coins}", True, (255, 255, 255))
 
-    #previous position
+    # previous position
     old_position = 0
 
     run = True
@@ -204,7 +201,7 @@ def App(queue):
                 pygame.quit()
                 exit()
 
-        #spawning objects
+        # spawning objects
         screen.blit(sky_surface, (0, 0))
         screen.blit(ship, ship_rect)
         screen.blit(meteorit, meteorit_rect)
@@ -215,7 +212,7 @@ def App(queue):
         screen.blit(heart, heart_rect_2)
         screen.blit(heart, heart_rect_3)
 
-        #checking the number of lives and spawing dead hearts if needed
+        # checking the number of lives and spawing dead hearts if needed
         if lives == 2:
             screen.blit(dead_heart, dead_heart_rect)
         if lives == 1:
@@ -239,59 +236,62 @@ def App(queue):
         if queue.empty() == False:
             data = queue.get()
             print(data)
-            if ship_rect.left > W : #if the ship is out of the screen
+            if ship_rect.left > W:  # if the ship is out of the screen
                 ship_speed -= 2
-            elif ship_rect.left < 0:    #if the ship is out of the screen
+            elif ship_rect.left < 0:  # if the ship is out of the screen
                 ship_speed += 2
             elif data[2] > 0:
-                ship_speed += 0.01*data[2] #linear function to represent the speed of the ship
+                ship_speed += 0.01 * data[2]  # linear function to represent the speed of the ship
             elif data[2] <= 0:
-                ship_speed += 0.01*data[2]
+                ship_speed += 0.01 * data[2]
 
-        #TODO:make the ship movement more smooth
-        if ship_rect.left + ship_speed >= 0 and ship_rect.left + ship_speed <= W - 90: #if the ship is in the screen
+        # TODO:make the ship movement more smooth
+        if ship_rect.left + ship_speed >= 0 and ship_rect.left + ship_speed <= W - 90:  # if the ship is in the screen
             ship_rect.left += ship_speed
-            if old_position < 0 and ship_speed > 0:     #better movement, if the ship is moving to the right it resetes the speed, thus making the movement smoother
+            if old_position < 0 and ship_speed > 0:  # better movement, if the ship is moving to the right it resetes the speed, thus making the movement smoother
                 ship_speed -= ship_speed
-            elif old_position > 0 and ship_speed < 0:   #same as above but for the left
+            elif old_position > 0 and ship_speed < 0:  # same as above but for the left
                 ship_speed += ship_speed
-            if ship_speed > 200:   #if the speed is too high, it resets it
+            if ship_speed > 200:  # if the speed is too high, it resets it
                 ship_speed -= 100
         else:
             ship_speed = 0
 
-        #moving objects, random sleep, random spawn, random speed
+        # moving objects, random sleep, random spawn, random speed
         if sky_surface_rect.colliderect(meteorit_rect) is False:
-            if meteorit_rect.left == 0:     #if its 0 I would get a division by 0 error
+            if meteorit_rect.left == 0:  # if its 0 I would get a division by 0 error
                 meteorit_rect.left = 1
-            meteorit_speed_y = uniform(-1*(1000/meteorit_rect.left), 1000/(1000-meteorit_rect.left))    #linear function to represent the direction of the meteorit
-            meteorit_speed = randint(3, 10) #random speed in x
-            meteorit_rect.top = 0   #repsawn the meteorit at the top of the screen
+            meteorit_speed_y = uniform(-1 * (1000 / meteorit_rect.left), 1000 / (
+                        1000 - meteorit_rect.left))  # linear function to represent the direction of the meteorit
+            meteorit_speed = randint(3, 10)  # random speed in x
+            meteorit_rect.top = 0  # repsawn the meteorit at the top of the screen
 
         if sky_surface_rect.colliderect(meteorit_rect_2) is False:
-            if meteorit_rect_2.left ==  0:     #if its 0 I would get a division by 0 error
+            if meteorit_rect_2.left == 0:  # if its 0 I would get a division by 0 error
                 meteorit_rect_2.left = 1
-            meteorit_speed_y_2 = uniform(-1 * (1000 / meteorit_rect_2.left), 1000 / (1000 - meteorit_rect_2.left))    #linear function to represent the direction of the meteorit
-            meteorit_speed_2 = randint(3, 10) #random speed in x
-            meteorit_rect_2.top = 0 #repsawn the meteorit at the top of the screen
+            meteorit_speed_y_2 = uniform(-1 * (1000 / meteorit_rect_2.left), 1000 / (
+                        1000 - meteorit_rect_2.left))  # linear function to represent the direction of the meteorit
+            meteorit_speed_2 = randint(3, 10)  # random speed in x
+            meteorit_rect_2.top = 0  # repsawn the meteorit at the top of the screen
 
         if sky_surface_rect.colliderect(coin_rect) is False:
-            if coin_rect.left == 0:     #if its 0 I would get a division by 0 error
+            if coin_rect.left == 0:  # if its 0 I would get a division by 0 error
                 coin_rect.left = 1
-            coin_speed_y = uniform(-1 * (1000 / coin_rect.left), 1000 / (1000 - coin_rect.left))    #linear function to represent the direction of the meteorit
-            coin_speed = randint(3, 10) #random speed in x
-            coin_rect.top = 0   #repsawn the meteorit at the top of the screen
+            coin_speed_y = uniform(-1 * (1000 / coin_rect.left), 1000 / (
+                        1000 - coin_rect.left))  # linear function to represent the direction of the meteorit
+            coin_speed = randint(3, 10)  # random speed in x
+            coin_rect.top = 0  # repsawn the meteorit at the top of the screen
 
-        #moving objects
+        # moving objects
         meteorit_rect.top += meteorit_speed
         meteorit_rect_2.top += meteorit_speed_2
         coin_rect.top += coin_speed
-        #moving objects in y. m,
+        # moving objects in y. m,
         meteorit_rect.left += meteorit_speed_y
         meteorit_rect_2.left += meteorit_speed_y_2
         coin_rect.left += coin_speed_y
 
-        #collisions with the ship, if the ship collides with the meteorit, it loses a life
+        # collisions with the ship, if the ship collides with the meteorit, it loses a life
         # if the ship collides with the coin, it gets a coin and updates the score
         if meteorit_rect.colliderect(ship_rect):
             lives -= 1
@@ -309,29 +309,16 @@ def App(queue):
         pygame.display.update()
         clock.tick(60)
 
+
 if __name__ == "__main__":
-    queue = Queue()   #object to communicate between the processes, the queue is used for the data from the accelerometer
-    #the format is [x, y, z]
-    menu_proc = Process(target=main_menu, args=(queue,)) #process for the menu, it interacts with the functions App() and Score(), so these processes are not needed
-    client_proc = Process(target=client, args=(queue,))  #process for the accelerometer, it sends the data to the queue, it is imported from the client.py file
+    queue = Queue()  # object to communicate between the processes, the queue is used for the data from the accelerometer
+    # the format is [x, y, z]
+    menu_proc = Process(target=main_menu, args=(
+    queue,))  # process for the menu, it interacts with the functions App() and Score(), so these processes are not needed
+    client_proc = Process(target=client, args=(
+    queue,))  # process for the accelerometer, it sends the data to the queue, it is imported from the client.py file
     client_proc.start()
     menu_proc.start()
     client_proc.join()
     menu_proc.join()
     ##TODO: if the process menu_proc is closed, the client_proc processes should be closed too
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

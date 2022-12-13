@@ -18,7 +18,11 @@ def client(queue):
         while True:
             msg = "send"
             s.sendall(msg.encode("utf-8"))
-            data = s.recv(1024)
+            try:
+                data = s.recv(1024)
+            except socket.error:
+                print("Connection lost")
+                continue
             data = data.decode("utf-8")
             data = loads(data)
             queue.put(data)
