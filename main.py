@@ -87,7 +87,8 @@ def main_menu(queue):
         # the spaceship will not move, until you move it, and the [0,0,0] is
         # here, so you will start the game with the spaceship in the middle of the screen
         queue.get()
-        queue.put([0, 0, 0])
+        if queue.empty():
+            queue.put([0, 0, 0])
         # create background
         screen.blit(pygame.image.load("img/menu.png"), (-10, -90))
         # create text
