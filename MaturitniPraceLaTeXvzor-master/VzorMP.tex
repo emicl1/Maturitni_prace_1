@@ -1,0 +1,128 @@
+\documentclass[12pt]{report}			% Začátek dokumentu
+\usepackage{MP}							% Import stylu
+
+\author{Alex Olivier Michaud}
+\title{Protokoly TCP/IP}
+\date{14. února 2023}
+\vedouci{ Dr.rer.nat. Mgr. Michal Kočer}
+\place{V Českých Budějovicích}
+\skolnirok{2022/2023}
+\logo{\includegraphics[scale=1.25]{GJ8_logotyp}}
+
+\begin{document}
+\pagenumbering{roman}                   % číslování stránek římskými číslicemi
+	\mytitlepage						% Vygenerování titulní strany
+	
+	\prohlaseni{
+		Prohlašuji, že jsem tuto práci vypracoval samostatně s vyznačením všech použitých pramenů.
+	}	
+	
+	\abstrakt{
+		\lipsum[1]						% Abstrakt
+	}{
+		\lipsum[1]						% Klíčová slova
+	}
+	
+	\podekovani{
+		\lipsum[2]						% Poděkování
+	}
+	
+   {\tableofcontents\newpage}			% Obsah
+	
+\addtocounter{page}{1}		% Posunutí countru stránek
+\pagenumbering{arabic}		% Číslování stránke arabskými číslicemi
+	\chapter*{Úvod}
+	
+		\lipsum[1]	
+	
+	
+	\part{Základy komunikace aplikací na úrovni TCP/IP}
+	
+		\chapter{Protokoly TCP/IP}
+			
+			\section{historie TCP/IP}
+				V roce 1966 se povedlo v USA Bobu Taylorovi úspěšně sehnat finance od Charles Maria Herzfeld, ředitele ARPA,\footnote{Nyní známo jako DARPA(Defense Advanced Research Projects Agency) je výkonná moc ministerstva obrany Spojených států amerických, které je pověřena vývojem technologií pro vojenské účely} na projekt ARPANET, který měl umožnit přístup k počítačům na velké vzdálenosti. V dalších třech letech se rohodlo o počáteční standardech pro identifikaci, autentizaci uživatelů, přenos znaků a kontrolu a roku 1969 byl ARPANET poprvé použit firmou BBN. 
+Při dalším výzkmu a pokusech o vytvoření nového modulu ARPANET, dva vědci Robert Elliot Kahn a Vinton Gray Cerf vytvořili nový model, kde hlavní zodpovědnost za spolehlivost byla předána uživateli místo sítě. Tímto roku 1974 vznikl nový protokol Transmission Control Program, který byl vydán v RFC\footnote{žádost o komentáře - označuje dokumenty popisující internetové protkoly} 675 s názvem Specification of Internet Transmission Control Program, avšak tato verze nebyla funkční až do roku 1981, kdy byla zprovozněna verzí 4. Je standardizována pomocí RFC 791 - Internet Protocol(IP) a RFC 793 Transmission Control Protocol(TCP). 
+\\
+TCP i IP, prošlo s postupem času velkým vývojem, kdy vznikalo stovky aktualizací. Například roku 1994 vzniklo Internet Protocol next generation (IPng), který zavadí IP verzi 6. Nyní se aktivně používá 10+ variant TCP na Linuxu. MacOS a Windows je má zavedeno jako výchozí nastavení. 
+
+			\section{Základy komunikace aplikací na úrovni TCP/IP }
+			TCP/IP je rodina protokolů, která umoňuje komunikaci uzlů\footnote{bod přerozdělení nebo koncový bod komunikace} a to pomocí end-to-end\footnote{snaží se o to, aby důležité role sítě byly řešeny konečným úzlem} principu a specifikováním toho jak by data měla být připravena, adresována, přenášena, směrována a přijmána. Tyto protokoly jsou nejčastěji děleny do čtyř úrovní Link, Internet, Transport a Application. 
+			
+			\section{Principy TCP/IP}
+			TCP/IP stojí na několika zásadních principech jako client-server, encapsulace, stateless a robustnost. 
+\\
+Client-server princip je vztah kde jeden úzel požádá o službu nebo
+ prostředek druhý úzel. V TCP/IP modelu je uživatel  client(je mu poskytována služba) a další počítač je server. 
+\\
+Encapsulace je prncip, který používá abstraktní dělení TCP/IP do čtyř úrovní. V každé takové úrovni se k původním datům přidávají další data, tak aby mohli být odeslány přes síť. Opačný proces, kdy uživatel se snaží dostat data se nazývá deencapsulace 
+\\
+Rodina TCP/IP protokolů je nazývána jako stateless. Tento princip říká, že jakákoliv žádost o službu od uživatele je nazávislá na té předchozí. Toto umožňuje lepší plynulost sítě, jelikož síťové cesty mohou být používány nepřetržitě.
+\\
+Robustnost je princip, který dbá na to, aby uživatel neposílal žádné data, které by mohli způsobit problém druhému uživateli při procházení TCP vrstvami. Zároveň se snaží předvídat vše co dostane od druhého uživatele, co by mohlo způsobit problém a s případnými problémy nakládá liberálně.
+			
+			\section{Link layer}
+			Link layer je nejnižší úroveň TCP/IP, fyzická a logická. Na fyzické úrovni jsou všechna zařízení, kabely a etc., která konkrétně posílají bity. Protokoly na této úrovni jsou standardizovány IEEE\footnote{Institute of Electrical and Electronics Engineers}, například jsem patří protokol Ethernet\footnote{kabely s kroucenou dvojlinkou}, Wi-Fi, etc.
+ \\
+Další součastí link úrovně je logická část, tato úroveň protokolů spojuje pouze síťový segment\footnote{část počítačové sítě} a posílá takzvané frame pouze v LAN(lokální síť). Toto propojení zajištuje pomocí různých protokolů, jako například ARP(Address Resolution Protocol), který umožňuje switchy, aby rozpoznal MAC adresy zařízení. Tato část se dále dělí na podčásti a to LLC a MAC podčást. LLC podčást umožňuje adresování a kontrolu logické části. Dále specifikuje mechanismy, pro zařízení, které adresují a kontroluje data, která jsou vyměněna mezi zařízeními. MAC podčást má zodpovědnost za možnost přístupu k mediu (CSMA/CD), nebo tento problém řeší pomocí MAC adres. 
+
+			\section{Internet layer}
+			\section{Transport layer}
+			\section{Application layer}
+			\section{}
+			
+
+	\part{Návrh aplikačního protokolu rodiny TCP/IP}
+
+\section{Výpisy použitých programů}
+
+\lipsum[1]	
+
+Výpis programu \nameref{lst:hello_world}  naleznete ve výpise \ref{lst:hello_world}.
+
+\begin{lstlisting}[title={Program hello.c}, caption={hello.c}, label={lst:hello_world}]
+#include <stdio.h>
+#define CISLO 10
+
+int main(void) {
+	int i = CISLO;
+
+	print("Hello World!\n");
+	print("%d", i);
+
+	return (0);
+}
+\end{lstlisting}
+
+\lipsum[1]	
+
+\begin{lstlisting}[numbers=none, title={Příklad výstupního souboru}]
+11.0524
+5.5954
+6.7996
+13.8584
+15.1357
+Soucet: 52.4415
+\end{lstlisting}
+
+	\chapter*{Závěr}
+	
+		\lipsum[1]
+	
+	\nocite{*}
+    	 bhvcg\printbibliography					% Vytvoří seznam literatury
+	\addcontentsline{toc}{chapter}{Bibliografie}
+    \printglossary[title={Zkratky}]		% Vytvoří seznam zkratek
+    \listoffigures						% Vytvoří seznam obrázků
+    \listoftables						% Vytvoří seznam tabulek
+
+    \begin{appendices}
+	\chapter{Fotky z pokusů}	
+	\lipsum[1]
+    	%\pitem{Fotky z pokusů}
+    	%\eitem{Vlastní program}
+    	%\eitem{Dokumentace}
+    	%\eitem{Testovací data}
+	\chapter{Příloha další }
+	\end{appendices}
+\end{document}

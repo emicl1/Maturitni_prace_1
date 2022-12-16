@@ -1,0 +1,14 @@
+del VzorMP.aux
+del VzorMP.bbl
+del VzorMP.blg
+del VzorMP.glg
+del VzorMP.glo
+del VzorMP.gls
+del VzorMP.ist
+del VzorMP.lof
+del VzorMP.log
+del VzorMP.lot
+del VzorMP.out
+del VzorMP.run.xml
+del VzorMP.toc
+del VzorMP-blx.bib

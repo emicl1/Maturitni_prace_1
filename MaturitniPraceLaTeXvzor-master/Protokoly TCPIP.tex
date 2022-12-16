@@ -1,0 +1,166 @@
+\documentclass[12pt]{report}			% Začátek dokumentu
+\usepackage{MP}							% Import stylu
+
+\author{Alex Olivier Michaud}
+\title{Protokoly TCP/IP}
+\date{14. února 2023}
+\vedouci{ Dr.rer.nat. Mgr. Michal Kočer}
+\place{V Českých Budějovicích}
+\skolnirok{2022/2023}
+\logo{\includegraphics[scale=1.25]{GJ8_logotyp}}
+
+\begin{document}
+\pagenumbering{roman}                   % číslování stránek římskými číslicemi
+	\mytitlepage						% Vygenerování titulní strany
+	
+	\prohlaseni{
+		Prohlašuji, že jsem tuto práci vypracoval samostatně s vyznačením všech použitých pramenů.
+	}	
+	
+	\abstrakt{
+		\lipsum[1]						% Abstrakt
+	}{
+		\lipsum[1]						% Klíčová slova
+	}
+	
+	\podekovani{
+		\lipsum[2]						% Poděkování
+	}
+	
+   {\tableofcontents\newpage}			% Obsah
+	
+\addtocounter{page}{1}		% Posunutí countru stránek
+\pagenumbering{arabic}		% Číslování stránke arabskými číslicemi
+	\chapter*{Úvod}
+	
+		\lipsum[1]	
+	
+	
+	\part{Základy komunikace aplikací na úrovni TCP/IP}
+	
+		\chapter{Protokoly TCP/IP}
+			
+			\section{historie TCP/IP}
+				V roce 1966 se povedlo v USA Bobu Taylorovi úspěšně sehnat finance od Charles Maria Herzfeld, ředitele ARPA,\footnote{Nyní známo jako DARPA(Defense Advanced Research Projects Agency) je výkonná moc ministerstva obrany Spojených států amerických, které je pověřena vývojem technologií pro vojenské účely} na projekt ARPANET, který měl umožnit přístup k počítačům na velké vzdálenosti. V dalších třech letech se rohodlo o počáteční standardech pro identifikaci, autentizaci uživatelů, přenos znaků a kontrolu a roku 1969 byl ARPANET poprvé použit firmou BBN. 
+Při dalším výzkmu a pokusech o vytvoření nového modulu ARPANET, dva vědci Robert Elliot Kahn a Vinton Gray Cerf vytvořili nový model, kde hlavní zodpovědnost za spolehlivost byla předána uživateli místo sítě. Tímto roku 1974 vznikl nový protokol Transmission Control Program, který byl vydán v RFC\footnote{žádost o komentáře - označuje dokumenty popisující internetové protkoly} 675 s názvem Specification of Internet Transmission Control Program, avšak tato verze nebyla funkční až do roku 1981, kdy byla zprovozněna verzí 4. Je standardizována pomocí RFC 791 - Internet Protocol(IP) a RFC 793 Transmission Control Protocol(TCP). 
+\\
+TCP i IP, prošlo s postupem času velkým vývojem, kdy vznikalo stovky aktualizací. Například roku 1994 vzniklo Internet Protocol next generation (IPng), který zavadí IP verzi 6. Nyní se aktivně používá 10+ variant TCP na Linuxu. MacOS a Windows je má zavedeno jako výchozí nastavení. 
+
+			\section{Základy komunikace aplikací na úrovni TCP/IP }
+			TCP/IP je rodina protokolů, která umoňuje komunikaci uzlů\footnote{bod přerozdělení nebo koncový bod komunikace} a to pomocí end-to-end\footnote{snaží se o to, aby důležité role sítě byly řešeny konečným úzlem} principu a specifikováním toho jak by data měla být připravena, adresována, přenášena, směrována a přijmána. Tyto protokoly jsou nejčastěji děleny do čtyř úrovní Link, Internet, Transport a Application. 
+			
+			\section{Principy TCP/IP}
+			TCP/IP stojí na několika zásadních principech jako client-server, encapsulace, stateless a robustnost. 
+\\
+Client-server princip je vztah kde jeden úzel požádá o službu nebo
+ prostředek druhý úzel. V TCP/IP modelu je uživatel  client(je mu poskytována služba) a další počítač je server. 
+\\
+Encapsulace je prncip, který používá abstraktní dělení TCP/IP do čtyř úrovní. V každé takové úrovni se k původním datům přidávají další data, tak aby mohli být odeslány přes síť. Opačný proces, kdy uživatel se snaží dostat data se nazývá deencapsulace 
+\\
+Rodina TCP/IP protokolů je nazývána jako stateless. Tento princip říká, že jakákoliv žádost o službu od uživatele je nazávislá na té předchozí. Toto umožňuje lepší plynulost sítě, jelikož síťové cesty mohou být používány nepřetržitě.
+\\
+Robustnost je princip, který dbá na to, aby uživatel neposílal žádné data, které by mohli způsobit problém druhému uživateli při procházení TCP vrstvami. Zároveň se snaží předvídat vše co dostane od druhého uživatele, co by mohlo způsobit problém a s případnými problémy nakládá liberálně.
+			
+			\section{Vrstva síťového rozhraní}
+			Vrstva síťového rozhraní je nejnižší úroveň TCP/IP, dělí se na další dvě podkategorie, a to fyzická a logická. Na fyzické úrovni jsou všechna zařízení, kabely a etc., která konkrétně posílají bity. Protokoly na této úrovni jsou standardizovány IEEE\footnote{Institute of Electrical and Electronics Engineers}, například jsem patří protokol Ethernet\footnote{kabely s kroucenou dvojlinkou}, Wi-Fi, etc.
+ \\
+Další součastí link úrovně je logická část, tato úroveň protokolů spojuje pouze síťový segment\footnote{část počítačové sítě} a posílá takzvané frame pouze v LAN(lokální síť). Toto propojení zajištuje pomocí různých protokolů, jako například ARP(Address Resolution Protocol), který umožňuje switchy, aby rozpoznal MAC adresy zařízení. Tato část se dále dělí na podčásti a to LLC a MAC podčást. LLC podčást umožňuje adresování a kontrolu logické části. Dále specifikuje mechanismy, pro zařízení, které adresují a kontroluje data, která jsou vyměněna mezi zařízeními. MAC podčást má zodpovědnost za možnost přístupu k mediu (CSMA/CD), nebo tento problém řeší pomocí MAC adres. 
+
+			\section{Síťová vrstva}
+Síťová vrstva, v referenčním modelu TCP/IP známá také jako vrstva 2, je zodpovědná za směrování a předávání paketů v sítích. Jedná se o důležitý level, který umožňuje zařízením v různých sítích vzájemně komunikovat, a díky němuž může fungovat internet.
+\\
+Jedním z hlavních úkolů síťové vrstvy je směrování, které zahrnuje rozhodování o vhodné cestě pro každý paket na základě jeho cíle. K určení nejlepší cesty se používají různé metody a algoritmy pro směrování, od jednoduchých statických metod až po adaptivnější přístupy, které mohou zohlednit různé faktory v síti.
+\\
+Kromě směrování je síťová vrstva zodpovědná také za realizaci předávání paketů v mezilehlých uzlech podél zvolené cesty a také za řízení toku dat a prevenci přetížení sítě. Hraje také klíčovou roli při propojování různých sítí, což umožňuje bezproblémovou komunikaci mezi nimi.
+\\ \url(https://www.ibm.com/docs/en/zos-basic-skills?topic=review-network-layer-layer), \url(https://www.earchiv.cz/a92/a221c110.php3)
+
+			\section{Transportní vrstva}
+Transportní vrstva, v referenčním modelu TCP/IP známá také jako vrstva 3, je důležitou součástí procesu síťové komunikace. Je zodpovědná za zajištění spolehlivé komunikace mezi aplikačními procesy běžícími na různých hostitelích v síti.
+\\
+Mezi hlavní úkoly transportní vrstvy patří oprava chyb, segmentace a desegmentace dat a zajištění doručení dat ve správném pořadí. K provádění těchto úkolů používá protokoly, jako je protokol TCP (transmission control protocol) a UDP (user datagram protocol).
+\\
+Transportní vrstva, která se v modelu OSI nachází mezi síťovou vrstvou (vrstva 3) a aplikační vrstvou (vrstva 7), zajišťuje koncové spojení mezi zdrojovým a cílovým hostitelem. To jim umožňuje komunikovat bez rušení jinými síťovými komponenty.
+\\
+Souhrnně řečeno, transportní vrstva shromažďuje segmenty zpráv z aplikační vrstvy a přenáší je do sítě, kde jsou znovu sestaveny a doručeny do aplikační vrstvy cílového hostitele. Je nezbytnou součástí procesu síťové komunikace, poskytuje spolehlivé transportní služby vyšším vrstvám a umožňuje aplikacím komunikovat mezi sebou napříč sítí.
+\\
+\url(https://www.earchiv.cz/a92/a224c110.php3)\url(https://www.techopedia.com/definition/9760/transport-layer)\url(https://www.geeksforgeeks.org/transport-layer-responsibilities/)
+			\section{Aplikační  vrstva}
+ Aplikační vrstva je v referenčním modulu TCP/IP určena číslem čtyři, ale jelikož je pro mou práci nejduležitější tak si tuto vrstvu rozdělíme podle podrobnějšího modelu ISO/OSI, kde aplikační vrstva se dělí na vrstvu relační, prezantační a aplikační. 
+				\subsection{Realční vrstva}
+Relační vrstva je zodpovědná za navazování, udržování a ukončování komunikačních relací mezi dvěma koncovými body. Zajišťuje, aby komunikace mezi dvěma koncovými body byla spolehlivá a probíhala hladce, i když dojde k chybám nebo přerušení na nižších vrstvách, například za pomoci synchronizace, která umožňuje do posílaných dat přidat kontrolní body, díky kterým, v případě chyby, si přijemce vyžadá znovu poslání dat od určitého bodu. Zároveň umožňuje, aby na stejné přenosové lince probíhalo více komunikačních relací současně, které mohou být duplexní, poloduplexní, či simplexní. 
+
+\url(https://www.earchiv.cz/a92/a225c110.php3)
+\url(https://www.geeksforgeeks.org/session-layer-in-osi-model/)
+				\subsection{Prezentační vrstva}
+Prezentační vrstavje zodpovědná za doručování, formátování a šiforvání informací při jejich předávání mezi různými systémy a aplikacemi.
+\\
+Prezentační vrstva zajišťuje, aby syntaxe a sémantika přenášených zpráv byla standardizována a ve správném formátu. Odpovídá za integraci všech různých formátů do standardizované podoby pro efektivní komunikaci a za kódování zpráv z formátu závislého na uživateli do společného formátu a naopak pro komunikaci mezi různými systémy.Pro vytvoření těchto formátu se používají různé serializace, jako například XML či TVL, které umožňují efektivní přenos složitých datových struktur. 
+\\
+Kromě serializace je prezentační vrstva zodpovědná také za šifrování a dešifrování dat. To se často provádí za účelem ochrany citlivých informací při jejich přenosu po sítích a může se provádět na různých vrstvách síťového zásobníku v závislosti na konkrétních požadavcích aplikace nebo protokolu.
+
+\url(https://osi-model.com/presentation-layer/)
+\url(https://www.geeksforgeeks.org/presentation-layer-in-osi-model/)
+\url(https://www.earchiv.cz/a92/a226c110.php3)
+
+				\subsection{Aplikační vrstva}
+
+\url()
+\url()
+
+			\section{}
+			
+
+	\part{Návrh aplikačního protokolu rodiny TCP/IP}
+
+\section{Výpisy použitých programů}
+
+\lipsum[1]	
+
+Výpis programu \nameref{lst:hello_world}  naleznete ve výpise \ref{lst:hello_world}.
+
+\begin{lstlisting}[title={Program hello.c}, caption={hello.c}, label={lst:hello_world}]
+#include <stdio.h>
+#define CISLO 10
+
+int main(void) {
+	int i = CISLO;
+
+	print("Hello World!\n");
+	print("%d", i);
+
+	return (0);
+}
+\end{lstlisting}
+
+\lipsum[1]	
+
+\begin{lstlisting}[numbers=none, title={Příklad výstupního souboru}]
+11.0524
+5.5954
+6.7996
+13.8584
+15.1357
+Soucet: 52.4415
+\end{lstlisting}
+
+	\chapter*{Závěr}
+	
+		\lipsum[1]
+	
+	\nocite{*}
+    	\printbibliography					% Vytvoří seznam literatury
+	\addcontentsline{toc}{chapter}{Bibliografie}
+    \printglossary[title={Zkratky}]		% Vytvoří seznam zkratek
+    \listoffigures						% Vytvoří seznam obrázků
+    \listoftables						% Vytvoří seznam tabulek
+
+    \begin{appendices}
+	\chapter{Fotky z pokusů}	
+	\lipsum[1]
+    	%\pitem{Fotky z pokusů}
+    	%\eitem{Vlastní program}
+    	%\eitem{Dokumentace}
+    	%\eitem{Testovací data}
+	\chapter{Příloha další }
+	\end{appendices}
+\end{document}

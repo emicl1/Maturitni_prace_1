@@ -4,7 +4,7 @@ This is the main file of the game, it is used to start the game, show the score 
 The game is a space shooter like, where you have to avoid the asteroids
 to navigate the ship it uses an accelerometer, connected to a raspberry pi
 """
-# TODO:reunite the language of the code to english
+# TODO: reunite the language of the code to english
 import pygame
 from sys import exit
 from random import randint, uniform
@@ -15,7 +15,6 @@ import sqlite3
 # Global variables for window size
 H = 800
 W = 1000
-
 
 def score(queue):
     """
@@ -246,7 +245,7 @@ def App(queue):
             elif data[2] <= 0:
                 ship_speed += 0.01 * data[2]
 
-        # TODO:make the ship movement more smooth
+        # TODO: make the ship movement more smooth
         if 0 <= ship_rect.left + ship_speed <= W - 90:  # if the ship is in the screen
             ship_rect.left += ship_speed
             if old_position < 0 < ship_speed:  # better movement, if the ship is moving to the right
