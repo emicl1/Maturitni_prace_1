@@ -162,7 +162,7 @@
   year         = {2022},
 }
 
-@Electronic{Link_5,
+@Electronic{jhgd,
   howpublished = {Online},
   language     = {Angličtina},
   month        = dec,
@@ -255,7 +255,7 @@
   month        = dec,
   organization = {CSC CORPORATE DOMAINS, INC.},
   title        = {Address Resolution Protocol},
-  url          = {https://www.ibm.com/docs/en/zos-basic-skills?topic=layer-address-resolution-protocol-arp},
+  url          = {https://www.ibm.com/docs/en/zos-basic-skillstopic=layer-address-resolution-protocol-arp},
   year         = {2022},
 }
 
@@ -538,4 +538,4 @@
   month        = dec,
   organization = {REG-WEBGLOBE},
   title        = {Ethernet},
-  url          = {https://ipr
+  url          = {https://ipripo
