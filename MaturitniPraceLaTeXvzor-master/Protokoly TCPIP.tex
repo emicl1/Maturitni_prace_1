@@ -45,7 +45,15 @@
 Při dalším výzkmu a pokusech o vytvoření nového modulu ARPANET, dva vědci Robert Elliot Kahn a Vinton Gray Cerf vytvořili nový model, kde hlavní zodpovědnost za spolehlivost byla předána uživateli místo sítě. Tímto roku 1974 vznikl nový protokol Transmission Control Program, který byl vydán v RFC\footnote{žádost o komentáře - označuje dokumenty popisující internetové protkoly} 675 s názvem Specification of Internet Transmission Control Program, avšak tato verze nebyla funkční až do roku 1981, kdy byla zprovozněna verzí 4. Je standardizována pomocí RFC 791 - Internet Protocol(IP) a RFC 793 Transmission Control Protocol(TCP). 
 \\
 TCP i IP, prošlo s postupem času velkým vývojem, kdy vznikalo stovky aktualizací. Například roku 1994 vzniklo Internet Protocol next generation (IPng), který zavadí IP verzi 6. Nyní se aktivně používá 10+ variant TCP na Linuxu. MacOS a Windows je má zavedeno jako výchozí nastavení. 
-\cite{History_3} \cite{ARPNET} \cite{History_2} \cite{History} \cite{Rules} \cite{IP} \cite{TCP}  
+
+\cite{History_3}
+ \cite{ARPNET} 
+\cite{History_2} 
+\cite{History}
+ \cite{Rules}
+ \cite{IP}
+ \cite{TCP}  
+
 			\section{Základy komunikace aplikací na úrovni TCP/IP }
 			TCP/IP je rodina protokolů, která umoňuje komunikaci uzlů\footnote{bod přerozdělení nebo koncový bod komunikace} a to pomocí end-to-end\footnote{snaží se o to, aby důležité role sítě byly řešeny konečným úzlem} principu a specifikováním toho jak by data měla být připravena, adresována, přenášena, směrována a přijmána. Tyto protokoly jsou nejčastěji děleny do čtyř úrovní Link, Internet, Transport a Application. 
 \cite{zaklady_komunikace_1}\cite{zaklady_komunikace_2}\cite{zaklady_komunikace_3}
@@ -61,13 +69,25 @@ Encapsulace je prncip, který používá abstraktní dělení TCP/IP do čtyř �
 Rodina TCP/IP protokolů je nazývána jako stateless. Tento princip říká, že jakákoliv žádost o službu od uživatele je nazávislá na té předchozí. Toto umožňuje lepší plynulost sítě, jelikož síťové cesty mohou být používány nepřetržitě.
 \\
 Robustnost je princip, který dbá na to, aby uživatel neposílal žádné data, které by mohli způsobit problém druhému uživateli při procházení TCP vrstvami. Zároveň se snaží předvídat vše co dostane od druhého uživatele, co by mohlo způsobit problém a s případnými problémy nakládá liberálně.
-\cite{Princip_1}  \cite{zaklady_komunikace_1}  \cite{Princip_3}  \cite{Princip_4}  \cite{Princip_5}  \cite{Princip_6}
+
+\cite{Princip_1}
+  \cite{zaklady_komunikace_1} 
+ \cite{Princip_3} 
+ \cite{Princip_4} 
+ \cite{Princip_5}
+  \cite{Princip_6}
 			
 			\section{Vrstva síťového rozhraní}
 			Vrstva síťového rozhraní je nejnižší úroveň TCP/IP, dělí se na další dvě podkategorie, a to fyzická a logická. Na fyzické úrovni jsou všechna zařízení, kabely a etc., která konkrétně posílají bity. Protokoly na této úrovni jsou standardizovány IEEE\footnote{Institute of Electrical and Electronics Engineers}, například jsem patří protokol Ethernet\footnote{kabely s kroucenou dvojlinkou}, Wi-Fi, etc.
  \\
 Další součastí link úrovně je logická část, tato úroveň protokolů spojuje pouze síťový segment\footnote{část počítačové sítě} a posílá takzvané frame pouze v LAN(lokální síť). Toto propojení zajištuje pomocí různých protokolů, jako například ARP(Address Resolution Protocol), který umožňuje switchy, aby rozpoznal MAC adresy zařízení. Tato část se dále dělí na podčásti a to LLC a MAC podčást. LLC podčást umožňuje adresování a kontrolu logické části. Dále specifikuje mechanismy, pro zařízení, které adresují a kontroluje data, která jsou vyměněna mezi zařízeními. MAC podčást má zodpovědnost za možnost přístupu k mediu (CSMA/CD), nebo tento problém řeší pomocí MAC adres. 
-\cite{Princip_5} \cite{Link_2} \cite{Link_3} \cite{Link_4} \cite{Link_5} \cite{Link_6}
+
+\cite{Princip_5} 
+\cite{Link_2} 
+\cite{Link_3}
+ \cite{Link_4}
+ \cite{Link_5}
+ \cite{Link_6}
 
 			\section{Síťová vrstva}
 Síťová vrstva, v referenčním modelu TCP/IP známá také jako vrstva 2, je zodpovědná za směrování a předávání paketů v sítích. Jedná se o důležitý level, který umožňuje zařízením v různých sítích vzájemně komunikovat, a díky němuž může fungovat internet.
@@ -75,7 +95,9 @@ Síťová vrstva, v referenčním modelu TCP/IP známá také jako vrstva 2, je 
 Jedním z hlavních úkolů síťové vrstvy je směrování, které zahrnuje rozhodování o vhodné cestě pro každý paket na základě jeho cíle. K určení nejlepší cesty se používají různé metody a algoritmy pro směrování, od jednoduchých statických metod až po adaptivnější přístupy, které mohou zohlednit různé faktory v síti.
 \\
 Kromě směrování je síťová vrstva zodpovědná také za realizaci předávání paketů v mezilehlých uzlech podél zvolené cesty a také za řízení toku dat a prevenci přetížení sítě. Hraje také klíčovou roli při propojování různých sítí, což umožňuje bezproblémovou komunikaci mezi nimi.
-\cite{sit_1} \cite{sit_2}
+
+\cite{sit_1}
+ \cite{sit_2}
 
 			\section{Transportní vrstva}
 Transportní vrstva, v referenčním modelu TCP/IP známá také jako vrstva 3, je důležitou součástí procesu síťové komunikace. Je zodpovědná za zajištění spolehlivé komunikace mezi aplikačními procesy běžícími na různých hostitelích v síti.
@@ -85,7 +107,7 @@ Mezi hlavní úkoly transportní vrstvy patří oprava chyb, segmentace a desegm
 Transportní vrstva, která se v modelu OSI nachází mezi síťovou vrstvou (vrstva 3) a aplikační vrstvou (vrstva 7), zajišťuje koncové spojení mezi zdrojovým a cílovým hostitelem. To jim umožňuje komunikovat bez rušení jinými síťovými komponenty.
 \\
 Souhrnně řečeno, transportní vrstva shromažďuje segmenty zpráv z aplikační vrstvy a přenáší je do sítě, kde jsou znovu sestaveny a doručeny do aplikační vrstvy cílového hostitele. Je nezbytnou součástí procesu síťové komunikace, poskytuje spolehlivé transportní služby vyšším vrstvám a umožňuje aplikacím komunikovat mezi sebou napříč sítí.
-\\
+
 
 \cite{tran_1}
 \cite{tran_2}
@@ -181,6 +203,20 @@ Kromě směrování datových paketů a adresování poskytuje protokol IP také
 \cite{IP_4}
 
 				\subsection{TCP}
+Protokol TCP\footnote{Transmission Control Protocol} je základní součástí internetu a zajišťuje spolehlivý přenos dat mezi zařízeními. Je to protokol zaměřený na spojení, což znamená, že navazuje a udržuje spojení mezi zařízeními nebo aplikacemi, dokud nedokončí výměnu dat.
+\\
+Protokol TCP je zodpovědný za rozdělení původní zprávy do paketů, jejich očíslování a předání vrstvě IP k transportu do cílového zařízení. Dále se stará o přenos případných odložených paketů, spravuje řízení toku a zajišťuje, aby všechny pakety dosáhly svého cíle.
+\\
+K navázání spojení mezi zařízením a serverem používá protokol TCP třícestný handshake, který zajišťuje, aby mohlo být současně přenášeno více spojení soketů TCP v obou směrech. Zařízení i server musí před zahájením komunikace synchronizovat a potvrdit pakety a poté mohou vyjednávat, oddělovat a přenášet spojení soketů TCP.
+\\
+Jednou z hlavních výhod protokolu TCP je jeho spolehlivost. Je navržen tak, aby zajistil, že všechny pakety dosáhnou svého cíle, i když se některé pakety během přenosu ztratí. Toho dosahuje tím, že všechny ztracené pakety znovu přenáší a kontroluje, zda nedošlo k chybám. To z něj činí ideální protokol pro aplikace, které vyžadují spolehlivý a bezchybný přenos, jako je e-mail a přenos souborů.
+
+
+
+\cite{Pruvodce}
+\cite{TCP}
+\cite{TCP_1}
+\cite{TCP_2}
 
 \url{}
 \url{}
