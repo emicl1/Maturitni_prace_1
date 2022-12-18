@@ -45,9 +45,10 @@
 Při dalším výzkmu a pokusech o vytvoření nového modulu ARPANET, dva vědci Robert Elliot Kahn a Vinton Gray Cerf vytvořili nový model, kde hlavní zodpovědnost za spolehlivost byla předána uživateli místo sítě. Tímto roku 1974 vznikl nový protokol Transmission Control Program, který byl vydán v RFC\footnote{žádost o komentáře - označuje dokumenty popisující internetové protkoly} 675 s názvem Specification of Internet Transmission Control Program, avšak tato verze nebyla funkční až do roku 1981, kdy byla zprovozněna verzí 4. Je standardizována pomocí RFC 791 - Internet Protocol(IP) a RFC 793 Transmission Control Protocol(TCP). 
 \\
 TCP i IP, prošlo s postupem času velkým vývojem, kdy vznikalo stovky aktualizací. Například roku 1994 vzniklo Internet Protocol next generation (IPng), který zavadí IP verzi 6. Nyní se aktivně používá 10+ variant TCP na Linuxu. MacOS a Windows je má zavedeno jako výchozí nastavení. 
-
+\cite{History_3} \cite{ARPNET} \cite{History_2} \cite{History} \cite{Rules} \cite{IP} \cite{TCP}  
 			\section{Základy komunikace aplikací na úrovni TCP/IP }
 			TCP/IP je rodina protokolů, která umoňuje komunikaci uzlů\footnote{bod přerozdělení nebo koncový bod komunikace} a to pomocí end-to-end\footnote{snaží se o to, aby důležité role sítě byly řešeny konečným úzlem} principu a specifikováním toho jak by data měla být připravena, adresována, přenášena, směrována a přijmána. Tyto protokoly jsou nejčastěji děleny do čtyř úrovní Link, Internet, Transport a Application. 
+\cite{zaklady_komunikace_1}\cite{zaklady_komunikace_2}\cite{zaklady_komunikace_3}
 			
 			\section{Principy TCP/IP}
 			TCP/IP stojí na několika zásadních principech jako client-server, encapsulace, stateless a robustnost. 
@@ -60,6 +61,7 @@ Encapsulace je prncip, který používá abstraktní dělení TCP/IP do čtyř �
 Rodina TCP/IP protokolů je nazývána jako stateless. Tento princip říká, že jakákoliv žádost o službu od uživatele je nazávislá na té předchozí. Toto umožňuje lepší plynulost sítě, jelikož síťové cesty mohou být používány nepřetržitě.
 \\
 Robustnost je princip, který dbá na to, aby uživatel neposílal žádné data, které by mohli způsobit problém druhému uživateli při procházení TCP vrstvami. Zároveň se snaží předvídat vše co dostane od druhého uživatele, co by mohlo způsobit problém a s případnými problémy nakládá liberálně.
+\cite{Princip_1} \cite{zaklady_komunikace_1} \cite{Princip_3} \cite{Princip_4} \cite{Princip_5} \cite{Princip_6}
 			
 			\section{Vrstva síťového rozhraní}
 			Vrstva síťového rozhraní je nejnižší úroveň TCP/IP, dělí se na další dvě podkategorie, a to fyzická a logická. Na fyzické úrovni jsou všechna zařízení, kabely a etc., která konkrétně posílají bity. Protokoly na této úrovni jsou standardizovány IEEE\footnote{Institute of Electrical and Electronics Engineers}, například jsem patří protokol Ethernet\footnote{kabely s kroucenou dvojlinkou}, Wi-Fi, etc.
@@ -83,14 +85,16 @@ Transportní vrstva, která se v modelu OSI nachází mezi síťovou vrstvou (vr
 \\
 Souhrnně řečeno, transportní vrstva shromažďuje segmenty zpráv z aplikační vrstvy a přenáší je do sítě, kde jsou znovu sestaveny a doručeny do aplikační vrstvy cílového hostitele. Je nezbytnou součástí procesu síťové komunikace, poskytuje spolehlivé transportní služby vyšším vrstvám a umožňuje aplikacím komunikovat mezi sebou napříč sítí.
 \\
-\url(https://www.earchiv.cz/a92/a224c110.php3)\url(https://www.techopedia.com/definition/9760/transport-layer)\url(https://www.geeksforgeeks.org/transport-layer-responsibilities/)
+\url{https://www.earchiv.cz/a92/a224c110.php3}
+\url{https://www.techopedia.com/definition/9760/transport-layer}
+\url{https://www.geeksforgeeks.org/transport-layer-responsibilities/}
 			\section{Aplikační  vrstva}
  Aplikační vrstva je v referenčním modulu TCP/IP určena číslem čtyři, ale jelikož je pro mou práci nejduležitější tak si tuto vrstvu rozdělíme podle podrobnějšího modelu ISO/OSI, kde aplikační vrstva se dělí na vrstvu relační, prezantační a aplikační. 
 				\subsection{Realční vrstva}
 Relační vrstva je zodpovědná za navazování, udržování a ukončování komunikačních relací mezi dvěma koncovými body. Zajišťuje, aby komunikace mezi dvěma koncovými body byla spolehlivá a probíhala hladce, i když dojde k chybám nebo přerušení na nižších vrstvách, například za pomoci synchronizace, která umožňuje do posílaných dat přidat kontrolní body, díky kterým, v případě chyby, si přijemce vyžadá znovu poslání dat od určitého bodu. Zároveň umožňuje, aby na stejné přenosové lince probíhalo více komunikačních relací současně, které mohou být duplexní, poloduplexní, či simplexní. 
 
-\url(https://www.earchiv.cz/a92/a225c110.php3)
-\url(https://www.geeksforgeeks.org/session-layer-in-osi-model/)
+\url{https://www.earchiv.cz/a92/a225c110.php3}
+\url{https://www.geeksforgeeks.org/session-layer-in-osi-model/}
 				\subsection{Prezentační vrstva}
 Prezentační vrstavje zodpovědná za doručování, formátování a šiforvání informací při jejich předávání mezi různými systémy a aplikacemi.
 \\
@@ -98,16 +102,97 @@ Prezentační vrstva zajišťuje, aby syntaxe a sémantika přenášených zprá
 \\
 Kromě serializace je prezentační vrstva zodpovědná také za šifrování a dešifrování dat. To se často provádí za účelem ochrany citlivých informací při jejich přenosu po sítích a může se provádět na různých vrstvách síťového zásobníku v závislosti na konkrétních požadavcích aplikace nebo protokolu.
 
-\url(https://osi-model.com/presentation-layer/)
-\url(https://www.geeksforgeeks.org/presentation-layer-in-osi-model/)
-\url(https://www.earchiv.cz/a92/a226c110.php3)
+\url{https://osi-model.com/presentation-layer/}
+\url{https://www.geeksforgeeks.org/presentation-layer-in-osi-model/}
+\url{https://www.earchiv.cz/a92/a226c110.php3}
 
 				\subsection{Aplikační vrstva}
+Aplikační vrstva se dělí na dva prvky, které jsou určeny pro lehčí vytváření aplikací, díky tomu, že davájí stavební bloky, se kterými aplikace mohou pracovat, patří sem CASE\footnote{Common Application Service Element} a SASE\footnote{Specific Application Service Element}. CASE poskytuje služby pro aplikační vrstvu a požaduje služby od vrstvy relací, zatímco SASE poskytuje specifické aplikační služby, jako je přenos souborů, vzdálený přístup k databázi a zpracování transakcí.
+\\
+Dále aplikační vrstva poskytuje několik funkcí, které umožňují uživatelům snadný přístup k datům a manipulaci s nimi. Umožňuje uživatelům odesílat a přijímat e-maily, přistupovat k souborům na vzdáleném počítači a spravovat je, přihlašovat se jako vzdálený hostitel a přistupovat k informacím o různých službách. Poskytuje také protokoly, které umožňují softwaru odesílat a přijímat informace a prezentovat uživatelům smysluplná data.
 
-\url()
-\url()
+\url{https://www.earchiv.cz/a92/a227c110.php3}
+\url{https://www.techtarget.com/searchnetworking/definition/Application-layer}
+\url{Uhttps://www.geeksforgeeks.org/application-layer-in-osi-model/}
 
-			\section{}
+			\section{Slovník protokolů a technologií}
+Nyní zde popíšeme několik různých protokolů, které jsou později konkrétně použité v naší praktické části. Jsou řazeny podle vrstev od nejnižší po nejvyšší a technologie jsou až za nimi.
+				\subsection{I2C}
+I2C\footnote{Inter-Integrated Circuit} je protokol, který se používá pro komunikaci mezi čipy. Tento protkol umožňuje připojit se do sběrnicového rozhraní zabudovaný do zařízení pro sériovou komunikaci. 
+\\
+Funguje na prnicipu SDA\footnote{Serial Data} a SCL\footnote{Serial Clock} rozhraní. SDA je využito na komunikaci a přenos dat mezi zařízeními a SCL je užito na přenos hodin. Dále se mezi zařízeními dohodne role Master nebo Slave. Počet zařízení s rolí Slave je omezen pouze početem adres a počet Master zařízení, také není omezen, ale pro naše účely pracujeme s módem pouze jednoho Master zařízení. Master zařízení zahají komunikaci tím, že v kanále SDA změní napětí z vysokého na nízké a obráceně u kanálu SCL. Nyní Master zařízení pošle Slave zařízením adresu, která když souhlasí, tak Slave zařízení pošle ACK zprávu. Nyní je komunikace navázána. Poté vždy když dostane Master zařízení rámec s daty od Slave zařízení, posílá mu na zpět ACK zprávu.
+\\
+Výhody této komunikace jsou v jednoduchosti zapojení, v počtu zařízení v Slave roli, ve spolehlivosti a dostupnosti na mnoha zařízení.  
+
+\url{https://www.root.cz/clanky/komunikace-po-seriove-sbernici-isup2supc/}
+\url{https://www.geeksforgeeks.org/i2c-communication-protocol/}
+\url{https://aticleworld.com/i2c-bus-protocol-and-interface/}
+\url{https://www.circuitbasics.com/basics-of-the-i2c-communication-protocol/}
+				\subsection{Wi-Fi}
+
+Wi-Fi je označení pro zařízení, která prošla v minulosti testováním některým ze členů organizace Wireless Ethernet Compatibility Alliance (WECA), ta se v dnešní době jmenuje Wi-Fi Alliance. Tato zařízení využívají standard IEEE 802.11, který umožňuje bezdrátově sdílení data. Nejpoužívanějšími standardy Wi-Fi jsou 802.11b a 802.11a.
+\\
+Tyto standardy využívají rádiové vlny k přenosu informací mezi zařízeními a směrovačem prostřednictvím specifických frekvencí. V závislosti na množství přenášených dat lze využít dvě rádiové frekvence: 2,4 GHz a 5 GHz. Standard 802.11b využívá frekvenci 2,4 GHz, zatímco standard 802.11a využívá frekvenci 5 GHz.
+\\
+Wi-Fi také využívá různé architektonické postupy, přičemž pro naše účely jsou nejdůležitější přístupové body (AP) a antény\footnote{Ta sice nepoužívá standarty 802.11, nýbrž vzniká kolaborací různých firem, ale pro účely práce má stejné využití, jako wifi}. Metoda AP zahrnuje použití stacionárního přístupového bodu, který funguje jako základní rádiová stanice a datový most, obvykle připojený k síti prostřednictvím technologie Ethernet. Tento přístupový bod také nastavuje potřebná bezpečnostní opatření.
+\\
+Technologie antén se často využívá v otevřených venkovních prostorách, kde je nutná komunikace na velké vzdálenosti, čemuž napomáhá ochrana před bleskem a další antény.
+
+\url{https://www.earchiv.cz/b07/b0400001.php3}
+\url{https://www.controleng.com/articles/wi-fi-and-the-osi-model/}
+\url{https://ipripojeni.cz/slovnik-pojmu/ethernet/}
+\url(zdroj:Velký průvodce TCP/IP)
+				\subsection{ARP}
+Protokol ARP\footnote{Address Resolution Protocol} je protokol používaný v LAN\footnote{Lokální síť} k určení fyzické adresy zařízení z adresy síťové vrstvy (např. IP adresy). Když chce zařízení komunikovat s jiným zařízením ve stejné síti LAN, potřebuje znát fyzickou adresu cílového zařízení, aby mu mohlo poslat data. Má však k dispozici pouze IP adresu cílového zařízení. Zde přichází na řadu protokol ARP.
+\\
+Aby zdrojové zařízení zjistilo fyzickou adresu cílového zařízení, rozešle všem zařízením v síti LAN paket s požadavkem ARP. Paket obsahuje IP adresu cílového zařízení a žádost o jeho fyzickou adresu. Paket obdrží všechna zařízení v síti LAN, ale pouze zařízení se shodnou IP adresou odpoví svou fyzickou adresou. Tato odpověď je odeslána zpět zdrojovému zařízení ve formě paketu odpovědi ARP.
+\\
+Zdrojové zařízení pak uloží fyzickou adresu cílového zařízení do své mezipaměti ARP, což je tabulka, která mapuje IP adresy na fyzické adresy. Tímto způsobem může použít fyzickou adresu z mezipaměti pro budoucí komunikaci s cílovým zařízením, místo aby musel vysílat požadavek ARP pokaždé, když chce odeslat data. Mezipaměť ARP má hodnotu časového limitu, která udává dobu, po kterou zůstane fyzická adresa v mezipaměti, než ji bude třeba obnovit.
+
+\url{https://www.geeksforgeeks.org/how-address-resolution-protocol-arp-works/}
+\url{https://www.earchiv.cz/a92/a235c110.php3}
+\url{https://www.fortinet.com/resources/cyberglossary/what-is-arp}
+
+				\subsection{IP}
+Internetový protokol (IP) je klíčovou součástí internetu, která je zodpovědná za směrování datových paketů mezi zařízeními v síti.
+\\
+Jedním z hlavních úkolů protokolu IP je přenášet datové pakety, nazývané IP datagramy, přes mezilehlé uzly k jejich cíli. K tomu protokol IP využívá informace o topologii sítě, tzv. směrovací informace, které rozhodují o dalším směru přenosu IP datagramu. Tento proces se nazývá směrování.
+\\
+Protokol IP pracuje s abstraktními adresami, tzv. adresami IP, což jsou 32bitová čísla, která identifikují zařízení v síti. Tyto adresy se používají k určení cesty, kterou mají datové pakety projít, aby dosáhly svého cíle. Aby bylo možné přenášet data mezi zařízeními v různých sítích, spoléhá protokol IP na překlad síťových adres, který slouží k převodu mezi adresami IP a fyzickými adresami, například adresami sítě Ethernet.
+\\
+Protokol IP může pracovat ve spolehlivém nebo nespolehlivém režimu. Ve spolehlivém režimu je protokol IP zodpovědný za správné doručení datových paketů a podnikne kroky k opravě případných chyb. V nespolehlivém režimu protokol IP jednoduše zahodí všechna poškozená data a pokračuje dál, přičemž opravu chyb přenechá protokolům vyšších vrstev. Nespolehlivý režim je obecně efektivnější, protože snižuje dobu spojenou s opravou chyb.
+\\
+Kromě směrování datových paketů a adresování poskytuje protokol IP také možnosti fragmentace a opětovného sestavení. To umožňuje protokolu IP přenášet datové pakety, které jsou větší než maximální přenosová jednotka sítě, jejich rozdělením na menší pakety a jejich opětovným sestavením v cíli.
+
+\url{https://www.cloudflare.com/en-gb/learning/network-layer/what-is-mtu/}
+\url{https://www.earchiv.cz/anovinky/ai1843.php3}
+\url{https://www.javatpoint.com/ip}
+\url{https://www.cloudflare.com/en-gb/learning/network-layer/internet-protocol/}
+
+				\subsection{TCP}
+
+\url{}
+\url{}
+\url{}
+\url{}
+
+				\subsection{DHCP}
+
+\url{}
+\url{}
+\url{}
+\url{}
+
+				\subsection{JSON}
+
+\url{}
+\url{}
+\url{}
+\url{}
+
+
+
+				\subsection{}
 			
 
 	\part{Návrh aplikačního protokolu rodiny TCP/IP}
@@ -148,11 +233,11 @@ Soucet: 52.4415
 		\lipsum[1]
 	
 	\nocite{*}
-    	\printbibliography					% Vytvoří seznam literatury
+    	\printbibliography					
 	\addcontentsline{toc}{chapter}{Bibliografie}
-    \printglossary[title={Zkratky}]		% Vytvoří seznam zkratek
-    \listoffigures						% Vytvoří seznam obrázků
-    \listoftables						% Vytvoří seznam tabulek
+    \printglossary[title={Zkratky}]		
+    \listoffigures					
+    \listoftables						
 
     \begin{appendices}
 	\chapter{Fotky z pokusů}	
