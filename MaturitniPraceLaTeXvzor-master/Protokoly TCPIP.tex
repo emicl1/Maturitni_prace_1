@@ -223,11 +223,19 @@ Jednou z hlavních výhod protokolu TCP je jeho spolehlivost. Je navržen tak, a
 
 
 				\subsection{DHCP}
+Protokol DHCP\footnote{Dynamic Host Configuration Protocol} je síťový protokol, který umožňuje automatizovat proces, získávání IP adress a dalších konfiguračních informací v LAN. DHCP je součástí client/server architektury, kde v síti se vyskytuje DHCP server, který čeká na požadavky a po dotazu automaticky vydá konfigurační informace. Zároveň po určité době si vezme danou IP adresu zpátky a přidá jí opět do databáze s volnými IP adresami. 
+\\
+Kromě přidělování IP adres poskytuje DHCP také další  konfigurační informace, jako je subnet\footnote{Subnet je logickým rozdělením sítě IP na více menších síťových částí.}, adresa výchozí brány a DNS. Protokol DHCP je standardem IEEE, který vychází ze staršího protokolu BOOTP (bootstrap protocol), který je již zastaralý, protože funguje pouze v sítích IPv4.
 
-\url{}
-\url{}
-\url{}
-\url{}
+\cite{DHCP1}
+\cite{DHCP2}
+\cite{DHCP3}
+\cite{DHCP4}
+
+%\url{https://www.networkworld.com/article/3299438/dhcp-defined-and-how-it-works.html}
+%\url{https://www.earchiv.cz/a98/a818k180.php3}
+%\url{https://www.efficientip.com/what-is-dhcp-and-why-is-it-important/}
+%\url{https://www.techtarget.com/searchnetworking/definition/subnet}
 
 				\subsection{JSON}
 

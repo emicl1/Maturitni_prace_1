@@ -208,10 +208,13 @@
   year         = {2022},
 }
 
-@Electronic{2022a,
+@Electronic{DHCP2,
+  author       = {Jiří Peterka},
   howpublished = {Online},
   language     = {Angličtina},
   month        = dec,
+  title        = {Protokoly TCP/IP II},
+  url          = {https://www.earchiv.cz/a98/a818k180.php3},
   year         = {2022},
 }
 
@@ -363,10 +366,14 @@
   year         = {2022},
 }
 
-@Electronic{2022f,
+@Electronic{DHCP1,
+  author       = {Neal Weinberg},
   howpublished = {Online},
   language     = {Angličtina},
   month        = dec,
+  organization = {MarkMonitor, Inc.},
+  title        = {DHCP defined and how it works},
+  url          = {https://www.networkworld.com/article/3299438/dhcp-defined-and-how-it-works.html},
   year         = {2022},
 }
 
@@ -522,17 +529,4 @@
 
 @Electronic{arp2,
   author       = {Jiří Peterka},
-  howpublished = {Online},
-  language     = {Angličtina},
-  month        = dec,
-  title        = {Adresování v TCP/IP sítích - II.},
-  url          = {https://www.earchiv.cz/a92/a235c110.php3},
-  year         = {2022},
-}
-
-@Electronic{WiFi3,
-  author       = {Neznámý},
-  howpublished = {Online},
-  language     = {Angličtina},
-  month        = dec,
-  or
+  howpubl
