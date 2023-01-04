@@ -232,29 +232,48 @@ Kromě přidělování IP adres poskytuje DHCP také další  konfigurační inf
 \cite{DHCP3}
 \cite{DHCP4}
 
-%\url{https://www.networkworld.com/article/3299438/dhcp-defined-and-how-it-works.html}
-%\url{https://www.earchiv.cz/a98/a818k180.php3}
-%\url{https://www.efficientip.com/what-is-dhcp-and-why-is-it-important/}
-%\url{https://www.techtarget.com/searchnetworking/definition/subnet}
 
 				\subsection{JSON}
+JSON\footnote{JavaScript Object Notation} je způsob serializace dat, který je jednoduše pochopitelný lidmi, a zároveň zařizeními, díky čemu se prosadil, jako jeden z nejpouživanějších způsobů pro serializaci dat. Tohoto dosáhl pomocí již zmíněné jednoduchosti, oproti ostatním formátům, jako například XML, který byl uživatelsky silně nepřivětivý. 
+\\
+Pochazí z programovacího jazyka JavaScript, ve kterém kopíruje formu JavaScript objektu. Ten je ale zároveň snado interpretovatelný v ostatních programovacích jazycích, což z něj činí univerzalní nástroj pro přenos dat mezi zařízeními a aplikacemi. 
 
-\url{}
-\url{}
-\url{}
-\url{}
+\cite{JSON1}
+\cite{JSON2}
+\cite{JSON3}
+\cite{JSON4}
 
 
-
-				\subsection{}
 			
 
 	\part{Návrh aplikačního protokolu rodiny TCP/IP}
 
-\section{Prokotol}
 
-\lipsum[1]	
 
+\section{Implementace protokolu}
+Protokol je navržen tak, aby umožnil klientovi vyžádat si data od serveru s akcelerometrem a server zaslal požadovaná data klientovi. Toto je zajištěno tím, že server neustále poslouchá na daném portu. A kdykoliv přijde od clienta požadavek "Send", tak server odešle data. Pokud klient již data nechce, může poslat zprávu "Close" nebo přestat posílat požadavky, což způsobí, že server spojení uzavře.
+\\
+Abychom ověřily tuto implementaci. Nejdříve nastavtíme server a klienta, kteří implementují tento protokol. Necháme klienta poslat serveru požadavek na data. Ověříme zda server odešle klientovi požadovaná data. Dále necháme klienta odeslat zprávu "Close" nebo přestat posílat požadavky a pozarujeme zda se tak stane.
+\\
+Pokud se ověří daná implementace můžeme předpokládat, že Protokol je funkční.
+\\
+
+\begin{figure}
+\caption{sekvenční diagram protokolu}
+\centering
+ \includegraphics[scale=0.5]{chart_protokol}
+\end{figure}
+
+\section{Popis vybraných  nástrojů pro řešení}
+
+Jazyk použitý pro implementaci protokolu je Python. Zvolili jsme si tento jazyk z několika důvodů. 
+Python má širokou standardní knihovnu, která obsahuje řadu modulů pro sítě a komunikaci, například sokety, které usnadňují vytvoření Protokolu.
+Python má čistou a čitelnou syntaxi, která usnadňuje psaní a pochopení kódu. Navíc je to dynamicky typovaný jazyk, což znamená, že v kódu nemusíte uvádět typy proměnných. To může výrazně usnadnit psaní a debug kódu.
+To je několik důvodů, proč byl vybrán oproti ostatním jazykům, jako například C, C++, Java a Go.
+\\
+Dalším využitým jazykem je MicroPython. MicroPython je navržen pro snadné použití a provoz na malých mikrokontrolérech. Jedná se o implementaci programovacího jazyka Python, která byla speciálně optimalizována pro běh na mikrokontrolérech. Má vestavěnou podporu sítí, což usnadňuje připojení zařízení k internetu. Má také bohatou sadu knihoven a modulů, které lze použít k interakci se senzory, displeji a dalšími hardwarovými komponentami.
+\\
+Hardwarové řešení je Raspberry Pi Pico W, která se hodí pro vytváření prototypů a experimentování. Snadno se používá a lze ji programovat v různých jazycích, včetně jazyků MicroPython a C. Díky tomu je skvělou volbou pro projekty, v nichž chcete rychle a snadno vytvářet prototypy a testovat své nápady. Dále má vestavěné rádio 2,4 GHz, které lze použít pro komunikaci WiFi, a také na připojení Bluetooth Low Energy (BLE). Má také řadu digitálních a analogových vstupů a výstupů, které lze využít k propojení se senzory a dalšími zařízeními. Podporuje protokol I2C\footnote{Inter-Integrated Circuit}, který je duležitý pro práci s akcelometrem.  
 
 
 	\chapter*{Závěr}
