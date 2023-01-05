@@ -266,15 +266,52 @@ Pokud se ověří daná implementace můžeme předpokládat, že Protokol je fu
 
 \section{Popis vybraných  nástrojů pro řešení}
 
+\subsection{Python}
+
 Jazyk použitý pro implementaci protokolu je Python. Zvolili jsme si tento jazyk z několika důvodů. 
 Python má širokou standardní knihovnu, která obsahuje řadu modulů pro sítě a komunikaci, například sokety, které usnadňují vytvoření Protokolu.
 Python má čistou a čitelnou syntaxi, která usnadňuje psaní a pochopení kódu. Navíc je to dynamicky typovaný jazyk, což znamená, že v kódu nemusíte uvádět typy proměnných. To může výrazně usnadnit psaní a debug kódu.
 To je několik důvodů, proč byl vybrán oproti ostatním jazykům, jako například C, C++, Java a Go.
-\\
-Dalším využitým jazykem je MicroPython. MicroPython je navržen pro snadné použití a provoz na malých mikrokontrolérech. Jedná se o implementaci programovacího jazyka Python, která byla speciálně optimalizována pro běh na mikrokontrolérech. Má vestavěnou podporu sítí, což usnadňuje připojení zařízení k internetu. Má také bohatou sadu knihoven a modulů, které lze použít k interakci se senzory, displeji a dalšími hardwarovými komponentami.
-\\
+
+\subsection{MicroPython}
+
+Dalším využitým jazykem je MicroPython. MicroPython je navržen pro snadné použití a provoz na malých mikrokontrolérech, jako ESP8266, ESP32 a Raspberry Pi Pico W. Jedná se o implementaci programovacího jazyka Python, která byla speciálně optimalizována pro běh na mikrokontrolérech. Má vestavěnou podporu sítí, což usnadňuje připojení zařízení k internetu. Má také bohatou sadu knihoven a modulů, které lze použít k interakci se senzory, displeji a dalšími hardwarovými komponentami.
+
+\subsection{Raspberry Pi Pico W }
+
 Hardwarové řešení je Raspberry Pi Pico W, která se hodí pro vytváření prototypů a experimentování. Snadno se používá a lze ji programovat v různých jazycích, včetně jazyků MicroPython a C. Díky tomu je skvělou volbou pro projekty, v nichž chcete rychle a snadno vytvářet prototypy a testovat své nápady. Dále má vestavěné rádio 2,4 GHz, které lze použít pro komunikaci WiFi, a také na připojení Bluetooth Low Energy (BLE). Má také řadu digitálních a analogových vstupů a výstupů, které lze využít k propojení se senzory a dalšími zařízeními. Podporuje protokol I2C\footnote{Inter-Integrated Circuit}, který je duležitý pro práci s akcelometrem.  
 
+\subsection{Tříosý akcelerometr GY-291 s ADXL345}
+
+Jako data pro přenos jsme vybrali daty z
+tříosého akcelerometru GY-291 s ADXL345. Ten jsme vybrali jelikož je to přesný a cenově dostupný senzor, který se používá k měření  pohybu a orientace. Měření probíhá ve 3 osách a měří zrychlení v rozmezí -16 g až +16 g v osách X, Y a Z. Měření lze snadno získat, díky připojení akcelerometru GY-291 k mikrokontroléru pomocí rozhraní I2C. Tento senzor je kompatibilní s mikrokontroléry, jako je Arduino, Raspberry Pi a mnoho dalších.
+\\
+Senzor je také schopen detekovat orientaci v prostoru díky integrovanému gyroskopu. Jeho nejčastější použití spočívá v úkolech, jako stabilizace kamery nebo detekce pohybu v prostoru pro různé aplikace.
+\\
+Další možnosti pro sběr dat byl například senzor MPU-6050, který má sběrnici dat v 6 rozměrech, ten kombinuje akcelometr v 3 osách a gyroskop také ve třech osách. Je určen na velmi přesné měření, které zde nebylo nutné. Další volbou byl senzor BNO055, ten kombinuje akcelometr, gyroskop a magnetometr ve 3 osách, ten je určen na přesnou orientaci v prostoru, které také nebyla nutná
+
+\subsection{Socket}
+
+Socket modul je vestvěný modul do jazyka Python, který poskytuje rozhraní pro práci se sockety, včetně jejich vytváření a používaní pro přijímání a odesílání dat po síti. Podporuje různé rodiny adres včetně AF\_INET (IPv4) a AF\_INET6 (IPv6). Podporuje také řadu typů soketů, včetně SOCK\_STREAM (TCP) a SOCK\_DGRAM (UDP).
+\\
+Díky tomuto modulu lze prováďet spousty standartních akcí očekavaných od sítí, například navazovat spojení se servery, odesílat a přijímat data a uzavírat spojení, pokud již nejsou potřeba. 
+\\
+Nějaké alternativy k tomuto modulu jsou moduly AsyncIO a PySocket. AsyncIO je standartní knihovna určena na asynchorní programování a mimo to podporuje i užítí asynchorních soketů. Tato knihovna je vhodná pro aplikace vyžadující vysoký výkon a škálovatelnost. Tato knihovna nebyla vybrána z důvodu neznalosti asynchorního programování. PySocket, je modul třetí strany, který funguje na bázi Socket modulu, jedná se pouze o zjednodušení užití Socket modulu. PySocket nebyl vybrán z toho důvodu, že není implementován v MicroPythonu a není to standartní knihovna v Pythonu. 
+\subsection{Network}
+Network modul je jeden z kličových modulů v jazyce MicroPython je určen pro možnost připojit se, odesílat zprávy a přijímat data přes síť. Poskytuje celou řadu síťových možností, jako vytvoření socketů. V protokolu je využit na připojení k síti. Alternativou k tomuto modulu je modul socket, ten však neposkytuje intuitivní řešení k možnosti připojit se do sítě, jako modul network. 
+
+\subsection{Json}
+Knihovna JSON je vestavěná knihovna v Jazyce Python a MicroPython. Poskytuje funkce pro práci s daty ve formátu JSON. Díky JSON knihovně je možné převádět data JSON na obejekty jazyka Python a naopak. Díky svým funkcím umožňuje jednoduchou serializaci dat a odeslání přes sockety 
+\\
+Alternativou ke knihovně JSON je modul ujson, která se liší tím, že je napsána v Pythonu a obecně poskytuje rychlejší služby za využití méně paměti, což nebylo nutné na přenos, tak malých dat, pro které je protokol určen 
+
+\subsection{Machine a ADXL345}
+Modul machine je vestavěná knihovna v MicroPythonu, která je určena pro práci s hardwerovými obvody, jako jsou časovače, I/O\footnote{input/output} piny a I2C rozhraní, které je podstatné pro práci s GY-291 s ADXL345. Tohoto modulu dále využívá modul třetí strany ADXL345, který je užitečný pro snadnou práci s ADXL345, kde získá z paměti informace o stavu zařízení a data naformátuje do stavu použitelného v aplikacích. K modulu machine existuje alternativa modul pyb, který ale musí být doinstalován do MicroPythonu. ADXL345 modulu v momentu implementace nebyla alternativa. 
+
+\subsection{random}
+Random je vestavěná Python knihovna, která umožňuje generovat pseudo náhodná čísla a provádět náhodné výběry. Nejvíce uplatnění tento modul najde při tvorbě her, či dalších programů, kde je potřeba generovat pseudo náhodné výsledky. 
+\\
+Alternativy k modulu random jsou moduly Secrets a random2. Secretes je modul, který je určený hlavně na generování kryptograficky bezpečných čísel a řetězců, což nebylo nutné. Random2 je modul třetí strany, tvrdí, že je rychlejší a spolehlivější než vestavěný modul random, ale kvůli nutnosti stáhnutí nebyl implementován.
 
 	\chapter*{Závěr}
 	
