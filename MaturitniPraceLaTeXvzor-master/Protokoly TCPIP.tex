@@ -313,6 +313,20 @@ Random je vestavěná Python knihovna, která umožňuje generovat pseudo náhod
 \\
 Alternativy k modulu random jsou moduly Secrets a random2. Secretes je modul, který je určený hlavně na generování kryptograficky bezpečných čísel a řetězců, což nebylo nutné. Random2 je modul třetí strany, tvrdí, že je rychlejší a spolehlivější než vestavěný modul random, ale kvůli nutnosti stáhnutí nebyl implementován.
 
+\subsection{pygame}
+Pygame je sbírka různých Python modulů. Dohromady tvoří jeden celek, který je určen ke tvorbě videoher. Uživatel má možnost zobrazovat obraz, pouštět zvuk, či pracovat s uživatelským vstupem. Díky těmto možnostem můžete tvořit celé hry v Pythonu. 
+\\
+Pygame dále vyčnívá díky své dobré implementaci, kde hlavní funkce jsou tvořeny v jazyce C a Assembly, což zaručuje dostatečnou rychlost kodů, která je při hrách nutná. Na to navazuje i snadná práce s více jádry najednou. Dále je pygame určen pro mnoho operačních systému a mnoho prostředí. Což z něj činí dobrý multifunkční nástroj, který je snadno přenositelný. 
+\\
+K tomu je třeba dodat, že pygame záleží na jednoduchosti použití, tudíž doba potřebná pro naučení se použití pygame je nízká, tudíž vhodná pro testování protokolů. 
+\\
+Alternativa k pygame je například Pyglet. Pyglet je knihovna určená na práci se zobrazením oken a hraním zvuku, ale narozdíl od pygame má menší podporu pro vytváření videoher. Dalším duležitým rozdílem je, že Pyglet používá jiný program pro vykreslování grafiky, který je avšak určen spíše pro 3D grafiku. 
+
+\subsection{multiprocessing}
+Modul multiprocessing je Python modul určený pro paralelní provadění kodů na několika jádrech. Umožňuje vytvářet několik samostatných procesů, které mohou běžet současně na jednom zařízení, či dokonce na několika počítačích, síťově připojenými. Tato funkce je užitečná pro výpočetně náročné úkoly a pro programy, kde je nutné, aby několik programů běželo ve stejnou chvíli. K tomu multiprocessing přidává možnosti sdílet data mezi těmito programi pomocí různých datových typů. 
+\\
+Alternativa k multiprocessing je modul threading. Hlavní rodíl mezi nimi je, že threding používá threads, které se liší od procesů\footnote{proces je instance vytvořená multiprocessing modulem} tím, že používají tu stejnou paměť. Narozdíl od procesů, které se rozdělí do různých jader. Z toho vyplývají dva rozdíly ve funkčnosti. Mezi procesy je více naročné sdílet data, avšak narozdíl od thredů, když jeden z procesů bude chybovat, tak se ukoční pouze jeden proces a ne celý program, jako u threadů. Problém se sdílení daty je, ale snadno řešitelný, díky implementaci modulu mulitprocessing, a tudíž je vhodný pro můj protkol. 
+
 	\chapter*{Závěr}
 	
 		\lipsum[1]
