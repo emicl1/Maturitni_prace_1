@@ -6,7 +6,7 @@ import socket
 import network
 from machine import Pin, I2C, SoftI2C
 import ADXL345  # https://github.com/DFRobot/micropython-dflib/tree/master/ADXL345
-import time
+
 from json import dumps
 
 PORT = 8880
