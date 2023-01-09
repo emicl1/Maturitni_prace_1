@@ -258,7 +258,7 @@ Abychom ověřily tuto implementaci. Nejdříve nastavtíme server a klienta, kt
 Pokud se ověří daná implementace můžeme předpokládat, že Protokol je funkční.
 \\
 
-\begin{figure}
+\begin{figure}[h]
 \caption{sekvenční diagram protokolu}
 \centering
  \includegraphics[scale=0.5]{chart_protokol}
@@ -339,6 +339,7 @@ from json import dumps
 
 PORT = 8880
 HOST = "0.0.0.0"
+
 def do_connect(ssid, password):
     import network
     wlan = network.WLAN(network.STA_IF)
@@ -352,7 +353,8 @@ def do_connect(ssid, password):
 
 \end{lstlisting}
 Nyní si zavedeme hlavní část programu pro které jsme vytvořili blokové schéma pro jeho lepší pochopení. 
-\begin{figure}
+
+\begin{figure}[h]
 \caption{blokový diagram serveru}
 \centering
  \includegraphics[scale=0.6]{block_scheme_server}
@@ -399,7 +401,84 @@ Nyní pokračujeme hlavní smyčkou. Ta čeká na dotaz clienta. Když se client
 
 \subsection{Client}
 
-\subsection{Užití dat pro vytvoření videohry}
+Celý zdrojový kód clienta \ref{lst:client} je napsán v Pythonu. Kód začína importem modulů a pokračuje stanovením globálních proměných. Nastaví proměnné PORT a IP, ty musí souhlasit s nastavením serveru. 
+\begin{lstlisting}[title={Program client.py}, caption={client.py}]
+import socket
+from json import loads
+
+PORT = 8880
+IP = "192.168.102.197"
+\end{lstlisting}
+
+Nyní se zaměříme na hlavní kód programu, který je napsán ve funkci a to z toho důvodu, aby mohl být později použit, jako proces. Zároveň má jeden argument queue, to je objekt modelu multiprocessing, ten je později využit na sdílení dat mezi procesy. Pokračuje hlavní program. Nejdříve nastavíme typ protokolu. Na Síťové vrstvě protokol IP a na Transportní vrstvě protokol TCP. 
+
+
+\begin{figure}[h]
+\caption{blokový diagram clienta}
+\centering
+ \includegraphics[scale=0.4]{block_scheme_client}
+\end{figure}
+
+Nyní pokračujeme hlavní smyčkou. Ta ihned, jak se spustí se dostane do další smyčky. Ve které se nejdříve serveru pošle požadavek na send. Dále client vyzkouší, jestli mu server poslal data, jestli ne vydá chybové hlášení o ztracení kontatku a pokusí se znova navázat kontakt. Jestli ano, tak client dekóduje data. Přeformátuje je z JSON formatu do formátu Python objektu tuple. Dále tyto data vloží do řady. Toto opakuje do té doby, než se program přeruší. 
+
+\begin{lstlisting}[title={Program client.py}, caption={client.py}]
+def client(queue):
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect((IP, PORT))
+    while True:
+        print("Sending")
+        while True:
+            msg = "send"
+            s.sendall(msg.encode("utf-8"))
+            try:
+                data = s.recv(1024)
+            except socket.error:
+                print("Connection lost")
+                continue
+            data = data.decode("utf-8")
+            data = loads(data)
+            queue.put(data)
+
+\end{lstlisting}
+
+\subsection{diskuze řešení}
+Výsledek je funkční a je proveden pomocí zamýšlené implementace. Toto umožní uživateli, který vlastní zařízení Raspberry Pi Pico W s ADXL345, učinně přenášet data o poloze přes WiFi, k různým účelům. 
+\\
+Limitací ze strany serveru je několik. Program umožňuje pouze dva typy dotazů a to send a close. Může dojít k tomu, že klient pošle jiný dotaz, a s tímto dotazem nemusí být naloženo adekvátně. Dále kód nemá implementované žádné mechanismy proti chybám, tudíž nebude přiraven na selhání popřípadě na různé krajní situace. Dalším úzskalím může být, že kód není optimalizován na výkonost, či práci s pamětí, tudíž jestli uživatel bude chtít použít zařízení s menší výkonností nežli Raspberry Pi Pico W, může se dostat do problémů. Poslední limitace může být, že server umí práci pouze s ADXL345 a s žádným jiným akcelometrem.
+\\
+Limitací ze stran klienta je také několik. Největší je, že program funguje pouze pro jednu na pevno napsanou IP adresu, tu by bylo optimální zjišťovat dynamicky. Dalším problém je, že klient není připraven na případná selhální a chyby, tudíž může snadno dojít k jeho selhání. Důkazem toho je, že klient předpokládá, že server je spuštěný, když by nebyl, klient automaticky selže. 
+\\
+Další směr rozovoje může spočívat nejdříve v implementaci systému proti chybáma a selhání, nasledný rozvoj by mohl spočívat v vytvoření klienta více přívětívého za pomocí automatického nastavení IP adresy serveru. Konečný rozvoj by umožňoval využití, co nejširšího počtu zařízení, toho by se dosáhlo za pomocí vytvoření serveru tak, aby mohl podporovat, co nejvíce zařízení. 
+
+\section{Využití dat}
+\subsection{Návrh videohry}
+Pro ukázku praktického využití dat jsme si vybrali projekt založený na vytvoření videohry. Základní princip hry spočívá ve vesmírné lodi, která se vyhýba meteoritům, a během toho se snaží sbírat mince. Uživatel pohybuje s Raspberry Pi Pico W s ADXL345 a pomocí toho ovládá loď na obrazovce a snaží se vyhýbat meteoritům. Pokaždé když se meteorit trefí do vesmírné lodi, hráči se ubere jeden život. Zároveň se hráči počítá skóre, které se zvyšuje za pomoci sběru mincí. 
+\subsection{Popis videohry}
+Hráč se nejdříve objeví na hlavní obrazovce. Odtud má dvě možnosti. Může se podívat na celkové nejlepší skóre, které kdy nahrál. Další možnost je spustit hru. Když spustí hru objeví se na obrazovce, kde na dolní liště se pohybuje vesmírná loď, která kopíruje pohyby hráče se zařízením na ovládání. Ihned po spuštění se také objeví meteority a mince, ty se objevůjí na horní liště a putují dolů, pod nahodným skolem s náhodnou rychlostí. Dále v levém horním rohu se objeví celkovy počet získaných mincí. V pravém horním rohu se objeví tři obrázky ve tvaru srdce. Ty znázorňují životy hráče, po každé, co hráč narazí do meteoritu se jedno ze srdcí promění na srdce s šedým zabarvením. 
+
+
+\subsection{Popis řešení videohry}
+Po spuštění se program rozdělí do dvou procesů. A to proces, ve kterém se nachazí hra a proces clienta. 
+
+\begin{lstlisting}[title={Program game.py}, caption={game.py}]
+if __name__ == "__main__":
+    queue = Queue() 
+    menu_proc = Process(target=main_menu, args=(queue,)) 
+    client_proc = Process(target=client, args=(queue,))  
+    client_proc.start()
+    menu_proc.start()
+    client_proc.join()
+    menu_proc.join()
+\end{lstlisting}
+Hra se dále dělí na několik funkcí, která každá znázorňuje jedenu obrazovku. Konkrétně jsou tři obrazovky, a obrazovka se skóre, hlavní obrazovka a obrazovka videohry.
+\\
+Klient se mezitím spojí se serverem a začne generovat data. Oba tyto procesy mezitím sdílejí obejkt queue, který značí řadu. Do toho objektu klient přidává data získané od serveru, a jelikož proces se hrou běží 60-krát za sekundu, tak ihned data vyjme ze řady a použije je pro ovládání vesmírné lodi.
+
+\begin{figure}[h]
+\caption{blokový diagram videohry}
+\centering
+\includegraphics[scale=0.75]{game_diagram}
+\end{figure}
 
 
 	\chapter*{Závěr}

@@ -4,7 +4,7 @@ This is the main file of the game, it is used to start the game, show the score 
 The game is a space shooter like, where you have to avoid the asteroids
 to navigate the ship it uses an accelerometer, connected to a raspberry pi
 """
-# TODO: reunite the language of the code to english
+
 import pygame
 from sys import exit
 from random import randint, uniform
