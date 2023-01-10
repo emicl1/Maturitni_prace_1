@@ -470,15 +470,67 @@ if __name__ == "__main__":
     client_proc.join()
     menu_proc.join()
 \end{lstlisting}
-Hra se dále dělí na několik funkcí, která každá znázorňuje jedenu obrazovku. Konkrétně jsou tři obrazovky, a obrazovka se skóre, hlavní obrazovka a obrazovka videohry.
+
+Hra se dále dělí na několik funkcí, která každá znázorňuje jednu obrazovku. Konkrétně jsou tři obrazovky, a to obrazovka se skóre, hlavní obrazovka a obrazovka videohry.
 \\
-Klient se mezitím spojí se serverem a začne generovat data. Oba tyto procesy mezitím sdílejí obejkt queue, který značí řadu. Do toho objektu klient přidává data získané od serveru, a jelikož proces se hrou běží 60-krát za sekundu, tak ihned data vyjme ze řady a použije je pro ovládání vesmírné lodi.
+Klient se mezitím spojí se serverem a začne generovat data. Oba tyto procesy mezitím sdílejí obejkt queue, který značí řadu. Do toho objektu klient přidává data získané od serveru, a jelikož proces se hrou běží 60-krát za sekundu, tak ihned data vyjme ze řady a použije je pro ovládání vesmírné lodi, či data vyjme z řady a zahodí je, aby když hráč znovu spustí hru, loď se nezačala pohybovat náhodně.
+
 
 \begin{figure}[h]
 \caption{blokový diagram videohry}
 \centering
 \includegraphics[scale=0.75]{game_diagram}
 \end{figure}
+
+Nyní se dostáme k herní logice. Ta se celá nachází v obrazovce s videohrou, konkrétně v její smyčce, která probíhá 60-krát za sekundu. Kvůli této rychlosti, se program nejdříve podívá, jestli objekt queue není prázdný, pokud je prázdný program pokračuje, pokud je v ní nějaký prvek, program vyjme data z řady a začne vypočítávat rychlost. 
+To konkrétně pomocí změny proměné s názvem ship\_speed. Jestli se uživatel dostane za hranici levé lišty, program začne lodi přidávat takovou hodnotu, aby loď pokračovala na pravou stranu a naopak. Toto je nápsáno z důvodu toho, aby se loď nezasekla na žádné z bočních stran. Dále program zkontroluje velikost dat, 
+a to konkrétně, jestli data jdou do záporných, či kladných hodnot. Zdali jsou hodnoty záporné, loď se začne pohybovat levým směrem a naopak. Hodnota rychlosti se dále vypočítává pomocí lineární funkce, a to z toho důvodu, aby ovladač měl větší citlivost na průdký nebo jemný pohyb. 
+
+
+
+\begin{lstlisting}[title={Program game.py}, caption={game.py}]
+if queue.empty() is False:
+	data = queue.get()
+    print(data)
+    if ship_rect.left > W: 
+        ship_speed -= 2
+    elif ship_rect.left < 0:  
+        ship_speed += 2
+    elif data[2] > 0:
+        ship_speed += 0.01 * data[2] 
+    elif data[2] <= 0:
+        ship_speed += 0.01 * data[2]
+
+\end{lstlisting}
+
+
+Dále začneme využívat rychlost lodi. Nejdříve znovu zkontrolujeme, že loď není mimo obrazovku, jestli loď je mimo obrazovku, tak její rychlost nastavíme na nula, tak aby se loď nedostala mimo obrazovku. Nyní přičteme k objektu vesírmé lodi vypočítanou rychlost a pokračujeme vy dalším doladění pohybu. Loď se nejdříve pohybovala pomalu, když hráč chtěl rychle změnit směr pohybu lodi, jelikož se rychlost nasčítávala. Pro tento problém jsme zavedli řešení a to, že zkontrolujeme jestli stará pozice byla záporná a když zároveň byla nynější rychlost kladná, tak rychlost vynulujeme, tak aby loď mohla ostře změnit svůj směr, a to i obráceně. Dále jestli rychlost lodi kvůli nasčítaní rychlosti je moc veliká tak program rychlost zmenší, aby byla snadněji ovladatelná. 
+
+
+
+\begin{lstlisting}[title={Program game.py}, caption={game.py}]
+if 0 <= ship_rect.left + ship_speed <= W - 90: 
+    ship_rect.left += ship_speed
+    if old_position < 0 < ship_speed:  
+        ship_speed -= ship_speed
+    elif old_position > 0 > ship_speed:  
+        ship_speed += ship_speed
+    if ship_speed > 200:  
+        ship_speed -= 100
+else:
+    ship_speed = 0
+
+\end{lstlisting}
+
+
+\subsection{diskuze videohry}
+
+Videohra dává bližší důkaz o reálném použití dat pro různé aplikace. Je možné díky ní si přiblížit odezvu protokolu a jeho schopností. 
+\\
+Ačkoli hra slouží jako užitečný nástroj, má určitá omezení. Hlavním omezením je její implementace, zejména pokud jde o logiku použitou pro výpočet rychlosti kosmické lodi. Ta by mohla být zlepšena, aby se zvýšila její citlivost a celková uživatelská přívětivost. Kromě toho se objevuje problém s pohybem ostatních objektů ve hře, které mají tendenci opakovat určité pohyby nebo se nesrazí se spodní částí obrazovky.
+\\
+Pro zlepšení hratelnosti by se budoucí vývoj mohl zaměřit na zdokonalení logiky pohybu vesmírné lodi a současně řešit pohyb ostatních objektů ve hře. Je však důležité poznamenat, že protokol má potenciální využití i mimo hru, například v robotice nebo při řízení stability a detekci pádů.
+
 
 
 	\chapter*{Závěr}

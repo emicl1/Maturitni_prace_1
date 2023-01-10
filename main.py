@@ -247,17 +247,17 @@ def App(queue):
                 ship_speed += 0.01 * data[2]
 
         # TODO: make the ship movement more smooth
-        if 0 <= ship_rect.left + ship_speed <= W - 90:  # if the ship is in the screen
-            ship_rect.left += ship_speed
-            if old_position < 0 < ship_speed:  # better movement, if the ship is moving to the right
-                # it resets the speed, thus making the movement smoother
-                ship_speed -= ship_speed
-            elif old_position > 0 > ship_speed:  # same as above but for the left
-                ship_speed += ship_speed
-            if ship_speed > 200:  # if the speed is too high, it resets it
-                ship_speed -= 100
-        else:
-            ship_speed = 0
+            if 0 <= ship_rect.left + ship_speed <= W - 90:  # if the ship is in the screen
+                ship_rect.left += ship_speed
+                if old_position < 0 < ship_speed:  # better movement, if the ship is moving to the right
+                    # it resets the speed, thus making the movement smoother
+                    ship_speed -= ship_speed
+                elif old_position > 0 > ship_speed:  # same as above but for the left
+                    ship_speed += ship_speed
+                if ship_speed > 200:  # if the speed is too high, it resets it
+                    ship_speed -= 100
+            else:
+                ship_speed = 0
 
         # moving objects, random sleep, random spawn, random speed
         if sky_surface_rect.colliderect(meteorite_rect) is False:
