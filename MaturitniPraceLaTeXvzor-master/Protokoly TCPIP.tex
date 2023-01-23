@@ -33,7 +33,17 @@
 \pagenumbering{arabic}		% Číslování stránke arabskými číslicemi
 	\chapter*{Úvod}
 	
-		\lipsum[1]	
+	Komunikace je základním aspektem moderních technologií a protokol TCP (Transmission Control Protocol) je jedním z klíčových protokolů, které umožňují tuto komunikaci. V této práci se budeme zabývat základy komunikace na úrovni TCP/IP a zaměří se na jeho praktické využití.
+\\
+První část práce poskytne přehled základů komunikace a úlohy protokolů při usnadňování komunikace.
+\\
+V další části popíšeme návrh a vývoj vlastního aplikačního protokolu, který je založen na rodině protokolů TCP/IP. Půjde o vývoj jednoduchého aplikačního protokolu, který je určen k usnadnění komunikace mezi mikropočítačem a osobním počítačem.
+\\
+Hlavní část práce bude zaměřena na praktickou implementaci navrženého protokolu na konkrétním scénáři síťové komunikace. K tomu bude použit mikropočítač a osobní počítač, aby se demonstrovala funkčnost protokolu v reálném prostředí.
+\\
+Na závěr bude provedeno zhodnocení navrženého protokolu, diskutovány jeho silné stránky a omezení a navrženy směry dalšího výzkumu a vývoje.
+\\
+Cílem této práce je přispět k pochopení protokolu TCP a jeho praktickému použití na konkrétním komunikačním scénáři, má být prakticky zaměřená a pomoci studentům získat hlubší znalosti o protokolech TCP.	
 	
 	
 	\part{Základy komunikace aplikací na úrovni TCP/IP}
@@ -41,25 +51,13 @@
 		\chapter{Protokoly TCP/IP}
 			
 			\section{historie TCP/IP}
-				V roce 1966 se povedlo v USA Bobu Taylorovi úspěšně sehnat finance od Charles Maria Herzfeld, ředitele ARPA,\footnote{Nyní známo jako DARPA(Defense Advanced Research Projects Agency) je výkonná moc ministerstva obrany Spojených států amerických, které je pověřena vývojem technologií pro vojenské účely} na projekt ARPANET, který měl umožnit přístup k počítačům na velké vzdálenosti. V dalších třech letech se rohodlo o počáteční standardech pro identifikaci, autentizaci uživatelů, přenos znaků a kontrolu a roku 1969 byl ARPANET poprvé použit firmou BBN. 
-Při dalším výzkmu a pokusech o vytvoření nového modulu ARPANET, dva vědci Robert Elliot Kahn a Vinton Gray Cerf vytvořili nový model, kde hlavní zodpovědnost za spolehlivost byla předána uživateli místo sítě. Tímto roku 1974 vznikl nový protokol Transmission Control Program, který byl vydán v RFC\footnote{žádost o komentáře - označuje dokumenty popisující internetové protkoly} 675 s názvem Specification of Internet Transmission Control Program, avšak tato verze nebyla funkční až do roku 1981, kdy byla zprovozněna verzí 4. Je standardizována pomocí RFC 791 - Internet Protocol(IP) a RFC 793 Transmission Control Protocol(TCP). 
+				V roce 1966 se povedlo v USA Bobu Taylorovi úspěšně sehnat finance od Charlese Marii Herzfelda, ředitele \texttt{ARPA},\footnote{Nyní známo jako \texttt{DARPA}(Defense Advanced Research Projects Agency) je výkonná moc ministerstva obrany Spojených států amerických, které je pověřena vývojem technologií pro vojenské účely} na projekt ARPANET, který měl umožnit přístup k počítačům na velké vzdálenosti. V dalších třech letech se rohodlo o počátečních standardech pro identifikaci, autentizaci uživatelů, přenos znaků a kontrolu a roku 1969 byl ARPANET poprvé použit firmou \texttt{BBN}. 
+Při dalším výzkmu a pokusech o vytvoření nového modelu ARPANET, dva vědci Robert Elliot Kahn a Vinton Gray Cerf vytvořili nový model, kde hlavní zodpovědnost za spolehlivost byla předána uživateli místo sítě. Tímto roku 1974 vznikl nový protokol Transmission Control Program, který byl vydán v RFC\footnote{žádost o komentáře - označuje dokumenty popisující internetové protkoly} 675 s názvem Specification of Internet Transmission Control Program, avšak tato verze nebyla funkční až do roku 1981, kdy byla zprovozněna verzí 4. Je standardizována pomocí RFC 791 - Internet Protocol(IP) a RFC 793 Transmission Control Protocol(TCP). 
 \\
-TCP i IP, prošlo s postupem času velkým vývojem, kdy vznikalo stovky aktualizací. Například roku 1994 vzniklo Internet Protocol next generation (IPng), který zavadí IP verzi 6. Nyní se aktivně používá 10+ variant TCP na Linuxu. MacOS a Windows je má zavedeno jako výchozí nastavení. 
-
-\cite{History3}
- \cite{ARPNET} 
-\cite{History2} 
-\cite{History}
- \cite{Rules}
- \cite{IP}
- \cite{TCP}  
+TCP i IP, prošlo s postupem času velkým vývojem, kdy vznikalo stovky aktualizací. Například roku 1994 vzniklo Internet Protocol next generation (IPng), který zavádí IP verzi 6. Nyní se aktivně používá 10+ variant TCP na Linuxu. MacOS a Windows je má zavedeno jako výchozí nastavení. \cite{History3} \cite{ARPNET} \cite{History2} \cite{History} \cite{Rules} \cite{IP} \cite{TCP}  
 
 			\section{Základy komunikace aplikací na úrovni TCP/IP }
-			TCP/IP je rodina protokolů, která umoňuje komunikaci uzlů\footnote{bod přerozdělení nebo koncový bod komunikace} a to pomocí end-to-end\footnote{snaží se o to, aby důležité role sítě byly řešeny konečným úzlem} principu a specifikováním toho jak by data měla být připravena, adresována, přenášena, směrována a přijmána. Tyto protokoly jsou nejčastěji děleny do čtyř úrovní Link, Internet, Transport a Application. 
-
-\cite{zakladykomunikace1}
-\cite{zakladykomunikace2}
-\cite{zakladykomunikace3}
+			TCP/IP je rodina protokolů, která umoňuje komunikaci uzlů\footnote{bod přerozdělení nebo koncový bod komunikace} a to pomocí end-to-end\footnote{snaží se o to, aby důležité role sítě byly řešeny konečným úzlem} principu a specifikováním toho jak by data měla být připravena, adresována, přenášena, směrována a přijmána. Tyto protokoly jsou nejčastěji děleny do čtyř úrovní Link, Internet, Transport a Application. \cite{zakladykomunikace1}\cite{zakladykomunikace2}\cite{zakladykomunikace3}
 			
 			\section{Principy TCP/IP}
 			TCP/IP stojí na několika zásadních principech jako client-server, encapsulace, stateless a robustnost. 
@@ -71,36 +69,19 @@ Encapsulace je prncip, který používá abstraktní dělení TCP/IP do čtyř �
 \\
 Rodina TCP/IP protokolů je nazývána jako stateless. Tento princip říká, že jakákoliv žádost o službu od uživatele je nazávislá na té předchozí. Toto umožňuje lepší plynulost sítě, jelikož síťové cesty mohou být používány nepřetržitě.
 \\
-Robustnost je princip, který dbá na to, aby uživatel neposílal žádné data, které by mohli způsobit problém druhému uživateli při procházení TCP vrstvami. Zároveň se snaží předvídat vše co dostane od druhého uživatele, co by mohlo způsobit problém a s případnými problémy nakládá liberálně.
-
-\cite{Princip1}
-  \cite{zakladykomunikace1} 
- \cite{Princip3} 
- \cite{Princip4} 
- \cite{Princip5}
-  \cite{Princip6}
+Robustnost je princip, který dbá na to, aby uživatel neposílal žádné data, které by mohli způsobit problém druhému uživateli při procházení TCP vrstvami. Zároveň se snaží předvídat vše co dostane od druhého uživatele, co by mohlo způsobit problém a s případnými problémy nakládá liberálně.\cite{Princip1}  \cite{zakladykomunikace1}  \cite{Princip3}  \cite{Princip4}  \cite{Princip5}  \cite{Princip6}
 			
 			\section{Vrstva síťového rozhraní}
-			Vrstva síťového rozhraní je nejnižší úroveň TCP/IP, dělí se na další dvě podkategorie, a to fyzická a logická. Na fyzické úrovni jsou všechna zařízení, kabely a etc., která konkrétně posílají bity. Protokoly na této úrovni jsou standardizovány IEEE\footnote{Institute of Electrical and Electronics Engineers}, například jsem patří protokol Ethernet\footnote{kabely s kroucenou dvojlinkou}, Wi-Fi, etc.
+			Vrstva síťového rozhraní je nejnižší úroveň TCP/IP, dělí se na další dvě podkategorie, a to fyzická a logická. Na fyzické úrovni jsou všechna zařízení, kabely a etc., která konkrétně posílají bity. Protokoly na této úrovni jsou standardizovány \texttt{IEEE}\footnote{Institute of Electrical and Electronics Engineers}, například jsem patří protokol Ethernet\footnote{kabely s kroucenou dvojlinkou}, Wi-Fi, etc.
  \\
-Další součastí link úrovně je logická část, tato úroveň protokolů spojuje pouze síťový segment\footnote{část počítačové sítě} a posílá takzvané frame pouze v LAN(lokální síť). Toto propojení zajištuje pomocí různých protokolů, jako například ARP(Address Resolution Protocol), který umožňuje switchy, aby rozpoznal MAC adresy zařízení. Tato část se dále dělí na podčásti a to LLC a MAC podčást. LLC podčást umožňuje adresování a kontrolu logické části. Dále specifikuje mechanismy, pro zařízení, které adresují a kontroluje data, která jsou vyměněna mezi zařízeními. MAC podčást má zodpovědnost za možnost přístupu k mediu (CSMA/CD), nebo tento problém řeší pomocí MAC adres. 
-
-\cite{Princip5} 
-\cite{Link2} 
-\cite{Link3}
- \cite{Link4}
- \cite{Link5}
- \cite{Link6}
+Další součastí link úrovně je logická část, tato úroveň protokolů spojuje pouze síťový segment\footnote{část počítačové sítě} a posílá takzvané frame pouze v LAN(lokální síť). Toto propojení zajištuje pomocí různých protokolů, jako například ARP(Address Resolution Protocol), který umožňuje switchy, aby rozpoznal MAC adresy zařízení. Tato část se dále dělí na podčásti a to LLC a MAC podčást. LLC podčást umožňuje adresování a kontrolu logické části. Dále specifikuje mechanismy, pro zařízení, které adresují a kontroluje data, která jsou vyměněna mezi zařízeními. MAC podčást má zodpovědnost za možnost přístupu k mediu (CSMA/CD), nebo tento problém řeší pomocí MAC adres. \cite{Princip5} \cite{Link2} \cite{Link3} \cite{Link4} \cite{Link5} \cite{Link6}
 
 			\section{Síťová vrstva}
 Síťová vrstva, v referenčním modelu TCP/IP známá také jako vrstva 2, je zodpovědná za směrování a předávání paketů v sítích. Jedná se o důležitý level, který umožňuje zařízením v různých sítích vzájemně komunikovat, a díky němuž může fungovat internet.
 \\
 Jedním z hlavních úkolů síťové vrstvy je směrování, které zahrnuje rozhodování o vhodné cestě pro každý paket na základě jeho cíle. K určení nejlepší cesty se používají různé metody a algoritmy pro směrování, od jednoduchých statických metod až po adaptivnější přístupy, které mohou zohlednit různé faktory v síti.
 \\
-Kromě směrování je síťová vrstva zodpovědná také za realizaci předávání paketů v mezilehlých uzlech podél zvolené cesty a také za řízení toku dat a prevenci přetížení sítě. Hraje také klíčovou roli při propojování různých sítí, což umožňuje bezproblémovou komunikaci mezi nimi.
-
-\cite{sit1}
- \cite{sit2}
+Kromě směrování je síťová vrstva zodpovědná také za realizaci předávání paketů v mezilehlých uzlech podél zvolené cesty a také za řízení toku dat a prevenci přetížení sítě. Hraje také klíčovou roli při propojování různých sítí, což umožňuje bezproblémovou komunikaci mezi nimi.\cite{sit1} \cite{sit2}
 
 			\section{Transportní vrstva}
 Transportní vrstva, v referenčním modelu TCP/IP známá také jako vrstva 3, je důležitou součástí procesu síťové komunikace. Je zodpovědná za zajištění spolehlivé komunikace mezi aplikačními procesy běžícími na různých hostitelích v síti.
@@ -109,41 +90,22 @@ Mezi hlavní úkoly transportní vrstvy patří oprava chyb, segmentace a desegm
 \\
 Transportní vrstva, která se v modelu OSI nachází mezi síťovou vrstvou (vrstva 3) a aplikační vrstvou (vrstva 7), zajišťuje koncové spojení mezi zdrojovým a cílovým hostitelem. To jim umožňuje komunikovat bez rušení jinými síťovými komponenty.
 \\
-Souhrnně řečeno, transportní vrstva shromažďuje segmenty zpráv z aplikační vrstvy a přenáší je do sítě, kde jsou znovu sestaveny a doručeny do aplikační vrstvy cílového hostitele. Je nezbytnou součástí procesu síťové komunikace, poskytuje spolehlivé transportní služby vyšším vrstvám a umožňuje aplikacím komunikovat mezi sebou napříč sítí.
-
-
-\cite{tran1}
-\cite{tran2}
-\cite{tran3}
+Souhrnně řečeno, transportní vrstva shromažďuje segmenty zpráv z aplikační vrstvy a přenáší je do sítě, kde jsou znovu sestaveny a doručeny do aplikační vrstvy cílového hostitele. Je nezbytnou součástí procesu síťové komunikace, poskytuje spolehlivé transportní služby vyšším vrstvám a umožňuje aplikacím komunikovat mezi sebou napříč sítí.\cite{tran1}\cite{tran2}\cite{tran3}
 			\section{Aplikační  vrstva}
  Aplikační vrstva je v referenčním modulu TCP/IP určena číslem čtyři, ale jelikož je pro mou práci nejduležitější tak si tuto vrstvu rozdělíme podle podrobnějšího modelu ISO/OSI, kde aplikační vrstva se dělí na vrstvu relační, prezantační a aplikační. 
 				\subsection{Realční vrstva}
-Relační vrstva je zodpovědná za navazování, udržování a ukončování komunikačních relací mezi dvěma koncovými body. Zajišťuje, aby komunikace mezi dvěma koncovými body byla spolehlivá a probíhala hladce, i když dojde k chybám nebo přerušení na nižších vrstvách, například za pomoci synchronizace, která umožňuje do posílaných dat přidat kontrolní body, díky kterým, v případě chyby, si přijemce vyžadá znovu poslání dat od určitého bodu. Zároveň umožňuje, aby na stejné přenosové lince probíhalo více komunikačních relací současně, které mohou být duplexní, poloduplexní, či simplexní. 
-
-
-\cite{session1}
-\cite{session2}
+Relační vrstva je zodpovědná za navazování, udržování a ukončování komunikačních relací mezi dvěma koncovými body. Zajišťuje, aby komunikace mezi dvěma koncovými body byla spolehlivá a probíhala hladce, i když dojde k chybám nebo přerušení na nižších vrstvách, například za pomoci synchronizace, která umožňuje do posílaných dat přidat kontrolní body, díky kterým, v případě chyby, si přijemce vyžadá znovu poslání dat od určitého bodu. Zároveň umožňuje, aby na stejné přenosové lince probíhalo více komunikačních relací současně, které mohou být duplexní, poloduplexní, či simplexní. \cite{session1}\cite{session2}
 				\subsection{Prezentační vrstva}
 Prezentační vrstavje zodpovědná za doručování, formátování a šiforvání informací při jejich předávání mezi různými systémy a aplikacemi.
 \\
 Prezentační vrstva zajišťuje, aby syntaxe a sémantika přenášených zpráv byla standardizována a ve správném formátu. Odpovídá za integraci všech různých formátů do standardizované podoby pro efektivní komunikaci a za kódování zpráv z formátu závislého na uživateli do společného formátu a naopak pro komunikaci mezi různými systémy.Pro vytvoření těchto formátu se používají různé serializace, jako například XML či TVL, které umožňují efektivní přenos složitých datových struktur. 
 \\
-Kromě serializace je prezentační vrstva zodpovědná také za šifrování a dešifrování dat. To se často provádí za účelem ochrany citlivých informací při jejich přenosu po sítích a může se provádět na různých vrstvách síťového zásobníku v závislosti na konkrétních požadavcích aplikace nebo protokolu.
-
-
-\cite{presentation1}
-\cite{presentation2}
-\cite{presentation3}
+Kromě serializace je prezentační vrstva zodpovědná také za šifrování a dešifrování dat. To se často provádí za účelem ochrany citlivých informací při jejich přenosu po sítích a může se provádět na různých vrstvách síťového zásobníku v závislosti na konkrétních požadavcích aplikace nebo protokolu.\cite{presentation1}\cite{presentation2}\cite{presentation3}
 
 				\subsection{Aplikační vrstva}
 Aplikační vrstva se dělí na dva prvky, které jsou určeny pro lehčí vytváření aplikací, díky tomu, že davájí stavební bloky, se kterými aplikace mohou pracovat, patří sem CASE\footnote{Common Application Service Element} a SASE\footnote{Specific Application Service Element}. CASE poskytuje služby pro aplikační vrstvu a požaduje služby od vrstvy relací, zatímco SASE poskytuje specifické aplikační služby, jako je přenos souborů, vzdálený přístup k databázi a zpracování transakcí.
 \\
-Dále aplikační vrstva poskytuje několik funkcí, které umožňují uživatelům snadný přístup k datům a manipulaci s nimi. Umožňuje uživatelům odesílat a přijímat e-maily, přistupovat k souborům na vzdáleném počítači a spravovat je, přihlašovat se jako vzdálený hostitel a přistupovat k informacím o různých službách. Poskytuje také protokoly, které umožňují softwaru odesílat a přijímat informace a prezentovat uživatelům smysluplná data.
-
-
-\cite{aplication1}
-\cite{aplication2}
-\cite{aplication3}
+Dále aplikační vrstva poskytuje několik funkcí, které umožňují uživatelům snadný přístup k datům a manipulaci s nimi. Umožňuje uživatelům odesílat a přijímat e-maily, přistupovat k souborům na vzdáleném počítači a spravovat je, přihlašovat se jako vzdálený hostitel a přistupovat k informacím o různých službách. Poskytuje také protokoly, které umožňují softwaru odesílat a přijímat informace a prezentovat uživatelům smysluplná data.\cite{aplication1}\cite{aplication2}\cite{aplication3}
 
 			\section{Slovník protokolů a technologií}
 Nyní zde popíšeme několik různých protokolů, které jsou později konkrétně použité v naší praktické části. Jsou řazeny podle vrstev od nejnižší po nejvyšší a technologie jsou až za nimi.
@@ -152,41 +114,22 @@ I2C\footnote{Inter-Integrated Circuit} je protokol, který se používá pro kom
 \\
 Funguje na prnicipu SDA\footnote{Serial Data} a SCL\footnote{Serial Clock} rozhraní. SDA je využito na komunikaci a přenos dat mezi zařízeními a SCL je užito na přenos hodin. Dále se mezi zařízeními dohodne role Master nebo Slave. Počet zařízení s rolí Slave je omezen pouze početem adres a počet Master zařízení, také není omezen, ale pro naše účely pracujeme s módem pouze jednoho Master zařízení. Master zařízení zahají komunikaci tím, že v kanále SDA změní napětí z vysokého na nízké a obráceně u kanálu SCL. Nyní Master zařízení pošle Slave zařízením adresu, která když souhlasí, tak Slave zařízení pošle ACK zprávu. Nyní je komunikace navázána. Poté vždy když dostane Master zařízení rámec s daty od Slave zařízení, posílá mu na zpět ACK zprávu.
 \\
-Výhody této komunikace jsou v jednoduchosti zapojení, v počtu zařízení v Slave roli, ve spolehlivosti a dostupnosti na mnoha zařízení.  
-
-
-\cite{i2c1}
-\cite{i2c2}
-\cite{i2c3}
-\cite{i2c4}
+Výhody této komunikace jsou v jednoduchosti zapojení, v počtu zařízení v Slave roli, ve spolehlivosti a dostupnosti na mnoha zařízení.  \cite{i2c1}\cite{i2c2}\cite{i2c3}\cite{i2c4}
 				\subsection{Wi-Fi}
 
-Wi-Fi je označení pro zařízení, která prošla v minulosti testováním některým ze členů organizace Wireless Ethernet Compatibility Alliance (WECA), ta se v dnešní době jmenuje Wi-Fi Alliance. Tato zařízení využívají standard IEEE 802.11, který umožňuje bezdrátově sdílení data. Nejpoužívanějšími standardy Wi-Fi jsou 802.11b a 802.11a.
+Wi-Fi je označení pro zařízení, která prošla v minulosti testováním některým ze členů organizace \texttt{Wireless Ethernet Compatibility Alliance} (WECA), ta se v dnešní době jmenuje \texttt{Wi-Fi Alliance}. Tato zařízení využívají standard IEEE 802.11, který umožňuje bezdrátově sdílení data. Nejpoužívanějšími standardy Wi-Fi jsou 802.11b a 802.11a.
 \\
 Tyto standardy využívají rádiové vlny k přenosu informací mezi zařízeními a směrovačem prostřednictvím specifických frekvencí. V závislosti na množství přenášených dat lze využít dvě rádiové frekvence: 2,4 GHz a 5 GHz. Standard 802.11b využívá frekvenci 2,4 GHz, zatímco standard 802.11a využívá frekvenci 5 GHz.
 \\
 Wi-Fi také využívá různé architektonické postupy, přičemž pro naše účely jsou nejdůležitější přístupové body (AP) a antény\footnote{Ta sice nepoužívá standarty 802.11, nýbrž vzniká kolaborací různých firem, ale pro účely práce má stejné využití, jako wifi}. Metoda AP zahrnuje použití stacionárního přístupového bodu, který funguje jako základní rádiová stanice a datový most, obvykle připojený k síti prostřednictvím technologie Ethernet. Tento přístupový bod také nastavuje potřebná bezpečnostní opatření.
 \\
-Technologie antén se často využívá v otevřených venkovních prostorách, kde je nutná komunikace na velké vzdálenosti, čemuž napomáhá ochrana před bleskem a další antény.
-
-
-
-\cite{WiFi1}
-\cite{WiFi2}
-\cite{WiFi3}
-\cite{Pruvodce}
+Technologie antén se často využívá v otevřených venkovních prostorách, kde je nutná komunikace na velké vzdálenosti, čemuž napomáhá ochrana před bleskem a další antény.\cite{WiFi1}\cite{WiFi2}\cite{WiFi3}\cite{Pruvodce}
 				\subsection{ARP}
 Protokol ARP\footnote{Address Resolution Protocol} je protokol používaný v LAN\footnote{Lokální síť} k určení fyzické adresy zařízení z adresy síťové vrstvy (např. IP adresy). Když chce zařízení komunikovat s jiným zařízením ve stejné síti LAN, potřebuje znát fyzickou adresu cílového zařízení, aby mu mohlo poslat data. Má však k dispozici pouze IP adresu cílového zařízení. Zde přichází na řadu protokol ARP.
 \\
 Aby zdrojové zařízení zjistilo fyzickou adresu cílového zařízení, rozešle všem zařízením v síti LAN paket s požadavkem ARP. Paket obsahuje IP adresu cílového zařízení a žádost o jeho fyzickou adresu. Paket obdrží všechna zařízení v síti LAN, ale pouze zařízení se shodnou IP adresou odpoví svou fyzickou adresou. Tato odpověď je odeslána zpět zdrojovému zařízení ve formě paketu odpovědi ARP.
 \\
-Zdrojové zařízení pak uloží fyzickou adresu cílového zařízení do své mezipaměti ARP, což je tabulka, která mapuje IP adresy na fyzické adresy. Tímto způsobem může použít fyzickou adresu z mezipaměti pro budoucí komunikaci s cílovým zařízením, místo aby musel vysílat požadavek ARP pokaždé, když chce odeslat data. Mezipaměť ARP má hodnotu časového limitu, která udává dobu, po kterou zůstane fyzická adresa v mezipaměti, než ji bude třeba obnovit.
-
-
-
-\cite{arp1}
-\cite{arp2}
-\cite{arp3}
+Zdrojové zařízení pak uloží fyzickou adresu cílového zařízení do své mezipaměti ARP, což je tabulka, která mapuje IP adresy na fyzické adresy. Tímto způsobem může použít fyzickou adresu z mezipaměti pro budoucí komunikaci s cílovým zařízením, místo aby musel vysílat požadavek ARP pokaždé, když chce odeslat data. Mezipaměť ARP má hodnotu časového limitu, která udává dobu, po kterou zůstane fyzická adresa v mezipaměti, než ji bude třeba obnovit.\cite{arp1}\cite{arp2}\cite{arp3}
 
 				\subsection{IP}
 Internetový protokol (IP) je klíčovou součástí internetu, která je zodpovědná za směrování datových paketů mezi zařízeními v síti.
@@ -197,13 +140,7 @@ Protokol IP pracuje s abstraktními adresami, tzv. adresami IP, což jsou 32bito
 \\
 Protokol IP může pracovat ve spolehlivém nebo nespolehlivém režimu. Ve spolehlivém režimu je protokol IP zodpovědný za správné doručení datových paketů a podnikne kroky k opravě případných chyb. V nespolehlivém režimu protokol IP jednoduše zahodí všechna poškozená data a pokračuje dál, přičemž opravu chyb přenechá protokolům vyšších vrstev. Nespolehlivý režim je obecně efektivnější, protože snižuje dobu spojenou s opravou chyb.
 \\
-Kromě směrování datových paketů a adresování poskytuje protokol IP také možnosti fragmentace a opětovného sestavení. To umožňuje protokolu IP přenášet datové pakety, které jsou větší než maximální přenosová jednotka sítě, jejich rozdělením na menší pakety a jejich opětovným sestavením v cíli.
-
-
-\cite{IP1}
-\cite{IP2}
-\cite{IP3}
-\cite{IP4}
+Kromě směrování datových paketů a adresování poskytuje protokol IP také možnosti fragmentace a opětovného sestavení. To umožňuje protokolu IP přenášet datové pakety, které jsou větší než maximální přenosová jednotka sítě, jejich rozdělením na menší pakety a jejich opětovným sestavením v cíli.\cite{IP1}\cite{IP2}\cite{IP3}\cite{IP4}
 
 				\subsection{TCP}
 Protokol TCP\footnote{Transmission Control Protocol} je základní součástí internetu a zajišťuje spolehlivý přenos dat mezi zařízeními. Je to protokol zaměřený na spojení, což znamená, že navazuje a udržuje spojení mezi zařízeními nebo aplikacemi, dokud nedokončí výměnu dat.
@@ -212,36 +149,20 @@ Protokol TCP je zodpovědný za rozdělení původní zprávy do paketů, jejich
 \\
 K navázání spojení mezi zařízením a serverem používá protokol TCP třícestný handshake, který zajišťuje, aby mohlo být současně přenášeno více spojení soketů TCP v obou směrech. Zařízení i server musí před zahájením komunikace synchronizovat a potvrdit pakety a poté mohou vyjednávat, oddělovat a přenášet spojení soketů TCP.
 \\
-Jednou z hlavních výhod protokolu TCP je jeho spolehlivost. Je navržen tak, aby zajistil, že všechny pakety dosáhnou svého cíle, i když se některé pakety během přenosu ztratí. Toho dosahuje tím, že všechny ztracené pakety znovu přenáší a kontroluje, zda nedošlo k chybám. To z něj činí ideální protokol pro aplikace, které vyžadují spolehlivý a bezchybný přenos, jako je e-mail a přenos souborů.
-
-
-\cite{Pruvodce}
-\cite{TCP}
-\cite{TCP1}
-\cite{TCP2}
+Jednou z hlavních výhod protokolu TCP je jeho spolehlivost. Je navržen tak, aby zajistil, že všechny pakety dosáhnou svého cíle, i když se některé pakety během přenosu ztratí. Toho dosahuje tím, že všechny ztracené pakety znovu přenáší a kontroluje, zda nedošlo k chybám. To z něj činí ideální protokol pro aplikace, které vyžadují spolehlivý a bezchybný přenos, jako je e-mail a přenos souborů.\cite{Pruvodce}\cite{TCP}\cite{TCP1}\cite{TCP2}
 
 
 
 				\subsection{DHCP}
 Protokol DHCP\footnote{Dynamic Host Configuration Protocol} je síťový protokol, který umožňuje automatizovat proces, získávání IP adress a dalších konfiguračních informací v LAN. DHCP je součástí client/server architektury, kde v síti se vyskytuje DHCP server, který čeká na požadavky a po dotazu automaticky vydá konfigurační informace. Zároveň po určité době si vezme danou IP adresu zpátky a přidá jí opět do databáze s volnými IP adresami. 
 \\
-Kromě přidělování IP adres poskytuje DHCP také další  konfigurační informace, jako je subnet\footnote{Subnet je logickým rozdělením sítě IP na více menších síťových částí.}, adresa výchozí brány a DNS. Protokol DHCP je standardem IEEE, který vychází ze staršího protokolu BOOTP (bootstrap protocol), který je již zastaralý, protože funguje pouze v sítích IPv4.
-
-\cite{DHCP1}
-\cite{DHCP2}
-\cite{DHCP3}
-\cite{DHCP4}
+Kromě přidělování IP adres poskytuje DHCP také další  konfigurační informace, jako je subnet\footnote{Subnet je logickým rozdělením sítě IP na více menších síťových částí.}, adresa výchozí brány a DNS. Protokol DHCP je standardem IEEE, který vychází ze staršího protokolu BOOTP (bootstrap protocol), který je již zastaralý, protože funguje pouze v sítích IPv4.\cite{DHCP1}\cite{DHCP2}\cite{DHCP3}\cite{DHCP4}
 
 
 				\subsection{JSON}
 JSON\footnote{JavaScript Object Notation} je způsob serializace dat, který je jednoduše pochopitelný lidmi, a zároveň zařizeními, díky čemu se prosadil, jako jeden z nejpouživanějších způsobů pro serializaci dat. Tohoto dosáhl pomocí již zmíněné jednoduchosti, oproti ostatním formátům, jako například XML, který byl uživatelsky silně nepřivětivý. 
 \\
-Pochazí z programovacího jazyka JavaScript, ve kterém kopíruje formu JavaScript objektu. Ten je ale zároveň snado interpretovatelný v ostatních programovacích jazycích, což z něj činí univerzalní nástroj pro přenos dat mezi zařízeními a aplikacemi. 
-
-\cite{JSON1}
-\cite{JSON2}
-\cite{JSON3}
-\cite{JSON4}
+Pochazí z programovacího jazyka JavaScript, ve kterém kopíruje formu JavaScript objektu. Ten je ale zároveň snado interpretovatelný v ostatních programovacích jazycích, což z něj činí univerzalní nástroj pro přenos dat mezi zařízeními a aplikacemi. \cite{JSON1}\cite{JSON2}\cite{JSON3}\cite{JSON4}
 
 
 			
@@ -251,9 +172,10 @@ Pochazí z programovacího jazyka JavaScript, ve kterém kopíruje formu JavaScr
 
 
 \section{Implementace protokolu}
-Protokol je navržen tak, aby umožnil klientovi vyžádat si data od serveru s akcelerometrem a server zaslal požadovaná data klientovi. Toto je zajištěno tím, že server neustále poslouchá na daném portu. A kdykoliv přijde od clienta požadavek "Send", tak server odešle data. Pokud klient již data nechce, může poslat zprávu "Close" nebo přestat posílat požadavky, což způsobí, že server spojení uzavře.
+Protokol\footnote{soubor pravidel, podle kterých probíhá elektronická komunikace nebo datový přenos, mezi dvěma (či více) konečnými body. Více zde https://it-slovnik.cz/pojem/protokol} 
+je navržen tak, aby umožnil klientovi vyžádat si data od serveru s akcelerometrem a server zaslal požadovaná data klientovi. Toto je zajištěno tím, že server neustále poslouchá na daném portu. A kdykoliv přijde od klienta požadavek \texttt{send}, tak server odešle data. Pokud klient již data nechce, může poslat zprávu \texttt{close} nebo přestat posílat požadavky, což způsobí, že server spojení uzavře.
 \\
-Abychom ověřily tuto implementaci. Nejdříve nastavtíme server a klienta, kteří implementují tento protokol. Necháme klienta poslat serveru požadavek na data. Ověříme zda server odešle klientovi požadovaná data. Dále necháme klienta odeslat zprávu "Close" nebo přestat posílat požadavky a pozarujeme zda se tak stane.
+Abychom ověřily tuto implementaci. Nejdříve nastavíme server a klienta, kteří implementují tento protokol. Necháme klienta poslat serveru požadavek na data. Ověříme zda server odešle klientovi požadovaná data. Dále necháme klienta odeslat zprávu \texttt{close} nebo přestat posílat požadavky a pozorujeme zda se tak stane.
 \\
 Pokud se ověří daná implementace můžeme předpokládat, že Protokol je funkční.
 \\
@@ -271,66 +193,89 @@ Pokud se ověří daná implementace můžeme předpokládat, že Protokol je fu
 Jazyk použitý pro implementaci protokolu je Python. Zvolili jsme si tento jazyk z několika důvodů. 
 Python má širokou standardní knihovnu, která obsahuje řadu modulů pro sítě a komunikaci, například sokety, které usnadňují vytvoření Protokolu.
 Python má čistou a čitelnou syntaxi, která usnadňuje psaní a pochopení kódu. Navíc je to dynamicky typovaný jazyk, což znamená, že v kódu nemusíte uvádět typy proměnných. To může výrazně usnadnit psaní a debug kódu.
-To je několik důvodů, proč byl vybrán oproti ostatním jazykům, jako například C, C++, Java a Go.
+To je několik důvodů, proč byl vybrán oproti ostatním jazykům, jako například C, C++, Java a Go.\cite{python}
 
 \subsection{MicroPython}
 
-Dalším využitým jazykem je MicroPython. MicroPython je navržen pro snadné použití a provoz na malých mikrokontrolérech, jako ESP8266, ESP32 a Raspberry Pi Pico W. Jedná se o implementaci programovacího jazyka Python, která byla speciálně optimalizována pro běh na mikrokontrolérech. Má vestavěnou podporu sítí, což usnadňuje připojení zařízení k internetu. Má také bohatou sadu knihoven a modulů, které lze použít k interakci se senzory, displeji a dalšími hardwarovými komponentami.
+Dalším využitým nástrojem je MicroPython. MicroPython je implementace Pythonu, která je navržena pro snadné použití a provoz na malých mikrokontrolérech, jako ESP8266, ESP32 a Raspberry Pi Pico W. Tohoto dokázala díky speciální optimalizaci, která spočívá ve vymázání většiny standardní knihovny a přidání modulů pro specifickou práci s mikrokontroléry. Mezi tyto moduly patří moduly pro podporu sítí, interakci se senzory, displeji a dalšími hardwarovými komponentami.\cite{micropython}
 
 \subsection{Raspberry Pi Pico W }
 
-Hardwarové řešení je Raspberry Pi Pico W, která se hodí pro vytváření prototypů a experimentování. Snadno se používá a lze ji programovat v různých jazycích, včetně jazyků MicroPython a C. Díky tomu je skvělou volbou pro projekty, v nichž chcete rychle a snadno vytvářet prototypy a testovat své nápady. Dále má vestavěné rádio 2,4 GHz, které lze použít pro komunikaci WiFi, a také na připojení Bluetooth Low Energy (BLE). Má také řadu digitálních a analogových vstupů a výstupů, které lze využít k propojení se senzory a dalšími zařízeními. Podporuje protokol I2C\footnote{Inter-Integrated Circuit}, který je duležitý pro práci s akcelometrem.  
+Hardwarové řešení je Raspberry Pi Pico W, která se hodí pro vytváření prototypů a experimentování. Snadno se používá a lze ji programovat v různých jazycích, včetně jazyků MicroPython a C. Díky tomu je skvělou volbou pro projekty, v nichž chcete rychle a snadno vytvářet prototypy a testovat své nápady. Dále má vestavěné rádio 2,4 GHz, které lze použít pro komunikaci WiFi, a na připojení Bluetooth Low Energy (BLE). Má i řadu digitálních a analogových vstupů a výstupů, které lze využít k propojení se senzory a dalšími zařízeními. Podporuje protokol I2C\footnote{Inter-Integrated Circuit}, který je důležitý pro práci s akcelometrem.  \cite{raspberry}
+
+\begin{figure}[h]
+\caption{Raspberry Pi Pico W}
+\centering
+\includegraphics[scale=0.75]{raspberry}
+\end{figure}
 
 \subsection{Tříosý akcelerometr GY-291 s ADXL345}
 
-Jako data pro přenos jsme vybrali daty z
-tříosého akcelerometru GY-291 s ADXL345. Ten jsme vybrali jelikož je to přesný a cenově dostupný senzor, který se používá k měření  pohybu a orientace. Měření probíhá ve 3 osách a měří zrychlení v rozmezí -16 g až +16 g v osách X, Y a Z. Měření lze snadno získat, díky připojení akcelerometru GY-291 k mikrokontroléru pomocí rozhraní I2C. Tento senzor je kompatibilní s mikrokontroléry, jako je Arduino, Raspberry Pi a mnoho dalších.
+Jako data pro přenos jsme vybrali data z
+tříosého akcelerometru GY-291 s ADXL345. Tento senzor je přesný, cenově dostupný a používá se k měření pohybu a orientace. Měření probíhá ve 3 osách X, Y a Z a měří zrychlení v rozmezí -16 g až +16 g. Měření lze snadno získat, díky připojení akcelerometru GY-291 k mikrokontroléru pomocí rozhraní I2C. Tento senzor je kompatibilní s mikrokontroléry, jako je Arduino, Raspberry Pi a mnoho dalších.
 \\
 Senzor je také schopen detekovat orientaci v prostoru díky integrovanému gyroskopu. Jeho nejčastější použití spočívá v úkolech, jako stabilizace kamery nebo detekce pohybu v prostoru pro různé aplikace.
 \\
-Další možnosti pro sběr dat byl například senzor MPU-6050, který má sběrnici dat v 6 rozměrech, ten kombinuje akcelometr v 3 osách a gyroskop také ve třech osách. Je určen na velmi přesné měření, které zde nebylo nutné. Další volbou byl senzor BNO055, ten kombinuje akcelometr, gyroskop a magnetometr ve 3 osách, ten je určen na přesnou orientaci v prostoru, které také nebyla nutná
+Další možností pro sběr dat byl například senzor MPU-6050\footnote{https://www.hwkitchen.cz/3osy-akcelerometr-a-gyroskop-gy-521-mpu-6050-i2c/}
+, který má sběrnici dat v 6 rozměrech, ten kombinuje akcelometr v 3 osách a gyroskop také ve třech osách. Je určen na velmi přesné měření, které zde nebylo nutné. Další volbou byl senzor BNO055\footnote{https://www.bosch-sensortec.com/products/smart-sensors/bno055/}
+ ten kombinuje akcelometr, gyroskop a magnetometr ve 3 osách, ten je určen na přesnou orientaci v prostoru, které také nebyla nutná\cite{gyroskop}
 
-\subsection{Socket}
+\begin{figure}[h]
+\caption{Tříosý akcelerometr GY-291 s ADXL345}
+\centering
+\includegraphics[scale=0.6]{gyroskop}
+\end{figure}
 
-Socket modul je vestvěný modul do jazyka Python, který poskytuje rozhraní pro práci se sockety, včetně jejich vytváření a používaní pro přijímání a odesílání dat po síti. Podporuje různé rodiny adres včetně AF\_INET (IPv4) a AF\_INET6 (IPv6). Podporuje také řadu typů soketů, včetně SOCK\_STREAM (TCP) a SOCK\_DGRAM (UDP).
-\\
-Díky tomuto modulu lze prováďet spousty standartních akcí očekavaných od sítí, například navazovat spojení se servery, odesílat a přijímat data a uzavírat spojení, pokud již nejsou potřeba. 
-\\
-Nějaké alternativy k tomuto modulu jsou moduly AsyncIO a PySocket. AsyncIO je standartní knihovna určena na asynchorní programování a mimo to podporuje i užítí asynchorních soketů. Tato knihovna je vhodná pro aplikace vyžadující vysoký výkon a škálovatelnost. Tato knihovna nebyla vybrána z důvodu neznalosti asynchorního programování. PySocket, je modul třetí strany, který funguje na bázi Socket modulu, jedná se pouze o zjednodušení užití Socket modulu. PySocket nebyl vybrán z toho důvodu, že není implementován v MicroPythonu a není to standartní knihovna v Pythonu. 
-\subsection{Network}
-Network modul je jeden z kličových modulů v jazyce MicroPython je určen pro možnost připojit se, odesílat zprávy a přijímat data přes síť. Poskytuje celou řadu síťových možností, jako vytvoření socketů. V protokolu je využit na připojení k síti. Alternativou k tomuto modulu je modul socket, ten však neposkytuje intuitivní řešení k možnosti připojit se do sítě, jako modul network. 
+\subsection{Modul \texttt{socket}}
 
-\subsection{Json}
-Knihovna JSON je vestavěná knihovna v Jazyce Python a MicroPython. Poskytuje funkce pro práci s daty ve formátu JSON. Díky JSON knihovně je možné převádět data JSON na obejekty jazyka Python a naopak. Díky svým funkcím umožňuje jednoduchou serializaci dat a odeslání přes sockety 
+Modul \texttt{socket}\footnote{https://docs.micropython.org/en/latest/library/socket.html} je vestavěný modul do jazyka Python, který poskytuje rozhraní pro práci se sockety, včetně jejich vytváření a používaní pro přijímání a odesílání dat po síti. Podporuje různé rodiny adres včetně AF\_INET (IPv4) a AF\_INET6 (IPv6). Podporuje také řadu typů soketů, včetně SOCK\_STREAM (TCP) a SOCK\_DGRAM (UDP).
 \\
-Alternativou ke knihovně JSON je modul ujson, která se liší tím, že je napsána v Pythonu a obecně poskytuje rychlejší služby za využití méně paměti, což nebylo nutné na přenos, tak malých dat, pro které je protokol určen 
+Díky tomuto modulu lze provádět spousty standardních akcí očekávaných od sítí, například navazovat spojení se servery, odesílat a přijímat data a uzavírat spojení, pokud již nejsou potřeba. 
+\\
+Alternativy k tomuto modulu jsou moduly 
+\texttt{AsyncIO}\footnote{https://docs.python.org/3/library/asyncio.html} a 
+\texttt{PySocket}\footnote{https://pypi.org/project/pySocket/}
+. \texttt{AsyncIO} je standardní knihovna určena na asynchronní programování a mimo to podporuje i užití asynchroních socketů. Tato knihovna je vhodná pro aplikace vyžadující vysoký výkon a škálovatelnost. Tato knihovna nebyla vybrána z důvodu neznalosti asynchroního programování. \texttt{PySocket}, je modul třetí strany, který funguje na bázi \texttt{socket} modulu, jedná se pouze o jeho zjednodušení. \texttt{PySocket} nebyl vybrán z toho důvodu, že není implementován v MicroPythonu a není to standardní knihovna v Pythonu. 
 
-\subsection{Machine a ADXL345}
-Modul machine je vestavěná knihovna v MicroPythonu, která je určena pro práci s hardwerovými obvody, jako jsou časovače, I/O\footnote{input/output} piny a I2C rozhraní, které je podstatné pro práci s GY-291 s ADXL345. Tohoto modulu dále využívá modul třetí strany ADXL345, který je užitečný pro snadnou práci s ADXL345, kde získá z paměti informace o stavu zařízení a data naformátuje do stavu použitelného v aplikacích. K modulu machine existuje alternativa modul pyb, který ale musí být doinstalován do MicroPythonu. ADXL345 modulu v momentu implementace nebyla alternativa. 
+\subsection{Modul \texttt{network}}
 
-\subsection{random}
-Random je vestavěná Python knihovna, která umožňuje generovat pseudo náhodná čísla a provádět náhodné výběry. Nejvíce uplatnění tento modul najde při tvorbě her, či dalších programů, kde je potřeba generovat pseudo náhodné výsledky. 
-\\
-Alternativy k modulu random jsou moduly Secrets a random2. Secretes je modul, který je určený hlavně na generování kryptograficky bezpečných čísel a řetězců, což nebylo nutné. Random2 je modul třetí strany, tvrdí, že je rychlejší a spolehlivější než vestavěný modul random, ale kvůli nutnosti stáhnutí nebyl implementován.
+Modul \texttt{network}\footnote{https://docs.micropython.org/en/latest/esp8266/tutorial/network\_basics.html} je jeden z klíčových modulů v MicroPythonu, je určen pro možnost připojit se, odesílat zprávy a přijímat data přes síť. Poskytuje celou řadu síťových možností, konkrétně v protokolu je využit na připojení se k síti. 
 
-\subsection{pygame}
-Pygame je sbírka různých Python modulů. Dohromady tvoří jeden celek, který je určen ke tvorbě videoher. Uživatel má možnost zobrazovat obraz, pouštět zvuk, či pracovat s uživatelským vstupem. Díky těmto možnostem můžete tvořit celé hry v Pythonu. 
+\subsection{Modul \texttt{json}}
+Modul \texttt{json}\footnote{https://docs.micropython.org/en/latest/library/json.html} je vestavěný modul v jazyce Python a  implementaci MicroPython. Poskytuje funkce pro práci s daty ve formátu JSON. Díky \texttt{json} knihovně je možné převádět data JSON na objekty jazyka Python a naopak. Jeho funkce umožňují jednoduchou serializaci dat a odeslání přes sockety 
 \\
-Pygame dále vyčnívá díky své dobré implementaci, kde hlavní funkce jsou tvořeny v jazyce C a Assembly, což zaručuje dostatečnou rychlost kodů, která je při hrách nutná. Na to navazuje i snadná práce s více jádry najednou. Dále je pygame určen pro mnoho operačních systému a mnoho prostředí. Což z něj činí dobrý multifunkční nástroj, který je snadno přenositelný. 
-\\
-K tomu je třeba dodat, že pygame záleží na jednoduchosti použití, tudíž doba potřebná pro naučení se použití pygame je nízká, tudíž vhodná pro testování protokolů. 
-\\
-Alternativa k pygame je například Pyglet. Pyglet je knihovna určená na práci se zobrazením oken a hraním zvuku, ale narozdíl od pygame má menší podporu pro vytváření videoher. Dalším duležitým rozdílem je, že Pyglet používá jiný program pro vykreslování grafiky, který je avšak určen spíše pro 3D grafiku. 
+Alternativou ke knihovně \texttt{json} je modul \texttt{ujson}\footnote{https://pypi.org/project/ujson/}. Tento modul je napsán v Pythonu a poskytuje rychlejší služby za využití méně paměti. Pro náš protokol, který je určen pro přenos malých dat, toto nebylo nutné.
 
-\subsection{multiprocessing}
-Modul multiprocessing je Python modul určený pro paralelní provadění kodů na několika jádrech. Umožňuje vytvářet několik samostatných procesů, které mohou běžet současně na jednom zařízení, či dokonce na několika počítačích, síťově připojenými. Tato funkce je užitečná pro výpočetně náročné úkoly a pro programy, kde je nutné, aby několik programů běželo ve stejnou chvíli. K tomu multiprocessing přidává možnosti sdílet data mezi těmito programi pomocí různých datových typů. 
+\subsection{Moduly \texttt{machine} a \texttt{ADXL345}}
+Modul \texttt{machine}\footnote{https://docs.micropython.org/en/latest/library/machine.html} je vestavěná knihovna v MicroPythonu určená pro práci s hardwarovými obvody, jako jsou časovače, I/O\footnote{input/output} piny a I2C rozhraní, které je podstatné pro práci s GY-291 s ADXL345. Tohoto modulu dále využívá modul třetí strany 
+\texttt{ADXL345}\footnote{https://github.com/DFRobot/micropython-dflib/blob/master/ADXL345/user\_lib/ADXL345.py}, ten je užitečný pro snadnou práci s ADXL345. Modul získává z paměti informace o stavu zařízení a data naformátuje do stavu použitelného v aplikacích. K modulu \texttt{machine} existuje alternativa modul \texttt{pyb}\footnote{https://docs.micropython.org/en/latest/library/pyb.html}, ten ale musí být doinstalován do MicroPythonu. K \texttt{ADXL345} modulu v momentu implementace nebyla alternativa. 
+
+\subsection{Modul \texttt{random}}
+\texttt{random}\footnote{https://docs.python.org/3/library/random.html} je vestavěná Python knihovna, ta umožňuje generovat pseudo náhodná čísla a provádět náhodné výběry. Nejvíce uplatnění tento modul najde při tvorbě her, či dalších programů, kde je potřeba generovat pseudo náhodné výsledky. 
 \\
-Alternativa k multiprocessing je modul threading. Hlavní rodíl mezi nimi je, že threding používá threads, které se liší od procesů\footnote{proces je instance vytvořená multiprocessing modulem} tím, že používají tu stejnou paměť. Narozdíl od procesů, které se rozdělí do různých jader. Z toho vyplývají dva rozdíly ve funkčnosti. Mezi procesy je více naročné sdílet data, avšak narozdíl od thredů, když jeden z procesů bude chybovat, tak se ukoční pouze jeden proces a ne celý program, jako u threadů. Problém se sdílení daty je, ale snadno řešitelný, díky implementaci modulu mulitprocessing, a tudíž je vhodný pro můj protkol. 
+Alternativou k modulu \texttt{random} je modul
+ \texttt{secrets}\footnote{https://docs.python.org/3/library/secrets.html} 
+ . \texttt{Secretes} je modul, určený hlavně na generování kryptograficky bezpečných čísel a řetězců, což není nutné pro tvorbu videoher. 
+ 
+\subsection{Modul \texttt{pygame}}
+\texttt{pygame} je sbírka různých Python modulů. Dohromady tvoří jeden celek, který je určen ke tvorbě videoher. Uživatel má možnost zobrazovat obraz, pouštět zvuk, či pracovat s uživatelským vstupem. Díky těmto možnostem můžete tvořit celé hry v Pythonu. 
+\\
+\texttt{pygame} dále vyčnívá díky své dobré implementaci, kde hlavní funkce jsou tvořeny v jazyce C a Assembly. Tato implementace zaručuje dostatečnou rychlost kodů, která je při hrách nutná. Na to navazuje i snadná práce s více jádry najednou. Dále je pygame určen pro mnoho operačních systémů a mnoho prostředí. Toto vše z něj činí dobrý multifunkční nástroj, který je snadno přenositelný. 
+\\
+Další výhodou modulu \texttt{pygame} je důraz na jednoduchost použití a ovládání. Potřebná doba pro naučení se práci s ním je nízká, proto je velmi vhodný k testování protokolů.  
+\\
+Alternativa k \texttt{pygame} je například \texttt{pyglet}\footnote{https://pyglet.org/}. \texttt{pyglet} je knihovna určená na práci se zobrazením oken a hraním zvuku. Na rozdíl od \texttt{pygame} má menší podporu pro vytváření videoher. Dalším důležitým rozdílem je, že \texttt{pyglet} používá jiný program pro vykreslování grafiky, ten je určen spíše pro 3D grafiku. \cite{pygame}
+
+\subsection{Modul \texttt{multiprocessing}}
+Modul \texttt{multiprocessing}\footnote{https://docs.python.org/3/library/multiprocessing.html} je Python modul určený pro paralelní provádění kódů na několika jádrech. Umožňuje vytvářet několik samostatných procesů, které mohou běžet současně na jednom zařízení, či dokonce na několika síťově připojených počítačích. Tato funkce je užitečná pro výpočetně náročné úkoly a pro programy, kde je nutné, aby několik programů běželo ve stejnou chvíli. K tomu \texttt{multiprocessing} přidává možnosti sdílet data mezi těmito programy pomocí různých datových typů. 
+\\
+Alternativa k modulu \texttt{multiprocessing} je modul \texttt{threading}\footnote{https://docs.python.org/3/library/threading.html}. Hlavní rodíl mezi nimi je, že \texttt{threading} používá threads a \texttt{multiprocessing} používá procesy\footnote{proces je instance vytvořená multiprocessing modulem}. Ty se liší tím, že threads používají jedno jádro a procesy využívají více jader. Z toho vyplývají rozdíly ve funkčnosti. U procesů je náročné sdílet data, ale v případě chyby se ukončí pouze jeden proces a ne celý program. V případě chybovosti u threadu se ukončí celý program. Problém se sdílením dat je ale snadno řešitelný, díky implementaci modulu \texttt{multiprocessing}, a je tak vhodný pro můj protokol. 
+
 
 \section{Popis řešení}
 \subsection{Server}
-Zdrojový kód pro server \ref{lst:server} je celý napsán v MicroPythonu. Kód začíná importem modulů, které jsou popsány v předešlé kapitole. Pokračujeme nastavením proměných užitých později v programu. Proměná Host je využita na nastevení rozsahu, ve kterém bude server přijímat dotazy od clienta. Proměná Port je využita na nastavení Portu, na kterém se server bude pohybovat. Nakonec zavedeme funkci pro připojení k internetu
-\begin{lstlisting}[title={Program server.py}, caption={server.py}]
+Zdrojový kód pro server \ref{lst:server} je celý napsán v MicroPythonu. Kód začíná importem modulů, které jsou popsány v předešlé kapitole. Pokračujeme nastavením proměnných užitých později v programu. Proměnná \texttt{HOST} je využita na nastevení rozsahu, ve kterém bude server přijímat dotazy od klienta. Proměnná \texttt{PORT} je využita na nastavení portu, na kterém se server bude pohybovat. Nakonec zavedeme funkci pro připojení k internetu.
+\begin{lstlisting}[title={Program server.py}, caption={server.py}, language=Python]
 import socket
 import network
 from machine import Pin, I2C, SoftI2C
@@ -352,7 +297,7 @@ def do_connect(ssid, password):
     print(f'Network config: {wlan.ifconfig()}')
 
 \end{lstlisting}
-Nyní si zavedeme hlavní část programu pro které jsme vytvořili blokové schéma pro jeho lepší pochopení. 
+Nyní si zavedeme hlavní část programu, pro který jsme vytvořili blokové schéma pro jeho lepší pochopení. 
 
 \begin{figure}[h]
 \caption{blokový diagram serveru}
@@ -360,8 +305,9 @@ Nyní si zavedeme hlavní část programu pro které jsme vytvořili blokové sc
  \includegraphics[scale=0.6]{block_scheme_server}
 \end{figure}
 
-Jak je vidět na schématu, nejdříve navážeme spojení se síti díky funkci do\_connect. Pokračujeme Vytvořením objektu i2c, který předáme objektu ADXL345, diký kterému se budeme později dotazovat na souřadnice. Nakonec pokračujeme vytvořením socketu, kde nastavíme typ protokolu. Na Síťové vrstvě protokol IP a na Transportní vrstvě protokol TCP. Dále nastavíme socketu jeho Port číslo a rozmezí, na kterém bude přijímat dotazy. Nakonec nastavíme, aby daný program poslouchal, a bral maximálně 100 clientů v jeden moment. 
-\begin{lstlisting}[title={Program server.py}, caption={server.py}]
+Jak je vidět na schématu, nejdříve navážeme spojení se sítí díky funkci \texttt{do\_connect}. Pokračujeme vytvořením objektu \texttt{i2c}, předáme ho objektu \texttt{ADXL345}, díky kterému později budeme získávat souřadnice. Nakonec pokračujeme vytvořením socketu, v něm nastavíme typ protokolu. Na síťové vrstvě protokol IP a na transportní vrstvě protokol TCP. Dále nastavíme socketu jeho port číslo a rozmezí, na němž bude přijímat dotazy. Nakonec nastavíme, aby daný program poslouchal a bral maximálně 100 clientů v jeden moment. 
+
+\begin{lstlisting}[title={Program server.py}, caption={server.py}, language=Python]
 if __name__ == '__main__':
     do_connect("SSID", "password")
     i2c = SoftI2C(scl=Pin(17), sda=Pin(16), freq=10000)
@@ -372,9 +318,9 @@ if __name__ == '__main__':
     soc.listen(100)
 \end{lstlisting}
 
-Nyní pokračujeme hlavní smyčkou. Ta čeká na dotaz clienta. Když se client dotáže, program spustí další smyčku. V té program přijme data poslané od clienta a dekóduje je. A nyní podle typu dat se rozhodne, jaký bude další postup. Jestli data nejsou žádná, nebo data davají dotaz na close, tak program uzavře spojení a nastaví socket, tak aby v případě nutnosti mohl být použit co nejdříve znovu. Když data davají dotaz na send, tak program díky objektu ADXL345, zjistí souřadnice akcelometru. Tyto data dá do datové struktury tuple a tuto datovou strukturu serializuje způsobem JSON. Dále tyto data dá do kódování UTF-8 a pošle je přes socket clientovi. 
+Nyní pokračujeme hlavní programovou smyčkou, tato smyčka je nekonečná. Ta čeká na dotaz klienta. Když se client dotáže, program spustí další smyčku. V té program přijme data poslané od klienta a dekóduje je. A nyní podle typu dat se rozhodne, jaký bude další postup. Pokud nejsou žádná data, nebo dávají dotaz na \texttt{close}, program uzavře spojení a nastaví socket tak, aby v případě nutnosti mohl být použit co nejdříve znovu. Když data dávají dotaz na \texttt{send}, program díky objektu \texttt{ADXL345} zjistí souřadnice akcelometru. Tyto data dá do datové struktury \texttt{tuple} a datovou strukturu serializuje způsobem JSON. Dále stejná data dá do kódování \texttt{UTF-8} a pošle je přes socket clientovi. 
 
-\begin{lstlisting}[title={Program server.py}, caption={server.py}]
+\begin{lstlisting}[title={Program server.py}, caption={server.py}, language=Python]
   while True:
         print("wating for request")
         conn, address = soc.accept()
@@ -401,8 +347,8 @@ Nyní pokračujeme hlavní smyčkou. Ta čeká na dotaz clienta. Když se client
 
 \subsection{Client}
 
-Celý zdrojový kód clienta \ref{lst:client} je napsán v Pythonu. Kód začína importem modulů a pokračuje stanovením globálních proměných. Nastaví proměnné PORT a IP, ty musí souhlasit s nastavením serveru. 
-\begin{lstlisting}[title={Program client.py}, caption={client.py}]
+Celý zdrojový kód klienta \ref{lst:client} je napsán v Pythonu. Kód začína importem modulů a pokračuje stanovením globálních proměnných. Nastaví proměnné \texttt{PORT} a \texttt{IP}, ty musí souhlasit s nastavením serveru. 
+\begin{lstlisting}[title={Program client.py}, caption={client.py}, language=Python]
 import socket
 from json import loads
 
@@ -410,7 +356,7 @@ PORT = 8880
 IP = "192.168.102.197"
 \end{lstlisting}
 
-Nyní se zaměříme na hlavní kód programu, který je napsán ve funkci a to z toho důvodu, aby mohl být později použit, jako proces. Zároveň má jeden argument queue, to je objekt modelu multiprocessing, ten je později využit na sdílení dat mezi procesy. Pokračuje hlavní program. Nejdříve nastavíme typ protokolu. Na Síťové vrstvě protokol IP a na Transportní vrstvě protokol TCP. 
+Nyní se zaměříme na hlavní kód programu, je napsán ve funkci z důvodu jeho pozdějšího použití, jako proces. Zároveň má jeden argument \texttt{queue}, to je objekt modulu \texttt{multiprocessing}, ten je později využit na sdílení dat mezi procesy. Pokračujeme hlavním programem. Nejdříve nastavíme typ protokolu. Na síťové vrstvě protokol IP a na transportní vrstvě protokol TCP. 
 
 
 \begin{figure}[h]
@@ -419,9 +365,9 @@ Nyní se zaměříme na hlavní kód programu, který je napsán ve funkci a to 
  \includegraphics[scale=0.4]{block_scheme_client}
 \end{figure}
 
-Nyní pokračujeme hlavní smyčkou. Ta ihned, jak se spustí se dostane do další smyčky. Ve které se nejdříve serveru pošle požadavek na send. Dále client vyzkouší, jestli mu server poslal data, jestli ne vydá chybové hlášení o ztracení kontatku a pokusí se znova navázat kontakt. Jestli ano, tak client dekóduje data. Přeformátuje je z JSON formatu do formátu Python objektu tuple. Dále tyto data vloží do řady. Toto opakuje do té doby, než se program přeruší. 
+Dále definujeme hlavní smyčku. Ta se ihned po spuštění dostane do další smyčky. V této smyčce se nejdříve serveru pošle požadavek na \texttt{send}. Dále klient vyzkouší, jestli mu server poslal data. V případě že data nejsou přijata, vydá se chybové hlášení o ztracení kontatku a klient se pokusí znovu navázat kontakt. Jestli jsou data přijata, klient je dekóduje. Přeformátuje je z JSON formátu do formátu datové struktury \texttt{tuple}. Dále tyto data vloží do řady. Toto opakuje do té doby, než se program přeruší. 
 
-\begin{lstlisting}[title={Program client.py}, caption={client.py}]
+\begin{lstlisting}[title={Program client.py}, caption={client.py}, language=Python]
 def client(queue):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((IP, PORT))
@@ -442,25 +388,27 @@ def client(queue):
 \end{lstlisting}
 
 \subsection{diskuze řešení}
-Výsledek je funkční a je proveden pomocí zamýšlené implementace. Toto umožní uživateli, který vlastní zařízení Raspberry Pi Pico W s ADXL345, učinně přenášet data o poloze přes WiFi, k různým účelům. 
+Výsledek je funkční a je proveden pomocí zamýšlené implementace. Toto umožní uživateli, který vlastní zařízení Raspberry Pi Pico W s ADXL345, účinně přenášet data o poloze přes WiFi, k různým účelům. 
 \\
-Limitací ze strany serveru je několik. Program umožňuje pouze dva typy dotazů a to send a close. Může dojít k tomu, že klient pošle jiný dotaz, a s tímto dotazem nemusí být naloženo adekvátně. Dále kód nemá implementované žádné mechanismy proti chybám, tudíž nebude přiraven na selhání popřípadě na různé krajní situace. Dalším úzskalím může být, že kód není optimalizován na výkonost, či práci s pamětí, tudíž jestli uživatel bude chtít použít zařízení s menší výkonností nežli Raspberry Pi Pico W, může se dostat do problémů. Poslední limitace může být, že server umí práci pouze s ADXL345 a s žádným jiným akcelometrem.
+Limitací ze strany serveru je několik.
+ Program umožňuje pouze dva typy dotazů a to \texttt{send} a \texttt{close}. Proto může dojít k tomu, že klient pošle jiný dotaz, a s tímto dotazem nemusí být naloženo adekvátně. Dále kód nemá implementované žádné mechanismy proti chybám, nebude proto přiraven na selhání, popřípadě na různé krajní situace. Dalším úzkalím může být, že kód není optimalizován na výkonnost, či práci s pamětí. Pokud tedy uživatel bude chtít použít zařízení s menší výkonností nežli Raspberry Pi Pico W, může se dostat do problémů. A v poslední řadě, server může pracovat pouze s akcelerometrem ADXL345 a nemůže podporovat jiné modely akcelerometrů.
 \\
-Limitací ze stran klienta je také několik. Největší je, že program funguje pouze pro jednu na pevno napsanou IP adresu, tu by bylo optimální zjišťovat dynamicky. Dalším problém je, že klient není připraven na případná selhální a chyby, tudíž může snadno dojít k jeho selhání. Důkazem toho je, že klient předpokládá, že server je spuštěný, když by nebyl, klient automaticky selže. 
+Limitací ze stran klienta je také několik. Jedním z hlavních omezení je, že program pracuje pouze s jednou přednastavenou IP adresou, optimálnější by bylo, kdyby ji bylo možné určit dynamicky. Dalším problémem je, že klient není připraven na případné chyby, proto může snadno dojít k jeho selhání. Důkazem toho je předpoklad klienta, že server je spuštěný, pokud by nebyl, klient automaticky selže. Nakonec, klient po obdržení dat neodešle serveru žádnou potvrzovací zprávu, takže server neví, zda klient data úspěšně přijal. 
 \\
-Další směr rozovoje může spočívat nejdříve v implementaci systému proti chybáma a selhání, nasledný rozvoj by mohl spočívat v vytvoření klienta více přívětívého za pomocí automatického nastavení IP adresy serveru. Konečný rozvoj by umožňoval využití, co nejširšího počtu zařízení, toho by se dosáhlo za pomocí vytvoření serveru tak, aby mohl podporovat, co nejvíce zařízení. 
+Další směr vývoje může spočívat nejdříve v implementaci systému proti chybáma a selháním. Následný vývoj může spočívat ve vytvoření automatického nastavení IP adresy serveru, tak aby to  více vyhovovalo klientské straně. Konečný vývoj by umožňoval využití co nejširšího počtu zařízení. Toho se dá dosáhnout vytvořením serveru tak, aby podporoval co nejvíce zařízení. 
 
 \section{Využití dat}
 \subsection{Návrh videohry}
-Pro ukázku praktického využití dat jsme si vybrali projekt založený na vytvoření videohry. Základní princip hry spočívá ve vesmírné lodi, která se vyhýba meteoritům, a během toho se snaží sbírat mince. Uživatel pohybuje s Raspberry Pi Pico W s ADXL345 a pomocí toho ovládá loď na obrazovce a snaží se vyhýbat meteoritům. Pokaždé když se meteorit trefí do vesmírné lodi, hráči se ubere jeden život. Zároveň se hráči počítá skóre, které se zvyšuje za pomoci sběru mincí. 
+Pro ukázku praktického využití dat jsme si vybrali projekt založený na vytvoření videohry. Základní princip hry spočívá ve vesmírné lodi, která se vyhýbá meteoritům, a zároveň se snaží sbírat mince. Uživatel pohybuje s Raspberry Pi Pico W s ADXL345, pomocí toho ovládá loď na obrazovce a snaží se vyhýbat meteoritům. Po každém zásahu vemírné lodi meteoritem, se hráči ubere jeden život. Zároveň se hráči počítá skóre, které se zvyšuje sběrem mincí.
+ 
 \subsection{Popis videohry}
-Hráč se nejdříve objeví na hlavní obrazovce. Odtud má dvě možnosti. Může se podívat na celkové nejlepší skóre, které kdy nahrál. Další možnost je spustit hru. Když spustí hru objeví se na obrazovce, kde na dolní liště se pohybuje vesmírná loď, která kopíruje pohyby hráče se zařízením na ovládání. Ihned po spuštění se také objeví meteority a mince, ty se objevůjí na horní liště a putují dolů, pod nahodným skolem s náhodnou rychlostí. Dále v levém horním rohu se objeví celkovy počet získaných mincí. V pravém horním rohu se objeví tři obrázky ve tvaru srdce. Ty znázorňují životy hráče, po každé, co hráč narazí do meteoritu se jedno ze srdcí promění na srdce s šedým zabarvením. 
+Hráč se nejdříve objeví na hlavní obrazovce. Odtud má dvě možnosti. Může se podívat na celkové nejlepší skóre, které kdy nahrál. Další možnost je spustit hru. Po spuštění hry se objeví na obrazovce, kde se na dolní liště pohybuje vesmírná loď. Ta kopíruje pohyby hráče se zařízením na ovládání. Ihned po spuštění se na horní listě také objeví meteority a mince, které putují k dolní liště, pod náhodným sklonem s náhodnou rychlostí. Dále se v levém horním rohu objeví celkový počet získaných mincí. V pravém horním rohu se ukazují obrázky ve tvaru srdce, které znázorňují životy hráče. Po každém nárazu hráče do meteoritu jedno srdce změní barvu na šedou, tím signalizuje ztrátu jednoho života. Životy jsou celkem tři. 
 
 
 \subsection{Popis řešení videohry}
-Po spuštění se program rozdělí do dvou procesů. A to proces, ve kterém se nachazí hra a proces clienta. 
+Po spuštění se program rozdělí do dvou procesů. A to proces, ve kterém se nachází hra a proces klienta. 
 
-\begin{lstlisting}[title={Program game.py}, caption={game.py}]
+\begin{lstlisting}[title={Program game.py}, caption={game.py}, language=Python]
 if __name__ == "__main__":
     queue = Queue() 
     menu_proc = Process(target=main_menu, args=(queue,)) 
@@ -471,9 +419,9 @@ if __name__ == "__main__":
     menu_proc.join()
 \end{lstlisting}
 
-Hra se dále dělí na několik funkcí, která každá znázorňuje jednu obrazovku. Konkrétně jsou tři obrazovky, a to obrazovka se skóre, hlavní obrazovka a obrazovka videohry.
+Hra se dále dělí na několik funkcí, kde každá znázorňuje jednu obrazovku. Konkrétně jsou tři obrazovky, a to obrazovka se skóre, hlavní obrazovka a obrazovka videohry.
 \\
-Klient se mezitím spojí se serverem a začne generovat data. Oba tyto procesy mezitím sdílejí obejkt queue, který značí řadu. Do toho objektu klient přidává data získané od serveru, a jelikož proces se hrou běží 60-krát za sekundu, tak ihned data vyjme ze řady a použije je pro ovládání vesmírné lodi, či data vyjme z řady a zahodí je, aby když hráč znovu spustí hru, loď se nezačala pohybovat náhodně.
+Klient se mezitím spojí se serverem a začne generovat data. Oba tyto procesy mezitím sdílejí obejkt \texttt{queue}, který značí řadu. Do tohoto objektu klient přidává data získané od serveru, a jelikož proces se hrou běží 60-krát za sekundu, tak ihned data vyjme ze řady a použije je pro ovládání vesmírné lodi. Druhá možnost je, že data vyjme z řady a zahodí je, aby se loď nezačala pohybovat náhodně, pokud hráč znovu spustí hru.
 
 
 \begin{figure}[h]
@@ -482,13 +430,13 @@ Klient se mezitím spojí se serverem a začne generovat data. Oba tyto procesy 
 \includegraphics[scale=0.75]{game_diagram}
 \end{figure}
 
-Nyní se dostáme k herní logice. Ta se celá nachází v obrazovce s videohrou, konkrétně v její smyčce, která probíhá 60-krát za sekundu. Kvůli této rychlosti, se program nejdříve podívá, jestli objekt queue není prázdný, pokud je prázdný program pokračuje, pokud je v ní nějaký prvek, program vyjme data z řady a začne vypočítávat rychlost. 
-To konkrétně pomocí změny proměné s názvem ship\_speed. Jestli se uživatel dostane za hranici levé lišty, program začne lodi přidávat takovou hodnotu, aby loď pokračovala na pravou stranu a naopak. Toto je nápsáno z důvodu toho, aby se loď nezasekla na žádné z bočních stran. Dále program zkontroluje velikost dat, 
-a to konkrétně, jestli data jdou do záporných, či kladných hodnot. Zdali jsou hodnoty záporné, loď se začne pohybovat levým směrem a naopak. Hodnota rychlosti se dále vypočítává pomocí lineární funkce, a to z toho důvodu, aby ovladač měl větší citlivost na průdký nebo jemný pohyb. 
+Nyní se dostáváme k herní logice. Ta se celá nachází v obrazovce s videohrou, konkrétně v její smyčce, která probíhá 60-krát za sekundu. Kvůli této rychlosti, se program nejdříve podívá, jestli objekt \texttt{queue} není prázdný. Pokud je prázdný, program pokračuje. Pakliže je v ní nějaký prvek, program vyjme data z řady a začne vypočítávat rychlost. 
+To konkrétně pomocí změny proměnné s názvem \texttt{ship\_speed}. Jestli se uživatel dostane za hranici levé lišty, program začne lodi přidávat takovou hodnotu, aby loď pokračovala na pravou stranu a naopak. Toto je napsáno proto, aby se loď nezasekla na žádné z bočních stran. Dále program zkontroluje velikost dat, 
+a to konkrétně, jestli data jdou do záporných, či kladných hodnot. Jestliže jsou hodnoty záporné, loď se začne pohybovat levým směrem a naopak. Hodnota rychlosti se dále vypočítává pomocí lineární funkce, a to z toho důvodu, aby ovladač měl větší citlivost na prudké pohyby ovladačem, či naopak jemné pohyby. 
 
 
 
-\begin{lstlisting}[title={Program game.py}, caption={game.py}]
+\begin{lstlisting}[title={Program game.py}, caption={game.py}, language=Python]
 if queue.empty() is False:
 	data = queue.get()
     print(data)
@@ -504,11 +452,12 @@ if queue.empty() is False:
 \end{lstlisting}
 
 
-Dále začneme využívat rychlost lodi. Nejdříve znovu zkontrolujeme, že loď není mimo obrazovku, jestli loď je mimo obrazovku, tak její rychlost nastavíme na nula, tak aby se loď nedostala mimo obrazovku. Nyní přičteme k objektu vesírmé lodi vypočítanou rychlost a pokračujeme vy dalším doladění pohybu. Loď se nejdříve pohybovala pomalu, když hráč chtěl rychle změnit směr pohybu lodi, jelikož se rychlost nasčítávala. Pro tento problém jsme zavedli řešení a to, že zkontrolujeme jestli stará pozice byla záporná a když zároveň byla nynější rychlost kladná, tak rychlost vynulujeme, tak aby loď mohla ostře změnit svůj směr, a to i obráceně. Dále jestli rychlost lodi kvůli nasčítaní rychlosti je moc veliká tak program rychlost zmenší, aby byla snadněji ovladatelná. 
+Dále začneme využívat rychlost lodi. Nejdříve znovu zkontrolujeme, že loď není mimo obrazovku, pokud loď mimo obrazovku je, tak její rychlost nastavíme na nula. Tím zamezíme možnosti vyjetí lodi 
+mimo obrazovku. Nyní přičteme k objektu vesírmé lodi vypočítanou rychlost a pokračujeme v dalším doladění pohybu. Prvně když chtěl hráč rychle změnit směr pohybu lodi, tak se pohybovala pomalu, jelikož se rychlost nasčítávala. Pro tento problém jsme zavedli následné řešení. Nejdříve zkontrolujeme jestli stará pozice byla záporná, a pokud zároveň byla nynější rychlost kladná, tak rychlost vynulujeme. Tím může loď ostře změnit svůj směr, a to i obráceně. Dále jestli rychlost lodi, kvůli nasčítaní byla moc veliká tak program rychlost zmenší, aby byla snadněji ovladatelná. 
 
 
 
-\begin{lstlisting}[title={Program game.py}, caption={game.py}]
+\begin{lstlisting}[title={Program game.py}, caption={game.py}, language=Python]
 if 0 <= ship_rect.left + ship_speed <= W - 90: 
     ship_rect.left += ship_speed
     if old_position < 0 < ship_speed:  
@@ -527,7 +476,7 @@ else:
 
 Videohra dává bližší důkaz o reálném použití dat pro různé aplikace. Je možné díky ní si přiblížit odezvu protokolu a jeho schopností. 
 \\
-Ačkoli hra slouží jako užitečný nástroj, má určitá omezení. Hlavním omezením je její implementace, zejména pokud jde o logiku použitou pro výpočet rychlosti kosmické lodi. Ta by mohla být zlepšena, aby se zvýšila její citlivost a celková uživatelská přívětivost. Kromě toho se objevuje problém s pohybem ostatních objektů ve hře, které mají tendenci opakovat určité pohyby nebo se nesrazí se spodní částí obrazovky.
+Ačkoli hra slouží jako užitečný nástroj, má určitá omezení. Hlavním omezením je její implementace, zejména pokud jde o logiku použitou pro výpočet rychlosti kosmické lodi. Ta by mohla být zlepšena, aby se zvýšila její citlivost a celková uživatelská přívětivost. Kromě toho se objevuje problém s pohybem ostatních objektů ve hře, ty mají tendenci opakovat určité pohyby nebo se nesrazí se spodní částí obrazovky.
 \\
 Pro zlepšení hratelnosti by se budoucí vývoj mohl zaměřit na zdokonalení logiky pohybu vesmírné lodi a současně řešit pohyb ostatních objektů ve hře. Je však důležité poznamenat, že protokol má potenciální využití i mimo hru, například v robotice nebo při řízení stability a detekci pádů.
 
@@ -535,19 +484,25 @@ Pro zlepšení hratelnosti by se budoucí vývoj mohl zaměřit na zdokonalení 
 
 	\chapter*{Závěr}
 	
-		\lipsum[1]
+		V této práci jsme se zabývali základy komunikace na úrovni TCP/IP a zaměřili jsme se na praktické aplikace protokolu TCP (Transmission Control Protocol). Nejdříve jsme rozebrali, jakým způsobem zařízení komunikují, a dále protokoly, které jim toto usnadňují. Popsali jsme návrh a vývoj vlastního aplikačního protokolu založeného na rodině protokolů TCP/IP s cílem usnadnit komunikaci mezi mikropočítačem a osobním počítačem. Poté jsme demonstrovali funkčnost tohoto protokolu v reálném scénáři pomocí mikropočítače a osobního počítače.
+\\
+Prostřednictvím naší praktické implementace jsme byli schopni vyhodnotit navrhovaný protokol a určit jeho silné stránky a omezení. Zjistili jsme, že protokol je schopen efektivně navázat a udržovat komunikaci mezi oběma zařízeními s minimálním zpožděním. Zaznamenali jsme však také, že by bylo možné provést další zlepšení. Hlavně co se týče odolnosti systému proti chybám a jeho dynamickýmu zjišťování IP adres.  
+\\
+S ohledem na tato zjištění navrhujeme, aby se budoucí výzkum v této oblasti zaměřil na odstranění zjištěných omezení, konkrétně v oblasti bezpečnosti a dynamičnosti protokolu. Kromě toho by bylo vhodné prozkoumat využití tohoto protokolu v dalších komunikačních scénářích, například v robotice, či při detekci pádů.
+\\
+Celkově tato práce přispěla k pochopení protokolu TCP a jeho praktickému využití v konkrétním komunikačním scénáři. Doufáme, že poslouží jako cenný zdroj informací pro studenty a odborníky z praxe, kteří se zajímají o protokoly TCP, a že bude inspirací pro další výzkum v této oblasti.
 	
 	\nocite{*}
     	\printbibliography					
 	\addcontentsline{toc}{chapter}{Bibliografie}
     \printglossary[title={Zkratky}]		
     \listoffigures					
-    \listoftables						
+						
 
     \begin{appendices}
 	\chapter{Zdrojový kód serveru}
 	
-\begin{lstlisting}[title={Program server.py}, caption={server.py},  label={lst:server}]
+\begin{lstlisting}[title={Program server.py}, caption={server.py},  label={lst:server}, language=Python]
 
 
 import socket
@@ -607,7 +562,7 @@ if __name__ == '__main__':
 
 	\chapter{Zdrojový kód clienta}
 
-\begin{lstlisting}[title={Program client.py}, caption={client.py},  label={lst:client}]
+\begin{lstlisting}[title={Program client.py}, caption={client.py},  label={lst:client}, language=Python]
 
 import socket
 from json import loads
@@ -636,7 +591,7 @@ def client(queue):
 \end{lstlisting}
 	\chapter{Zdrojový kód videohry}
 	
-\begin{lstlisting}[title={Program hra.py}, caption={hra.py},  label={lst:hra}]
+\begin{lstlisting}[title={Program hra.py}, caption={hra.py},  label={lst:hra}, language=Python]
 """
 author = Alex Olivier Michaud
 This is the main file of the game, it is used to start the game, show the score and exit the game.
