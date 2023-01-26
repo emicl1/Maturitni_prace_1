@@ -33,17 +33,17 @@
 \pagenumbering{arabic}		% Číslování stránke arabskými číslicemi
 	\chapter*{Úvod}
 	
-	Komunikace je základním aspektem moderních technologií a protokol TCP (Transmission Control Protocol) je jedním z klíčových protokolů, které umožňují tuto komunikaci. V této práci se budeme zabývat základy komunikace na úrovni TCP/IP a zaměří se na jeho praktické využití.
+	Komunikace je základním aspektem moderních technologií a protokol TCP (Transmission Control Protocol) je jedním z klíčových protokolů, které umožňují tuto komunikaci. V této práci se budeme zabývat základy komunikace na úrovni TCP/IP a se zaměřením na jeho praktické využití.
 \\
-První část práce poskytne přehled základů komunikace a úlohy protokolů při usnadňování komunikace.
+V první části práce uvedeme přehled základů komunikace a úlohy a vlastnosti síťových protokolů při komunikaci.
 \\
 V další části popíšeme návrh a vývoj vlastního aplikačního protokolu, který je založen na rodině protokolů TCP/IP. Půjde o vývoj jednoduchého aplikačního protokolu, který je určen k usnadnění komunikace mezi mikropočítačem a osobním počítačem.
 \\
-Hlavní část práce bude zaměřena na praktickou implementaci navrženého protokolu na konkrétním scénáři síťové komunikace. K tomu bude použit mikropočítač a osobní počítač, aby se demonstrovala funkčnost protokolu v reálném prostředí.
+V hlavní část práce se zaměřemíme na praktickou implementaci navrženého protokolu na konkrétním scénáři síťové komunikace. K tomu použijeme mikropočítač a osobní počítač, aby se demonstrovala funkčnost protokolu v reálném prostředí.
 \\
-Na závěr bude provedeno zhodnocení navrženého protokolu, diskutovány jeho silné stránky a omezení a navrženy směry dalšího výzkumu a vývoje.
+Na závěr provedeme zhodnocení navrženého protokolu, diskusi jeho silných stránek a omezení a navrhneme směry dalšího výzkumu a vývoje.
 \\
-Cílem této práce je přispět k pochopení protokolu TCP a jeho praktickému použití na konkrétním komunikačním scénáři, má být prakticky zaměřená a pomoci studentům získat hlubší znalosti o protokolech TCP.	
+Cílem této práce je přispět k pochopení protokolu TCP a jeho praktického použití na konkrétním komunikačním scénáři. Práce má být prakticky zaměřená a pomoci studentům získat hlubší znalosti o protokolech TCP.	
 	
 	
 	\part{Základy komunikace aplikací na úrovni TCP/IP}
@@ -52,7 +52,7 @@ Cílem této práce je přispět k pochopení protokolu TCP a jeho praktickému 
 			
 			\section{historie TCP/IP}
 				V roce 1966 se povedlo v USA Bobu Taylorovi úspěšně sehnat finance od Charlese Marii Herzfelda, ředitele \texttt{ARPA},\footnote{Nyní známo jako \texttt{DARPA}(Defense Advanced Research Projects Agency) je výkonná moc ministerstva obrany Spojených států amerických, které je pověřena vývojem technologií pro vojenské účely} na projekt ARPANET, který měl umožnit přístup k počítačům na velké vzdálenosti. V dalších třech letech se rohodlo o počátečních standardech pro identifikaci, autentizaci uživatelů, přenos znaků a kontrolu a roku 1969 byl ARPANET poprvé použit firmou \texttt{BBN}. 
-Při dalším výzkmu a pokusech o vytvoření nového modelu ARPANET, dva vědci Robert Elliot Kahn a Vinton Gray Cerf vytvořili nový model, kde hlavní zodpovědnost za spolehlivost byla předána uživateli místo sítě. Tímto roku 1974 vznikl nový protokol Transmission Control Program, který byl vydán v RFC\footnote{žádost o komentáře - označuje dokumenty popisující internetové protkoly} 675 s názvem Specification of Internet Transmission Control Program, avšak tato verze nebyla funkční až do roku 1981, kdy byla zprovozněna verzí 4. Je standardizována pomocí RFC 791 - Internet Protocol(IP) a RFC 793 Transmission Control Protocol(TCP). 
+Při dalším výzkumu a pokusech o vytvoření nového modelu ARPANET, dva vědci Robert Elliot Kahn a Vinton Gray Cerf vytvořili nový model, kde hlavní zodpovědnost za spolehlivost byla předána uživateli místo sítě. Tímto roku 1974 vznikl nový protokol Transmission Control Program, který byl vydán v RFC\footnote{žádost o komentáře - označuje dokumenty popisující internetové protokoly} 675 s názvem Specification of Internet Transmission Control Program. Ale tato verze nebyla až do roku 1981 funkční, poté byla zprovozněna verzí 4. Je standardizována pomocí RFC 791 - Internet Protocol(IP) a RFC 793 Transmission Control Protocol(TCP). 
 \\
 TCP i IP, prošlo s postupem času velkým vývojem, kdy vznikalo stovky aktualizací. Například roku 1994 vzniklo Internet Protocol next generation (IPng), který zavádí IP verzi 6. Nyní se aktivně používá 10+ variant TCP na Linuxu. MacOS a Windows je má zavedeno jako výchozí nastavení. \cite{History3} \cite{ARPNET} \cite{History2} \cite{History} \cite{Rules} \cite{IP} \cite{TCP}  
 
@@ -60,28 +60,33 @@ TCP i IP, prošlo s postupem času velkým vývojem, kdy vznikalo stovky aktuali
 			TCP/IP je rodina protokolů, která umoňuje komunikaci uzlů\footnote{bod přerozdělení nebo koncový bod komunikace} a to pomocí end-to-end\footnote{snaží se o to, aby důležité role sítě byly řešeny konečným úzlem} principu a specifikováním toho jak by data měla být připravena, adresována, přenášena, směrována a přijmána. Tyto protokoly jsou nejčastěji děleny do čtyř úrovní Link, Internet, Transport a Application. \cite{zakladykomunikace1}\cite{zakladykomunikace2}\cite{zakladykomunikace3}
 			
 			\section{Principy TCP/IP}
-			TCP/IP stojí na několika zásadních principech jako client-server, encapsulace, stateless a robustnost. 
+			TCP/IP stojí na několika zásadních principech jako klient-server, encapsulace, stateless a robustnost. 
 \\
-Client-server princip je vztah kde jeden úzel požádá o službu nebo
- prostředek druhý úzel. V TCP/IP modelu je uživatel  client(je mu poskytována služba) a další počítač je server. 
+Client-server princip je vztah, kde jeden uzel požádá o službu nebo
+ prostředek druhý uzel. V TCP/IP modelu je uživatel klient(je mu poskytována služba) a další počítač je server. 
 \\
-Encapsulace je prncip, který používá abstraktní dělení TCP/IP do čtyř úrovní. V každé takové úrovni se k původním datům přidávají další data, tak aby mohli být odeslány přes síť. Opačný proces, kdy uživatel se snaží dostat data se nazývá deencapsulace 
+Encapsulace je princip, který používá abstraktní dělení TCP/IP do čtyř úrovní. V každé takové úrovni se k původním datům přidávají další data, tak aby mohli být odeslány přes síť. Opačný proces, kdy uživatel se snaží dostat data se nazývá deencapsulace.
 \\
-Rodina TCP/IP protokolů je nazývána jako stateless. Tento princip říká, že jakákoliv žádost o službu od uživatele je nazávislá na té předchozí. Toto umožňuje lepší plynulost sítě, jelikož síťové cesty mohou být používány nepřetržitě.
+Rodina TCP/IP protokolů je nazývána jako stateless. Tento princip říká, že jakákoliv žádost o službu od uživatele je nezávislá na té předchozí. Toto umožňuje lepší plynulost sítě, jelikož síťové cesty mohou být používány nepřetržitě.
 \\
-Robustnost je princip, který dbá na to, aby uživatel neposílal žádné data, které by mohli způsobit problém druhému uživateli při procházení TCP vrstvami. Zároveň se snaží předvídat vše co dostane od druhého uživatele, co by mohlo způsobit problém a s případnými problémy nakládá liberálně.\cite{Princip1}  \cite{zakladykomunikace1}  \cite{Princip3}  \cite{Princip4}  \cite{Princip5}  \cite{Princip6}
+Robustnost je princip, který dbá na to, aby uživatel neposílal žádná data, která by mohla způsobit problém druhému uživateli při procházení TCP vrstvami. Zároveň se snaží předvídat vše co dostane od druhého uživatele, co by mohlo způsobit problém a s případnými problémy nakládá liberálně.\cite{Princip1}  \cite{zakladykomunikace1}  \cite{Princip3}  \cite{Princip4}  \cite{Princip5}  \cite{Princip6}
+			
 			
 			\section{Vrstva síťového rozhraní}
-			Vrstva síťového rozhraní je nejnižší úroveň TCP/IP, dělí se na další dvě podkategorie, a to fyzická a logická. Na fyzické úrovni jsou všechna zařízení, kabely a etc., která konkrétně posílají bity. Protokoly na této úrovni jsou standardizovány \texttt{IEEE}\footnote{Institute of Electrical and Electronics Engineers}, například jsem patří protokol Ethernet\footnote{kabely s kroucenou dvojlinkou}, Wi-Fi, etc.
+			Vrstva síťového rozhraní je nejnižší úroveň TCP/IP, dělí se na další dvě podkategorie, a to fyzická a logická.
+\\
+Na fyzické úrovni jsou všechna zařízení, kabely a etc., která konkrétně posílají bity. Protokoly na této úrovni jsou standardizovány \texttt{IEEE}\footnote{Institute of Electrical and Electronics Engineers}, například jsem patří protokol Ethernet\footnote{kabely s kroucenou dvojlinkou}, Wi-Fi, etc.
  \\
 Další součastí link úrovně je logická část, tato úroveň protokolů spojuje pouze síťový segment\footnote{část počítačové sítě} a posílá takzvané frame pouze v LAN(lokální síť). Toto propojení zajištuje pomocí různých protokolů, jako například ARP(Address Resolution Protocol), který umožňuje switchy, aby rozpoznal MAC adresy zařízení. Tato část se dále dělí na podčásti a to LLC a MAC podčást. LLC podčást umožňuje adresování a kontrolu logické části. Dále specifikuje mechanismy, pro zařízení, které adresují a kontroluje data, která jsou vyměněna mezi zařízeními. MAC podčást má zodpovědnost za možnost přístupu k mediu (CSMA/CD), nebo tento problém řeší pomocí MAC adres. \cite{Princip5} \cite{Link2} \cite{Link3} \cite{Link4} \cite{Link5} \cite{Link6}
 
+
 			\section{Síťová vrstva}
-Síťová vrstva, v referenčním modelu TCP/IP známá také jako vrstva 2, je zodpovědná za směrování a předávání paketů v sítích. Jedná se o důležitý level, který umožňuje zařízením v různých sítích vzájemně komunikovat, a díky němuž může fungovat internet.
+Síťová vrstva, v referenčním modelu TCP/IP známá také jako vrstva 2, je zodpovědná za směrování a předávání paketů v sítích. Jedná se o důležitý level, který umožňuje zařízením v různých sítích vzájemně komunikovat, díky němuž může fungovat internet.
 \\
 Jedním z hlavních úkolů síťové vrstvy je směrování, které zahrnuje rozhodování o vhodné cestě pro každý paket na základě jeho cíle. K určení nejlepší cesty se používají různé metody a algoritmy pro směrování, od jednoduchých statických metod až po adaptivnější přístupy, které mohou zohlednit různé faktory v síti.
 \\
 Kromě směrování je síťová vrstva zodpovědná také za realizaci předávání paketů v mezilehlých uzlech podél zvolené cesty a také za řízení toku dat a prevenci přetížení sítě. Hraje také klíčovou roli při propojování různých sítí, což umožňuje bezproblémovou komunikaci mezi nimi.\cite{sit1} \cite{sit2}
+
 
 			\section{Transportní vrstva}
 Transportní vrstva, v referenčním modelu TCP/IP známá také jako vrstva 3, je důležitou součástí procesu síťové komunikace. Je zodpovědná za zajištění spolehlivé komunikace mezi aplikačními procesy běžícími na různých hostitelích v síti.
@@ -91,10 +96,16 @@ Mezi hlavní úkoly transportní vrstvy patří oprava chyb, segmentace a desegm
 Transportní vrstva, která se v modelu OSI nachází mezi síťovou vrstvou (vrstva 3) a aplikační vrstvou (vrstva 7), zajišťuje koncové spojení mezi zdrojovým a cílovým hostitelem. To jim umožňuje komunikovat bez rušení jinými síťovými komponenty.
 \\
 Souhrnně řečeno, transportní vrstva shromažďuje segmenty zpráv z aplikační vrstvy a přenáší je do sítě, kde jsou znovu sestaveny a doručeny do aplikační vrstvy cílového hostitele. Je nezbytnou součástí procesu síťové komunikace, poskytuje spolehlivé transportní služby vyšším vrstvám a umožňuje aplikacím komunikovat mezi sebou napříč sítí.\cite{tran1}\cite{tran2}\cite{tran3}
+
+
 			\section{Aplikační  vrstva}
- Aplikační vrstva je v referenčním modulu TCP/IP určena číslem čtyři, ale jelikož je pro mou práci nejduležitější tak si tuto vrstvu rozdělíme podle podrobnějšího modelu ISO/OSI, kde aplikační vrstva se dělí na vrstvu relační, prezantační a aplikační. 
-				\subsection{Realční vrstva}
-Relační vrstva je zodpovědná za navazování, udržování a ukončování komunikačních relací mezi dvěma koncovými body. Zajišťuje, aby komunikace mezi dvěma koncovými body byla spolehlivá a probíhala hladce, i když dojde k chybám nebo přerušení na nižších vrstvách, například za pomoci synchronizace, která umožňuje do posílaných dat přidat kontrolní body, díky kterým, v případě chyby, si přijemce vyžadá znovu poslání dat od určitého bodu. Zároveň umožňuje, aby na stejné přenosové lince probíhalo více komunikačních relací současně, které mohou být duplexní, poloduplexní, či simplexní. \cite{session1}\cite{session2}
+ Aplikační vrstva je v referenčním modulu TCP/IP určena číslem čtyři, ale jelikož je pro mou práci nejdůležitější tak si tuto vrstvu rozdělíme podle podrobnějšího modelu ISO/OSI, kde aplikační vrstva se dělí na vrstvu relační, prezentační a aplikační. 
+ 
+ 
+				\subsection{Relační vrstva}
+Relační vrstva je zodpovědná za navazování, udržování a ukončování komunikačních relací mezi dvěma koncovými body. Zajišťuje, aby komunikace mezi dvěma koncovými body byla spolehlivá a probíhala hladce, i když dojde k chybám nebo přerušení na nižších vrstvách. Například pomocí synchronizace je umožněno do posílaných dat přidat kontrolní body. Díky těmto bodům, v případě chyby, si příjemce může znovu vyžádat poslání dat od určitého bodu. Zároveň umožňuje, aby na stejné přenosové lince probíhalo více komunikačních relací současně, které mohou být duplexní, poloduplexní, či simplexní. \cite{session1}\cite{session2}
+
+
 				\subsection{Prezentační vrstva}
 Prezentační vrstavje zodpovědná za doručování, formátování a šiforvání informací při jejich předávání mezi různými systémy a aplikacemi.
 \\
@@ -102,67 +113,93 @@ Prezentační vrstva zajišťuje, aby syntaxe a sémantika přenášených zprá
 \\
 Kromě serializace je prezentační vrstva zodpovědná také za šifrování a dešifrování dat. To se často provádí za účelem ochrany citlivých informací při jejich přenosu po sítích a může se provádět na různých vrstvách síťového zásobníku v závislosti na konkrétních požadavcích aplikace nebo protokolu.\cite{presentation1}\cite{presentation2}\cite{presentation3}
 
+
 				\subsection{Aplikační vrstva}
-Aplikační vrstva se dělí na dva prvky, které jsou určeny pro lehčí vytváření aplikací, díky tomu, že davájí stavební bloky, se kterými aplikace mohou pracovat, patří sem CASE\footnote{Common Application Service Element} a SASE\footnote{Specific Application Service Element}. CASE poskytuje služby pro aplikační vrstvu a požaduje služby od vrstvy relací, zatímco SASE poskytuje specifické aplikační služby, jako je přenos souborů, vzdálený přístup k databázi a zpracování transakcí.
+Aplikační vrstva se dělí na dva prvky a to CASE\footnote{Common Application Service Element} a SASE\footnote{Specific Application Service Element}. Ty jsou určeny pro lehčí vytváření aplikací, protože poskytují stavební bloky, se kterými aplikace mohou pracovat. CASE poskytuje služby pro aplikační vrstvu a požaduje služby od vrstvy relací. Zatímco SASE poskytuje specifické aplikační služby, jako je přenos souborů, vzdálený přístup k databázi a zpracování transakcí.
 \\
-Dále aplikační vrstva poskytuje několik funkcí, které umožňují uživatelům snadný přístup k datům a manipulaci s nimi. Umožňuje uživatelům odesílat a přijímat e-maily, přistupovat k souborům na vzdáleném počítači a spravovat je, přihlašovat se jako vzdálený hostitel a přistupovat k informacím o různých službách. Poskytuje také protokoly, které umožňují softwaru odesílat a přijímat informace a prezentovat uživatelům smysluplná data.\cite{aplication1}\cite{aplication2}\cite{aplication3}
+Dále aplikační vrstva poskytuje několik funkcí, ty umožňují uživatelům snadný přístup k datům a manipulaci s nimi. Dovoluje uživatelům odesílat a přijímat e-maily, přistupovat k souborům na vzdáleném počítači a spravovat je, přihlašovat se jako vzdálený hostitel a přistupovat k informacím o různých službách. Poskytuje také protokoly, které zajišťují softwaru odesílat a přijímat informace a prezentovat uživatelům smysluplná data.\cite{aplication1}\cite{aplication2}\cite{aplication3}
+
 
 			\section{Slovník protokolů a technologií}
-Nyní zde popíšeme několik různých protokolů, které jsou později konkrétně použité v naší praktické části. Jsou řazeny podle vrstev od nejnižší po nejvyšší a technologie jsou až za nimi.
-				\subsection{I2C}
-I2C\footnote{Inter-Integrated Circuit} je protokol, který se používá pro komunikaci mezi čipy. Tento protkol umožňuje připojit se do sběrnicového rozhraní zabudovaný do zařízení pro sériovou komunikaci. 
-\\
-Funguje na prnicipu SDA\footnote{Serial Data} a SCL\footnote{Serial Clock} rozhraní. SDA je využito na komunikaci a přenos dat mezi zařízeními a SCL je užito na přenos hodin. Dále se mezi zařízeními dohodne role Master nebo Slave. Počet zařízení s rolí Slave je omezen pouze početem adres a počet Master zařízení, také není omezen, ale pro naše účely pracujeme s módem pouze jednoho Master zařízení. Master zařízení zahají komunikaci tím, že v kanále SDA změní napětí z vysokého na nízké a obráceně u kanálu SCL. Nyní Master zařízení pošle Slave zařízením adresu, která když souhlasí, tak Slave zařízení pošle ACK zprávu. Nyní je komunikace navázána. Poté vždy když dostane Master zařízení rámec s daty od Slave zařízení, posílá mu na zpět ACK zprávu.
-\\
-Výhody této komunikace jsou v jednoduchosti zapojení, v počtu zařízení v Slave roli, ve spolehlivosti a dostupnosti na mnoha zařízení.  \cite{i2c1}\cite{i2c2}\cite{i2c3}\cite{i2c4}
-				\subsection{Wi-Fi}
+			
+			
+Nyní zde popíšeme několik různých protokolů, ty jsou později konkrétně použité v naší praktické části. Jsou řazeny podle vrstev od nejnižší po nejvyšší a technologie jsou až za nimi.
 
-Wi-Fi je označení pro zařízení, která prošla v minulosti testováním některým ze členů organizace \texttt{Wireless Ethernet Compatibility Alliance} (WECA), ta se v dnešní době jmenuje \texttt{Wi-Fi Alliance}. Tato zařízení využívají standard IEEE 802.11, který umožňuje bezdrátově sdílení data. Nejpoužívanějšími standardy Wi-Fi jsou 802.11b a 802.11a.
+
+				\subsection{I2C}
+				
+				
+I2C\footnote{Inter-Integrated Circuit} je protokol používaný pro komunikaci mezi čipy. Tento protokol umožňuje připojit se do sběrnicového rozhraní zabudovaného do zařízení pro sériovou komunikaci. 
+\\
+Funguje na prinicipu SDA\footnote{Serial Data} a SCL\footnote{Serial Clock} rozhraní. SDA je využito na komunikaci a přenos dat mezi zařízeními a SCL je užito na přenos hodin. Dále se mezi zařízeními dohodne role Master nebo Slave. Počet obou zařízení Master i Slave je omezen počtem adres. Ale pro naše účely pracujeme s módem pouze jednoho Master zařízení.
+\\
+ Master zařízení zahájí komunikaci tím, že v kanále SDA změní napětí z vysokého na nízké, a obráceně u kanálu SCL. Nyní Master zařízení pošle Slave zařízením adresu, pokud ta souhlasí, Slave zařízení pošle ACK\footnote{acknowledgement} zprávu. Nyní je komunikace navázána. Dále pokaždé když dostane Master zařízení rámec s daty od Slave zařízení, posílá mu na zpět ACK zprávu.
+\\
+Výhody této komunikace jsou v jednoduchosti zapojení, v počtu zařízení v Slave roli a ve spolehlivosti a dostupnosti na mnoha zařízeních.  \cite{i2c1}\cite{i2c2}\cite{i2c3}\cite{i2c4}
+
+
+				\subsection{Wi-Fi}
+				
+				
+Wi-Fi je označení zařízení pro přenos dat s danými specifikacemi, která prošla v minulosti testováním jedním ze členů organizace \texttt{Wireless Ethernet Compatibility Alliance} (WECA),  dnes s názvem \texttt{Wi-Fi Alliance}. Tato zařízení využívají standard IEEE 802.11, který umožňuje bezdrátově sdílení dat. Nejpoužívanějšími standardy Wi-Fi jsou 802.11b a 802.11a.
 \\
 Tyto standardy využívají rádiové vlny k přenosu informací mezi zařízeními a směrovačem prostřednictvím specifických frekvencí. V závislosti na množství přenášených dat lze využít dvě rádiové frekvence: 2,4 GHz a 5 GHz. Standard 802.11b využívá frekvenci 2,4 GHz, zatímco standard 802.11a využívá frekvenci 5 GHz.
 \\
-Wi-Fi také využívá různé architektonické postupy, přičemž pro naše účely jsou nejdůležitější přístupové body (AP) a antény\footnote{Ta sice nepoužívá standarty 802.11, nýbrž vzniká kolaborací různých firem, ale pro účely práce má stejné využití, jako wifi}. Metoda AP zahrnuje použití stacionárního přístupového bodu, který funguje jako základní rádiová stanice a datový most, obvykle připojený k síti prostřednictvím technologie Ethernet. Tento přístupový bod také nastavuje potřebná bezpečnostní opatření.
+Wi-Fi také využívá různé architektonické postupy, přičemž pro naše účely jsou nejdůležitější přístupové body (AP) a antény\footnote{Ta sice nepoužívá standarty 802.11, nýbrž vzniká kolaborací různých firem, ale pro účely práce má stejné využití, jako wifi}. Metoda AP zahrnuje použití stacionárního přístupového bodu, který funguje jako základní rádiová stanice a datový most, ten je obvykle připojený k síti prostřednictvím technologie Ethernet. Tento přístupový bod také nastavuje potřebná bezpečnostní opatření.
 \\
-Technologie antén se často využívá v otevřených venkovních prostorách, kde je nutná komunikace na velké vzdálenosti, čemuž napomáhá ochrana před bleskem a další antény.\cite{WiFi1}\cite{WiFi2}\cite{WiFi3}\cite{Pruvodce}
+Technologie antén se často využívá v otevřených venkovních prostorách, kde je nutná komunikace na velké vzdálenosti, navíc se využivají i bleskojistky a přídavné antény.\cite{WiFi1}\cite{WiFi2}\cite{WiFi3}\cite{Pruvodce}
+
+
 				\subsection{ARP}
-Protokol ARP\footnote{Address Resolution Protocol} je protokol používaný v LAN\footnote{Lokální síť} k určení fyzické adresy zařízení z adresy síťové vrstvy (např. IP adresy). Když chce zařízení komunikovat s jiným zařízením ve stejné síti LAN, potřebuje znát fyzickou adresu cílového zařízení, aby mu mohlo poslat data. Má však k dispozici pouze IP adresu cílového zařízení. Zde přichází na řadu protokol ARP.
+				
+				
+Protokol ARP\footnote{Address Resolution Protocol} je protokol používaný v LAN\footnote{Lokální síť} k určení fyzické adresy zařízení pomocí adresy síťové vrstvy (např. IP adresy). Když chce zařízení komunikovat s jinými ve stejné síti LAN, potřebuje znát cílovou fyzickou adresu, aby mu mohlo poslat data. Má však k dispozici pouze IP adresu cílového zařízení. Zde přichází na řadu protokol ARP.
 \\
-Aby zdrojové zařízení zjistilo fyzickou adresu cílového zařízení, rozešle všem zařízením v síti LAN paket s požadavkem ARP. Paket obsahuje IP adresu cílového zařízení a žádost o jeho fyzickou adresu. Paket obdrží všechna zařízení v síti LAN, ale pouze zařízení se shodnou IP adresou odpoví svou fyzickou adresou. Tato odpověď je odeslána zpět zdrojovému zařízení ve formě paketu odpovědi ARP.
+Aby zdrojové zařízení zjistilo fyzickou adresu toho cílového, rozešle všem uzlům v síti LAN paket s požadavkem ARP. Paket obsahuje IP adresu cílového zařízení a žádost o jeho fyzickou adresu. Paket obdrží všechny uzly v síti LAN, ale pouze to se shodnou IP adresou odpoví svou fyzickou adresou. Tato odpověď je odeslána zpět zdroji ve formě paketu odpovědi ARP.
 \\
 Zdrojové zařízení pak uloží fyzickou adresu cílového zařízení do své mezipaměti ARP, což je tabulka, která mapuje IP adresy na fyzické adresy. Tímto způsobem může použít fyzickou adresu z mezipaměti pro budoucí komunikaci s cílovým zařízením, místo aby musel vysílat požadavek ARP pokaždé, když chce odeslat data. Mezipaměť ARP má hodnotu časového limitu, která udává dobu, po kterou zůstane fyzická adresa v mezipaměti, než ji bude třeba obnovit.\cite{arp1}\cite{arp2}\cite{arp3}
 
 				\subsection{IP}
+				
+				
 Internetový protokol (IP) je klíčovou součástí internetu, která je zodpovědná za směrování datových paketů mezi zařízeními v síti.
 \\
-Jedním z hlavních úkolů protokolu IP je přenášet datové pakety, nazývané IP datagramy, přes mezilehlé uzly k jejich cíli. K tomu protokol IP využívá informace o topologii sítě, tzv. směrovací informace, které rozhodují o dalším směru přenosu IP datagramu. Tento proces se nazývá směrování.
+Jedním z hlavních úkolů protokolu IP je přenášet datové pakety, nazývané IP datagramy, přes mezilehlé uzly k jejich cíli. K tomu protokol IP využívá informace o topologii sítě, takzvaně směrovací informace, které rozhodují o dalším směru přenosu IP datagramu. Tento proces se nazývá směrování.
 \\
-Protokol IP pracuje s abstraktními adresami, tzv. adresami IP, což jsou 32bitová čísla, která identifikují zařízení v síti. Tyto adresy se používají k určení cesty, kterou mají datové pakety projít, aby dosáhly svého cíle. Aby bylo možné přenášet data mezi zařízeními v různých sítích, spoléhá protokol IP na překlad síťových adres, který slouží k převodu mezi adresami IP a fyzickými adresami, například adresami sítě Ethernet.
+Protokol IP pracuje s abstraktními adresami, takzvanými adresami IP, což jsou 32bitová čísla, která identifikují zařízení v síti. Tyto adresy se používají k určení cesty, kterou mají datové pakety projít, aby dosáhly svého cíle. Aby bylo možné přenášet data mezi zařízeními v různých sítích, spoléhá protokol IP na překlad síťových adres. Protokol IP slouží k převodu mezi adresami IP a fyzickými adresami, například adresami sítě Ethernet.
 \\
-Protokol IP může pracovat ve spolehlivém nebo nespolehlivém režimu. Ve spolehlivém režimu je protokol IP zodpovědný za správné doručení datových paketů a podnikne kroky k opravě případných chyb. V nespolehlivém režimu protokol IP jednoduše zahodí všechna poškozená data a pokračuje dál, přičemž opravu chyb přenechá protokolům vyšších vrstev. Nespolehlivý režim je obecně efektivnější, protože snižuje dobu spojenou s opravou chyb.
+Protokol IP může pracovat ve spolehlivém nebo nespolehlivém režimu. Ve spolehlivém režimu je protokol IP zodpovědný za správné doručení datových paketů a podnikne kroky k opravě případných chyb. V nespolehlivém režimu protokol IP jednoduše zahodí všechna poškozená data a pokračuje dál, opravu chyb přenechá protokolům vyšších vrstev. Nespolehlivý režim je obecně efektivnější, protože snižuje dobu spojenou s opravou chyb.
 \\
 Kromě směrování datových paketů a adresování poskytuje protokol IP také možnosti fragmentace a opětovného sestavení. To umožňuje protokolu IP přenášet datové pakety, které jsou větší než maximální přenosová jednotka sítě, jejich rozdělením na menší pakety a jejich opětovným sestavením v cíli.\cite{IP1}\cite{IP2}\cite{IP3}\cite{IP4}
 
+
 				\subsection{TCP}
+				
+				
 Protokol TCP\footnote{Transmission Control Protocol} je základní součástí internetu a zajišťuje spolehlivý přenos dat mezi zařízeními. Je to protokol zaměřený na spojení, což znamená, že navazuje a udržuje spojení mezi zařízeními nebo aplikacemi, dokud nedokončí výměnu dat.
 \\
 Protokol TCP je zodpovědný za rozdělení původní zprávy do paketů, jejich očíslování a předání vrstvě IP k transportu do cílového zařízení. Dále se stará o přenos případných odložených paketů, spravuje řízení toku a zajišťuje, aby všechny pakety dosáhly svého cíle.
 \\
-K navázání spojení mezi zařízením a serverem používá protokol TCP třícestný handshake, který zajišťuje, aby mohlo být současně přenášeno více spojení soketů TCP v obou směrech. Zařízení i server musí před zahájením komunikace synchronizovat a potvrdit pakety a poté mohou vyjednávat, oddělovat a přenášet spojení soketů TCP.
+K navázání spojení mezi zařízením a serverem používá protokol TCP třícestný handshake, který zajišťuje současný přenos více spojení soketů TCP v obou směrech. Zařízení i server musí před zahájením komunikace synchronizovat a potvrdit pakety a poté mohou vyjednávat, oddělovat a přenášet spojení soketů TCP.
 \\
-Jednou z hlavních výhod protokolu TCP je jeho spolehlivost. Je navržen tak, aby zajistil, že všechny pakety dosáhnou svého cíle, i když se některé pakety během přenosu ztratí. Toho dosahuje tím, že všechny ztracené pakety znovu přenáší a kontroluje, zda nedošlo k chybám. To z něj činí ideální protokol pro aplikace, které vyžadují spolehlivý a bezchybný přenos, jako je e-mail a přenos souborů.\cite{Pruvodce}\cite{TCP}\cite{TCP1}\cite{TCP2}
+Jednou z hlavních výhod protokolu TCP je jeho spolehlivost. Je navržen tak, aby zajistil, že všechny pakety dosáhnou svého cíle, i když se některé pakety během přenosu ztratí. Toho dosahuje opakovaným přenosem ztracených paketů a kontroluje zda nedošlo k chybám. To z něj činí ideální protokol pro aplikace, vyžadující spolehlivý a bezchybný přenos, jako je e-mail a přenos souborů.\cite{Pruvodce}\cite{TCP}\cite{TCP1}\cite{TCP2}
 
 
 
 				\subsection{DHCP}
-Protokol DHCP\footnote{Dynamic Host Configuration Protocol} je síťový protokol, který umožňuje automatizovat proces, získávání IP adress a dalších konfiguračních informací v LAN. DHCP je součástí client/server architektury, kde v síti se vyskytuje DHCP server, který čeká na požadavky a po dotazu automaticky vydá konfigurační informace. Zároveň po určité době si vezme danou IP adresu zpátky a přidá jí opět do databáze s volnými IP adresami. 
+				
+				
+Protokol DHCP\footnote{Dynamic Host Configuration Protocol} je síťový protokol, který umožňuje automatizovat proces, získávání IP adress a dalších konfiguračních informací v LAN. DHCP je součástí client/server architektury, kde v síti se vyskytuje DHCP server, ten čeká na požadavky a po dotazu automaticky vydá konfigurační informace. Zároveň po určité době si vezme danou IP adresu zpátky a přidá jí opět do databáze s volnými IP adresami. 
 \\
-Kromě přidělování IP adres poskytuje DHCP také další  konfigurační informace, jako je subnet\footnote{Subnet je logickým rozdělením sítě IP na více menších síťových částí.}, adresa výchozí brány a DNS. Protokol DHCP je standardem IEEE, který vychází ze staršího protokolu BOOTP (bootstrap protocol), který je již zastaralý, protože funguje pouze v sítích IPv4.\cite{DHCP1}\cite{DHCP2}\cite{DHCP3}\cite{DHCP4}
+Kromě přidělování IP adres poskytuje DHCP také další  konfigurační informace, jako je subnet\footnote{Subnet je logickým rozdělením sítě IP na více menších síťových částí.}, adresa výchozí brány a DNS. Protokol DHCP je standardem IEEE, vychází ze staršího protokolu BOOTP (bootstrap protocol). Ale protokol BOOTP funguje pouze v sítích IPv4, což z něj činí protokol zastaralý.\cite{DHCP1}\cite{DHCP2}\cite{DHCP3}\cite{DHCP4}
 
 
 				\subsection{JSON}
-JSON\footnote{JavaScript Object Notation} je způsob serializace dat, který je jednoduše pochopitelný lidmi, a zároveň zařizeními, díky čemu se prosadil, jako jeden z nejpouživanějších způsobů pro serializaci dat. Tohoto dosáhl pomocí již zmíněné jednoduchosti, oproti ostatním formátům, jako například XML, který byl uživatelsky silně nepřivětivý. 
+				
+				
+JSON\footnote{JavaScript Object Notation} je způsob serializace dat, který je jednoduše pochopitelný lidmi, a zároveň zařízeními, díky čemu se prosadil, jako jeden z nejpouživanějších způsobů pro serializaci dat. Tohoto dosáhl pomocí již zmíněné jednoduchosti, oproti ostatním formátům, jako například XML, který byl uživatelsky silně nepřivětivý. 
 \\
-Pochazí z programovacího jazyka JavaScript, ve kterém kopíruje formu JavaScript objektu. Ten je ale zároveň snado interpretovatelný v ostatních programovacích jazycích, což z něj činí univerzalní nástroj pro přenos dat mezi zařízeními a aplikacemi. \cite{JSON1}\cite{JSON2}\cite{JSON3}\cite{JSON4}
+Pochází z programovacího jazyka JavaScript, ve kterém kopíruje formu JavaScript objektu. Ten je ale zároveň snadno interpretovatelný v ostatních programovacích jazycích, díky tomu je to univerzalní nástroj pro přenos dat mezi zařízeními a aplikacemi. \cite{JSON1}\cite{JSON2}\cite{JSON3}\cite{JSON4}
 
 
 			
