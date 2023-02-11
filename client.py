@@ -8,7 +8,7 @@ from json import loads
 
 PORT = 8880
 HOST = "0.0.0.0"
-IP = "192.168.102.197"   #Default raspberry pi ip address
+IP = "192.168.0.177"   #Default raspberry pi ip address
 
 def client(queue):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

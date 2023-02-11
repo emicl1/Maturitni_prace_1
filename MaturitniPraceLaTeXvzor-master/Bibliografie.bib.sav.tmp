@@ -7,10 +7,11 @@
   title        = {History of TCP/IP},
   url          = {https://www.geeksforgeeks.org/history-of-tcp-ip/},
   year         = {2022},
+  timestamp    = {2022-12-15},
+  urldate      = {2022-12-15},
 }
 
 @Electronic{History,
-  author       = {Neznámý},
   howpublished = {Online},
   language     = {Angličtina},
   month        = dec,
@@ -18,6 +19,8 @@
   title        = {History of TCP/IP},
   url          = {https://scos.training/history-of-tcp-ip},
   year         = {2022},
+  timestamp    = {2022-12-15},
+  urldate      = {2022-12-15},
 }
 
 @Electronic{ARPNET,
@@ -29,39 +32,47 @@
   title        = {ARPANET},
   url          = {https://www.techtarget.com/searchnetworking/definition/ARPANET#:~:text=The U.S. Advanced Research Projects,for academic and research purposes.},
   year         = {2022},
+  timestamp    = {2022-12-13},
+  urldate      = {2022-12-13},
 }
 
 @Electronic{IP,
   author       = {Information Sciences Institute University of Southern California 4676 Admiralty Way Marina del Rey, California 90291},
   howpublished = {Online},
   language     = {Angličitna},
-  month        = sep,
+  month        = dec,
   organization = {Information Sciences Institute University of Southern California},
   title        = {INTERNET PROTOCOL},
   url          = {https://www.rfc-editor.org/rfc/rfc791},
-  year         = {1987},
+  year         = {2022},
+  timestamp    = {2022-12-14},
+  urldate      = {2022-12-14},
 }
 
 @Electronic{TCP,
   author       = {Information Sciences Institute University of Southern California 4676 Admiralty Way Marina del Rey, California 90291},
   howpublished = {Online},
   language     = {Angličtina},
-  month        = sep,
+  month        = dec,
   organization = {Information Sciences Institute University of Southern California},
   title        = {TRANSMISSION CONTROL PROTOCOL},
   url          = {https://www.rfc-editor.org/rfc/rfc793},
-  year         = {1981},
+  year         = {2022},
+  timestamp    = {2022-12-16},
+  urldate      = {2022-12-16},
 }
 
 @Electronic{Rules,
   author       = {STEPHEN D. CROCKER},
   howpublished = {Online},
   language     = {Angličtina},
-  month        = apr,
+  month        = dec,
   organization = {NewYork Times},
   title        = {How the Internet Got Its Rules},
   url          = {https://archive.nytimes.com/www.nytimes.com/2009/04/07/opinion/07crocker.html},
-  year         = {2009},
+  year         = {2022},
+  timestamp    = {2022-12-15},
+  urldate      = {2022-12-15},
 }
 
 @Electronic{History3,
@@ -73,6 +84,8 @@
   title        = {A Brief History of the Internet and Related Networks},
   url          = {https://www.internetsociety.org/internet/history-internet/brief-history-internet-related-networks/},
   year         = {2022},
+  timestamp    = {2022-12-13},
+  urldate      = {2022-12-13},
 }
 
 @Electronic{zakladykomunikace1,
@@ -84,6 +97,8 @@
   title        = {TCP/IP},
   url          = {https://www.techtarget.com/searchnetworking/definition/TCP-IP},
   year         = {2022},
+  timestamp    = {2022-12-16},
+  urldate      = {2022-12-16},
 }
 
 @Electronic{zakladykomunikace2,
@@ -94,10 +109,11 @@
   title        = {End-to-End Principle},
   url          = {https://devopedia.org/end-to-end-principle},
   year         = {2022},
+  timestamp    = {2022-12-15},
+  urldate      = {2022-12-15},
 }
 
 @Electronic{zakladykomunikace3,
-  author       = {Neznámý},
   howpublished = {Online},
   language     = {Angličtina},
   month        = dec,
@@ -105,6 +121,8 @@
   title        = {What Is a Network Node},
   url          = {https://www.solarwinds.com/resources/it-glossary/network-node},
   year         = {2022},
+  timestamp    = {2022-12-30},
+  urldate      = {2022-12-30},
 }
 
 @Electronic{Princip5,
@@ -115,6 +133,8 @@
   title        = {OSI and TCP IP Models - Best Explanation},
   url          = {https://www.youtube.com/watch\?v=3b_TAYtzuho},
   year         = {2022},
+  timestamp    = {2022-12-14},
+  urldate      = {2022-12-14},
 }
 
 @Electronic{Princip6,
@@ -126,10 +146,11 @@
   title        = {The Robustness Principle},
   url          = {https://www.oreilly.com/library/view/tcpip-guide/9781593270476/ch45s04.html},
   year         = {2022},
+  timestamp    = {2022-12-16},
+  urldate      = {2022-12-16},
 }
 
 @Electronic{Princip1,
-  author       = {Neznámý},
   howpublished = {Online},
   language     = {Angličtina},
   month        = dec,
@@ -137,10 +158,11 @@
   title        = {What is TCP/IP},
   url          = {https://www.bigcommerce.com/ecommerce-answers/what-is-tcp-ip/},
   year         = {2022},
+  timestamp    = {2022-12-30},
+  urldate      = {2022-12-30},
 }
 
 @Electronic{Princip4,
-  author       = {Neznámý},
   howpublished = {Online},
   language     = {Angličtina},
   month        = dec,
@@ -148,10 +170,11 @@
   title        = {TCP/IP Model},
   url          = {https://www.geeksforgeeks.org/tcp-ip-model/},
   year         = {2022},
+  timestamp    = {2022-12-16},
+  urldate      = {2022-12-16},
 }
 
 @Electronic{Princip3,
-  author       = {Neznámý},
   howpublished = {Online},
   language     = {Angličtina},
   month        = dec,
@@ -159,17 +182,22 @@
   title        = {client-server model - client-server architecture},
   url          = {https://www.techtarget.com/searchnetworking/definition/client-server},
   year         = {2022},
+  timestamp    = {2022-12-15},
+  urldate      = {2022-12-15},
 }
 
-@Electronic{jhgd,
+@Electronic{pyglet,
   howpublished = {Online},
   language     = {Angličtina},
-  month        = dec,
-  year         = {2022},
+  month        = jan,
+  title        = {pyglet},
+  url          = {https://pyglet.org/},
+  year         = {2023},
+  timestamp    = {2023-01-06},
+  urldate      = {2022-01-06},
 }
 
 @Electronic{Link2,
-  author       = {Neznámý},
   howpublished = {Online},
   language     = {Angličtina},
   month        = dec,
@@ -177,10 +205,11 @@
   title        = {Lekce 2 - Sítě - Ethernet a rozbočovače},
   url          = {https://www.itnetwork.cz/site/zaklady/ethernet-a-rozbocovace},
   year         = {2022},
+  timestamp    = {2022-12-14},
+  urldate      = {2022-12-14},
 }
 
 @Electronic{Link3,
-  author       = {Neznámý},
   howpublished = {Online},
   language     = {Angličtina},
   month        = dec,
@@ -188,6 +217,8 @@
   title        = {Everything You Should Know About Ethernet Networks and Media Converters},
   url          = {https://www.versitron.com/blog/everything-you-should-know-about-ethernet-networks-and-media-converters},
   year         = {2022},
+  timestamp    = {2022-12-15},
+  urldate      = {2022-12-15},
 }
 
 @Electronic{presentation1,
@@ -199,13 +230,19 @@
   title        = {Presentation Layer},
   url          = {https://osi-model.com/presentation-layer/},
   year         = {2022},
+  timestamp    = {2022-12-14},
+  urldate      = {2022-12-14},
 }
 
-@Electronic{2022,
+@Electronic{multiprocess,
   howpublished = {Online},
   language     = {Angličtina},
-  month        = dec,
-  year         = {2022},
+  month        = jan,
+  title        = {multiprocessing — Process-based parallelism},
+  url          = {https://docs.python.org/3/library/multiprocessing.html},
+  year         = {2023},
+  timestamp    = {2023-01-06},
+  urldate      = {2022-01-06},
 }
 
 @Electronic{DHCP2,
@@ -216,6 +253,8 @@
   title        = {Protokoly TCP/IP II},
   url          = {https://www.earchiv.cz/a98/a818k180.php3},
   year         = {2022},
+  timestamp    = {2022-12-14},
+  urldate      = {2022-12-14},
 }
 
 @Electronic{Link4,
@@ -226,6 +265,8 @@
   title        = {Linková vrstva - I.},
   url          = {https://www.earchiv.cz/a92/a218c110.php3},
   year         = {2022},
+  timestamp    = {2022-12-14},
+  urldate      = {2022-12-14},
 }
 
 @Electronic{session2,
@@ -237,6 +278,8 @@
   title        = {Session Layer in OSI model},
   url          = {https://www.geeksforgeeks.org/session-layer-in-osi-model/},
   year         = {2022},
+  timestamp    = {2022-12-16},
+  urldate      = {2022-12-16},
 }
 
 @Electronic{Link5,
@@ -248,10 +291,11 @@
   title        = {Data Link Layer},
   url          = {https://www.geeksforgeeks.org/data-link-layer/},
   year         = {2022},
+  timestamp    = {2022-12-15},
+  urldate      = {2022-12-15},
 }
 
 @Electronic{Link6,
-  author       = {Neznámý},
   howpublished = {Online},
   language     = {Angličtina},
   month        = dec,
@@ -259,10 +303,11 @@
   title        = {Address Resolution Protocol},
   url          = {https://www.ibm.com/docs/en/zos-basic-skills\?topic=layer-address-resolution-protocol-arp},
   year         = {2022},
+  timestamp    = {2022-12-13},
+  urldate      = {2022-12-13},
 }
 
 @Electronic{sit1,
-  author       = {Neznámý},
   howpublished = {Online},
   language     = {Angličtina},
   month        = dec,
@@ -270,6 +315,8 @@
   title        = {Network layer, layer 3},
   url          = {https://www.ibm.com/docs/en/zos-basic-skills\?topic=review-network-layer-layer},
   year         = {2022},
+  timestamp    = {2022-12-14},
+  urldate      = {2022-12-14},
 }
 
 @Electronic{session1,
@@ -280,6 +327,8 @@
   title        = {Relační vrstva},
   url          = {https://www.earchiv.cz/a92/a225c110.php3},
   year         = {2022},
+  timestamp    = {2022-12-16},
+  urldate      = {2022-12-16},
 }
 
 @Electronic{sit2,
@@ -290,6 +339,8 @@
   title        = {Síťová vrstva - I.},
   url          = {https://www.earchiv.cz/a92/a221c110.php3},
   year         = {2022},
+  timestamp    = {2022-12-16},
+  urldate      = {2022-12-16},
 }
 
 @Electronic{tran1,
@@ -300,10 +351,11 @@
   title        = {Transportní vrstva},
   url          = {https://www.earchiv.cz/a92/a224c110.php3},
   year         = {2022},
+  timestamp    = {2022-12-30},
+  urldate      = {2022-12-30},
 }
 
 @Electronic{tran2,
-  author       = {Neznámý},
   howpublished = {Online},
   language     = {Angličtina},
   month        = dec,
@@ -311,10 +363,11 @@
   title        = {Transport Layer},
   url          = {https://www.techopedia.com/definition/9760/transport-layer},
   year         = {2022},
+  timestamp    = {2022-12-30},
+  urldate      = {2022-12-30},
 }
 
 @Electronic{tran3,
-  author       = {Neznámý},
   howpublished = {Online},
   language     = {Angličtina},
   month        = dec,
@@ -322,10 +375,11 @@
   title        = {Transport Layer responsibilities},
   url          = {https://www.geeksforgeeks.org/transport-layer-responsibilities/},
   year         = {2022},
+  timestamp    = {2022-12-30},
+  urldate      = {2022-12-30},
 }
 
 @Electronic{IP3,
-  author       = {Neznámý},
   howpublished = {Online},
   language     = {Angličtina},
   month        = dec,
@@ -333,10 +387,11 @@
   title        = {What is IP},
   url          = {https://www.javatpoint.com/ip},
   year         = {2022},
+  timestamp    = {2022-12-30},
+  urldate      = {2022-12-30},
 }
 
 @Electronic{IP4,
-  author       = {Neznámý},
   howpublished = {Online},
   language     = {Angličtina},
   month        = dec,
@@ -344,6 +399,8 @@
   title        = {What is the Internet Protocol},
   url          = {https://www.cloudflare.com/en-gb/learning/network-layer/internet-protocol/},
   year         = {2022},
+  timestamp    = {2022-12-30},
+  urldate      = {2022-12-30},
 }
 
 @Electronic{TCP1,
@@ -354,16 +411,19 @@
   title        = {Protokol TCP - I.},
   url          = {https://www.earchiv.cz/a93/a305c110.php3},
   year         = {2022},
+  timestamp    = {2022-12-14},
+  urldate      = {2022-12-14},
 }
 
 @Electronic{TCP2,
-  author       = {Neznámý},
   howpublished = {Online},
   language     = {Angličtina},
   month        = dec,
   title        = {Transmission Control Protocol (TCP)},
   url          = {https://www.khanacademy.org/computing/computers-and-internet/xcae6f4a7ff015e7d:the-internet/xcae6f4a7ff015e7d:transporting-packets/a/transmission-control-protocol--tcp},
   year         = {2022},
+  timestamp    = {2022-12-30},
+  urldate      = {2022-12-30},
 }
 
 @Electronic{DHCP1,
@@ -375,6 +435,8 @@
   title        = {DHCP defined and how it works},
   url          = {https://www.networkworld.com/article/3299438/dhcp-defined-and-how-it-works.html},
   year         = {2022},
+  timestamp    = {2022-12-15},
+  urldate      = {2022-12-15},
 }
 
 @Electronic{presentation2,
@@ -386,6 +448,8 @@
   title        = {Presentation Layer in OSI model},
   url          = {https://www.geeksforgeeks.org/presentation-layer-in-osi-model/},
   year         = {2022},
+  timestamp    = {2022-12-14},
+  urldate      = {2022-12-14},
 }
 
 @Electronic{presentation3,
@@ -396,6 +460,8 @@
   title        = {Prezentační vrstv},
   url          = {https://www.earchiv.cz/a92/a226c110.php3},
   year         = {2022},
+  timestamp    = {2022-12-14},
+  urldate      = {2022-12-14},
 }
 
 @Electronic{IP2,
@@ -406,6 +472,8 @@
   title        = {IP - Internet Protocol},
   url          = {https://www.earchiv.cz/anovinky/ai1843.php3},
   year         = {2022},
+  timestamp    = {2022-12-14},
+  urldate      = {2022-12-14},
 }
 
 @Electronic{aplication1,
@@ -416,6 +484,8 @@
   title        = {Aplikační vrstva},
   url          = {https://www.earchiv.cz/a92/a227c110.php3},
   year         = {2022},
+  timestamp    = {2022-12-13},
+  urldate      = {2022-12-13},
 }
 
 @Electronic{aplication2,
@@ -427,6 +497,8 @@
   title        = {application layer},
   url          = {https://www.techtarget.com/searchnetworking/definition/Application-layer},
   year         = {2022},
+  timestamp    = {2022-12-13},
+  urldate      = {2022-12-13},
 }
 
 @Electronic{aplication3,
@@ -438,10 +510,11 @@
   title        = {Application Layer in OSI Model},
   url          = {https://www.geeksforgeeks.org/application-layer-in-osi-model/},
   year         = {2022},
+  timestamp    = {2022-12-13},
+  urldate      = {2022-12-13},
 }
 
 @Electronic{IP1,
-  author       = {Neznámý},
   howpublished = {Online},
   language     = {Angličtina},
   month        = dec,
@@ -449,6 +522,8 @@
   title        = {What is MTU (maximum transmission unit)},
   url          = {https://www.cloudflare.com/en-gb/learning/network-layer/what-is-mtu/},
   year         = {2022},
+  timestamp    = {2022-12-30},
+  urldate      = {2022-12-30},
 }
 
 @Electronic{i2c2,
@@ -460,6 +535,8 @@
   title        = {Komunikace po sériové sběrnici I2C},
   url          = {https://www.root.cz/clanky/komunikace-po-seriove-sbernici-isup2supc/},
   year         = {2022},
+  timestamp    = {2022-12-14},
+  urldate      = {2022-12-14},
 }
 
 @Electronic{i2c1,
@@ -471,6 +548,8 @@
   title        = {I2C Communication Protocol},
   url          = {https://www.geeksforgeeks.org/i2c-communication-protocol/},
   year         = {2022},
+  timestamp    = {2022-12-15},
+  urldate      = {2022-12-15},
 }
 
 @Electronic{i2c3,
@@ -482,10 +561,11 @@
   title        = {I2C Protocol,bus and Interface: A Brief Introduction},
   url          = {https://aticleworld.com/i2c-bus-protocol-and-interface/},
   year         = {2022},
+  timestamp    = {2022-12-15},
+  urldate      = {2022-12-15},
 }
 
 @Electronic{arp3,
-  author       = {Neznámý},
   howpublished = {Online},
   language     = {Angličtina},
   month        = dec,
@@ -493,6 +573,8 @@
   title        = {Address Resolution Protocol (ARP) Meaning},
   url          = {https://www.fortinet.com/resources/cyberglossary/what-is-arp},
   year         = {2022},
+  timestamp    = {2022-12-13},
+  urldate      = {2022-12-13},
 }
 
 @Electronic{i2c4,
@@ -504,6 +586,8 @@
   title        = {BASICS OF THE I2C COMMUNICATION PROTOCOL},
   url          = {https://www.circuitbasics.com/basics-of-the-i2c-communication-protocol/},
   year         = {2022},
+  timestamp    = {2022-12-13},
+  urldate      = {2022-12-13},
 }
 
 @Electronic{WiFi1,
@@ -514,6 +598,8 @@
   title        = {Část XXIV: Wi-Fi},
   url          = {https://www.earchiv.cz/b07/b0400001.php3},
   year         = {2022},
+  timestamp    = {2022-12-13},
+  urldate      = {2022-12-13},
 }
 
 @Electronic{WiFi2,
@@ -525,8 +611,176 @@
   title        = {Wi-Fi and the OSI model},
   url          = {https://www.controleng.com/articles/wi-fi-and-the-osi-model/},
   year         = {2022},
+  owner        = {2022-12-30},
+  urldate      = {2022-12-30},
 }
 
 @Electronic{arp2,
   author       = {Jiří Peterka},
-  howpubl
+  howpublished = {Online},
+  language     = {Angličtina},
+  month        = dec,
+  title        = {Adresování v TCP/IP sítích - II.},
+  url          = {https://www.earchiv.cz/a92/a235c110.php3},
+  year         = {2022},
+  priority     = {2022-12-13},
+  urldate      = {2022-12-13},
+}
+
+@Electronic{WiFi3,
+  howpublished = {Online},
+  language     = {Angličtina},
+  month        = dec,
+  organization = {REG-WEBGLOBE},
+  title        = {Ethernet},
+  url          = {https://ipripojeni.cz/slovnik-pojmu/ethernet/},
+  year         = {2022},
+  timestamp    = {2022-12-15},
+  urldate      = {2022-12-15},
+}
+
+@Electronic{arp1,
+  howpublished = {Online},
+  language     = {Angličtina},
+  month        = dec,
+  organization = {PDR},
+  title        = {How Address Resolution Protocol (ARP) works},
+  url          = {https://www.geeksforgeeks.org/how-address-resolution-protocol-arp-works/},
+  year         = {2022},
+  timestamp    = {2022-12-15},
+  urldate      = {2022-12-15},
+}
+
+@Book{Pruvodce,
+  author    = {Dostálek, Libor, Kabelová, Alena},
+  publisher = {Computer Press},
+  title     = {Velký průvodce protokoly TCP/IP a systémem DNS},
+  year      = {2008},
+  edition   = {5. aktualizované vydání},
+  isbn      = {80-7226-675-6},
+}
+
+@Electronic{DHCP3,
+  howpublished = {Online},
+  language     = {Angličtina},
+  month        = dec,
+  organization = {GANDI SAS},
+  title        = {Dynamic Host Configuration Protocol},
+  url          = {https://www.efficientip.com/what-is-dhcp-and-why-is-it-important/},
+  year         = {2022},
+  timestamp    = {2022-12-15},
+  urldate      = {2022-12-15},
+}
+
+@Electronic{DHCP4,
+  author       = {Kevin Ferguson},
+  howpublished = {Online},
+  language     = {Angličtina},
+  month        = dec,
+  organization = {DNC Holdings, Inc},
+  title        = {subnet (subnetwork)},
+  url          = {https://www.techtarget.com/searchnetworking/definition/subnet},
+  year         = {2022},
+  timestamp    = {2022-12-16},
+  urldate      = {2022-12-16},
+}
+
+@Electronic{JSON1,
+  howpublished = {Online},
+  language     = {Angličtina},
+  month        = dec,
+  title        = {Working with JSON},
+  url          = {https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON},
+  year         = {2022},
+  timestamp    = {2022-12-30},
+  urldate      = {2022-12-30},
+}
+
+@Electronic{pygame,
+  howpublished = {Online},
+  language     = {Angličtina},
+  month        = jan,
+  title        = {Pygame Front Page},
+  url          = {https://www.pygame.org/docs/index.html},
+  year         = {2022},
+  timestamp    = {2022-12-14},
+  urldate      = {2022-12-14},
+}
+
+@Electronic{micropython,
+  howpublished = {Online},
+  language     = {Angličtina},
+  month        = dec,
+  title        = {MicroPython},
+  url          = {https://micropython.org/},
+  year         = {2022},
+  timestamp    = {2022-12-14},
+  urldate      = {2022-12-14},
+}
+
+@Electronic{python,
+  howpublished = {Online},
+  language     = {Angličtina},
+  month        = dec,
+  title        = {python},
+  url          = {https://www.python.org/},
+  year         = {2022},
+  timestamp    = {2022-12-14},
+  urldate      = {2022-12-14},
+}
+
+@Electronic{JSON2,
+  author       = {Martin Hassman},
+  howpublished = {Online},
+  language     = {Angličtina},
+  month        = dec,
+  organization = {REG-INTERNET-CZ},
+  title        = {JSON : jednotný formát pro výměnu dat},
+  url          = {https://zdrojak.cz/clanky/json-jednotny-format-pro-vymenu-dat/},
+  year         = {2022},
+  timestamp    = {2022-12-14},
+  urldate      = {2022-12-14},
+}
+
+@Electronic{raspberry,
+  howpublished = {Online},
+  language     = {Angličtina},
+  month        = jan,
+  title        = {Raspberry Pi Pico W},
+  url          = {https://rpishop.cz/raspberry-pi/5073-raspberry-pi-pico-w-5056561803173.html?gclid=CjwKCAiA2rOeBhAsEiwA2Pl7Q5QpM07nWs8WrEFbln8oufJodrfpwGwOqGUjZ6upFEUuFpMp_zHtNhoCZO8QAvD_BwE},
+  year         = {2022},
+  timestamp    = {2022-12-14},
+  urldate      = {2022-12-14},
+}
+
+@Electronic{JSON3,
+  howpublished = {Online},
+  language     = {Angličtina},
+  month        = dec,
+  organization = {Amazon Registrar, Inc.},
+  title        = {JSON - Introduction},
+  url          = {https://www.w3schools.com/js/js_json_intro.asp},
+  year         = {2022},
+  timestamp    = {2022-12-14},
+  urldate      = {2022-12-14},
+}
+
+@Electronic{JSON4,
+  author       = {gewarren},
+  howpublished = {Online},
+  language     = {Angličtina},
+  month        = dec,
+  organization = {Microsoft Corporation},
+  title        = {Jak serializovat a deserializovat (zařazovat a zrušitmarshal) JSON v .NET},
+  url          = {https://learn.microsoft.com/cs-cz/dotnet/standard/serialization/system-text-json/how-to?pivots=dotnet-7-0},
+  year         = {2022},
+  timestamp    = {2022-12-14},
+  urldate      = {2022-12-14},
+}
+
+@Electronic{gyroskop,
+  howpublished = {Online},
+  language     = {Angličtina},
+  month        = jan,
+  title        = {Tříosý akcelerometr GY-291 s ADXL345 (I2C/SPI)},
+  url          = {https://www.laskakit.cz/triosy-akcelerometr-gy-291-s-adxl345--i2c-spi-/?gclid=CjwKCAiA2rOeBhAsEiwA2Pl7Q2u942NmPlDSNzk8lmmxEI_wiy
